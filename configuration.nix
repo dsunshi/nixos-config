@@ -14,18 +14,23 @@
 
   wsl.enable = true;
   wsl.defaultUser = "nixos";
+  wsl.useWindowsDriver = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   programs.direnv.enable = true;
  
+  environment.variables.EDITOR = "nvim";
   environment.systemPackages = with pkgs; [
-    gnumake
-    stow
     git
-    # neovim
-    inputs.nixvim.packages.${system}.default
+    lazygit
+    tmux
+    hexyl
+    tmux
+    yazi
+    inputs.nixvim.packages.${system}.default # nixvim
     fzf
     ripgrep
+    nixfmt-classic
   ]; 
 
   # This value determines the NixOS release from which the default
