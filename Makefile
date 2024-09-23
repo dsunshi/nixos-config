@@ -1,6 +1,8 @@
 
-.PHONY: all
-all:
+all: build
+
+.PHONY: build
+build:
 	nixos-rebuild build --flake . --impure
 
 .PHONY: install
