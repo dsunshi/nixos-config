@@ -8,3 +8,8 @@ build:
 .PHONY: install
 install:
 	nixos-rebuild switch --flake . --impure
+
+.PHONY: clean
+clean:
+	rm -f flake.lock
+	rm -f result
