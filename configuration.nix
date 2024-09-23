@@ -22,6 +22,7 @@
   environment.systemPackages = with pkgs; [
     git
     lazygit
+    gnumake
     tmux
     hexyl
     tmux
