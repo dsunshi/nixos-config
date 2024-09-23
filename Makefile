@@ -1,7 +1,7 @@
 
 .PHONY: all
 all:
-	nixos-rebuild dry-activate --flake . --impure
+	nixos-rebuild build --flake . --impure
 
 .PHONY: install
 install:
