@@ -13,3 +13,6 @@ install:
 clean:
 	rm -f flake.lock
 	rm -f result
+
+.PHONY: rebuild
+rebuild: clean install
