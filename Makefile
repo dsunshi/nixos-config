@@ -14,5 +14,9 @@ clean:
 	rm -f flake.lock
 	rm -f result
 
+.PHONY: update
+update:
+	nix flake update
+
 .PHONY: rebuild
-rebuild: clean install
+rebuild: update install
