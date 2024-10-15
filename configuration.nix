@@ -91,7 +91,7 @@
     lazygit
     gnumake
     tmux
-    home-manager
+    # home-manager
     kitty
     nerdfonts
     yazi
