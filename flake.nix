@@ -3,7 +3,8 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     # nixvim flake
     nixvim.url = "github:dsunshi/nixvim";
-    home-manager.url = "github:nix-community/home-manager";
+    # home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
   };
   outputs = { self, nixpkgs, nixvim, home-manager, ... }@inputs:
     let inherit (self) outputs;
