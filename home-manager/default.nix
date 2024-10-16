@@ -1,22 +1,3 @@
-# { lib, pkgs, ... }: {
-#   home = {
-#     packages = with pkgs; [
-#       hello
-#       # Doesn't matter if they're on new lines or not,
-#       # they just need whitespace between them
-#       cowsay
-#       lolcat
-#     ];
-#
-#     # This needs to actually be set to your username
-#     username = "david";
-#     homeDirectory = "/home/david";
-#
-#     # Don't ever change this after the first build.  Don't ask questions.
-#     stateVersion = "24.05";
-#   };
-# }
-
 { config, inputs, lib, pkgs, ... }: {
   # imports = [ inputs.nix-colors.homeManagerModules.default ];
 
@@ -30,6 +11,17 @@
     users = {
       david = { ... }: {
         # imports = [ inputs.catppuccin.homeManagerModules.catppuccin ];
+        programs.fish = {
+          enable = true;
+          interactiveShellInit = ''
+            set fish_greeting # Disable greeting
+          '';
+        };
+        programs.git = {
+          enable = true;
+          userName = "D. Sunshine";
+          userEmail = "david@sunshines.org";
+        };
         programs.kitty = {
           enable = true;
           font = {
@@ -72,8 +64,10 @@
           };
         };
         home = {
+          shellAliases = { vim = "nvim"; };
           stateVersion = "24.05";
           packages = with pkgs; [ cowsay calibre ];
+          file.".ghci".text = ":set prompt \"λ> \"";
         };
         # catppuccin = {
         #   flavor = "macchiato";
