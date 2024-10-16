@@ -3,11 +3,11 @@ all: build
 
 .PHONY: build
 build:
-	nixos-rebuild build --flake . --impure
+	nixos-rebuild build --flake .
 
 .PHONY: install
 install:
-	nixos-rebuild switch --flake . --impure
+	nixos-rebuild switch --flake .
 
 .PHONY: clean
 clean:
