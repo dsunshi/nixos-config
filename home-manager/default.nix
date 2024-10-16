@@ -9,14 +9,9 @@
     useUserPackages = true;
 
     users = {
-      david = { ... }: {
-        # imports = [ inputs.catppuccin.homeManagerModules.catppuccin ];
-        programs.fish = {
-          enable = true;
-          interactiveShellInit = ''
-            set fish_greeting # Disable greeting
-          '';
-        };
+      david = {
+        programs.direnv.enable = true;
+        programs.fish.enable = true;
         programs.git = {
           enable = true;
           userName = "D. Sunshine";
@@ -65,15 +60,31 @@
         };
         home = {
           shellAliases = { vim = "nvim"; };
+          # You do not need to change this if you're reading this in the future.
+          # Don't ever change this after the first build.  Don't ask questions.
           stateVersion = "24.05";
-          packages = with pkgs; [ cowsay calibre ];
-          file.".ghci".text = ":set prompt \"λ> \"";
+          packages = with pkgs; [
+            zoxide
+            lazygit
+            calibre
+            gnumake
+            inputs.nixvim.packages.${system}.default # nixvim
+            tmux
+            nerdfonts
+            yazi
+            firefox
+            fzf
+            ripgrep
+          ];
+          file.".ghci".text = '':set prompt "λ> "'';
         };
         # catppuccin = {
         #   flavor = "macchiato";
         #   accent = "peach";
         # };
       };
+      # You do not need to change this if you're reading this in the future.
+      # Don't ever change this after the first build.  Don't ask questions.
       root = _: { home.stateVersion = "24.05"; };
     };
   };
