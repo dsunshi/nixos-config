@@ -11,7 +11,12 @@
     users = {
       david = {
         programs.direnv.enable = true;
-        programs.fish.enable = true;
+        programs.fish = {
+          enable = true;
+          interactiveShellInit = ''
+            set fish_greeting # Disable greeting
+        '';
+        };
         programs.git = {
           enable = true;
           userName = "D. Sunshine";
@@ -64,17 +69,19 @@
           # Don't ever change this after the first build.  Don't ask questions.
           stateVersion = "24.05";
           packages = with pkgs; [
-            zoxide
-            lazygit
+            any-nix-shell
             calibre
-            gnumake
-            inputs.nixvim.packages.${system}.default # nixvim
-            tmux
-            nerdfonts
-            yazi
             firefox
             fzf
+            gnumake
+            inputs.nixvim.packages.${system}.default # nixvim
+            lazygit
+            nerdfonts
+            nixfmt-classic
             ripgrep
+            tmux
+            yazi
+            zoxide
           ];
           file.".ghci".text = '':set prompt "λ> "'';
         };

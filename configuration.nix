@@ -87,7 +87,12 @@
 
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [fishPlugins.fzf-fish fzf];
-  programs.fish.enable = true;
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
+    '';
+  };
 
   # It is not possible on Nix to have fish be the login shell. Therefore ...
   # as per: https://fishshell.com/docs/current/index.html#default-shell
