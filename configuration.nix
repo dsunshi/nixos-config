@@ -86,11 +86,8 @@
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile.
-  environment.systemPackages = with pkgs; [
-    fishPlugins.fzf-fish
-    fzf
-    kitty # required for the default Hyprland config
-  ];
+  environment.systemPackages = with pkgs; [ firefox ];
+
   programs.fish = {
     enable = true;
     # enable fish when using `nix-shell`

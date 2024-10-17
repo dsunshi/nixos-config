@@ -18,7 +18,6 @@
           packages = with pkgs; [
             any-nix-shell # required to have fish as a shell within `nix-shell`
             calibre
-            firefox
             fzf
             gnumake
             inputs.nixvim.packages.${system}.default # neovim via nixvim
@@ -32,6 +31,8 @@
           ];
           # Custom prompt for GHCI
           file.".ghci".text = '':set prompt "λ> "'';
+          file.".xmonad/xmonad.hs".source = ./xmonad/xmonad.hs;
+          file.".config/xmobar/xmobarrc".source = ./xmonad/xmobarrc;
 
           # You do not need to change this if you're reading this in the future.
           # Don't ever change this after the first build.  Don't ask questions.
