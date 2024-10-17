@@ -11,6 +11,10 @@
         haskellEnv = ''
           nix-shell -p "haskellPackages.ghcWithPackages (pkgs: with pkgs; [ $argv ])"'';
       };
+      plugins = [{
+        name = "pure";
+        src = pkgs.fishPlugins.pure.src;
+      }];
     };
     # Shell alliases
     home = { shellAliases = { vim = "nvim"; }; };

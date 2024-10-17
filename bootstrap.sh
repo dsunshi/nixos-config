@@ -3,4 +3,4 @@
 #! nix-shell -i bash
 git clone https://github.com/dsunshi/nixos-config.git
 cd nixos-config
-nixos-rebuild switch --flake .
+sudo nixos-rebuild switch --flake .
