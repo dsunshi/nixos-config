@@ -6,6 +6,11 @@
       interactiveShellInit = ''
         set fish_greeting # Disable greeting
       '';
+      # ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
+      functions = {
+        haskellEnv = ''
+          nix-shell -p "haskellPackages.ghcWithPackages (pkgs: with pkgs; [ $argv ])"'';
+      };
     };
     # Shell alliases
     home = { shellAliases = { vim = "nvim"; }; };

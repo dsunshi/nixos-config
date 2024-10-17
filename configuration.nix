@@ -94,9 +94,9 @@
   programs.fish = {
     enable = true;
     # enable fish when using `nix-shell`
-    interactiveShellInit = ''
-      ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
-    '';
+    # interactiveShellInit = ''
+    #   ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
+    # '';
   };
 
   # It is not possible on Nix to have fish be the login shell. Therefore ...
