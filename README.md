@@ -1,7 +1,7 @@
 
-# Installing
+# Bootstrap
 
-This will update nix flakes and then perofrm a `nixos-rebuild switch`.
+Use at your own risk
 ```bash
-sudo make rebuild
+bash <(curl -s https://raw.githubusercontent.com/dsunshi/nixos-config/refs/heads/master/bootstrap.sh)
 ```
