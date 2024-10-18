@@ -1,5 +1,5 @@
 { config, inputs, lib, pkgs, ... }: {
-  imports = [ ./terminal.nix ];
+  imports = [ ./terminal.nix ./xmonad.nix ];
 
   home-manager = {
     useGlobalPkgs = true;
@@ -28,12 +28,11 @@
             tmux
             yazi
             prusa-slicer
-            xmobar
+            gimp
+            blender
           ];
           # Custom prompt for GHCI
           file.".ghci".text = '':set prompt "λ> "'';
-          file.".xmonad/xmonad.hs".source = ./xmonad/xmonad.hs;
-          file.".config/xmobar/xmobarrc".source = ./xmonad/xmobarrc;
 
           # You do not need to change this if you're reading this in the future.
           # Don't ever change this after the first build.  Don't ask questions.
