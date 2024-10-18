@@ -28,6 +28,7 @@
             tmux
             yazi
             prusa-slicer
+            xmobar
           ];
           # Custom prompt for GHCI
           file.".ghci".text = '':set prompt "λ> "'';
