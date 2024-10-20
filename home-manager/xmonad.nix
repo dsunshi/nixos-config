@@ -4,6 +4,7 @@
       packages = with pkgs; [ xmobar feh picom-pijulius rofi-wayland ];
       file.".xmonad/xmonad.hs".source = ./xmonad/xmonad.hs;
       file.".xmobarrc".source = ./xmonad/xmobarrc;
+      file.".config/picom/picom.conf".source = ./xmonad/picom.conf;
     };
   };
 }
