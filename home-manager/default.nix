@@ -30,6 +30,9 @@
             prusa-slicer
             gimp
             blender
+            xorg.xmessage
+            gpick
+            vlc
           ];
           # Custom prompt for GHCI
           file.".ghci".text = '':set prompt "λ> "'';

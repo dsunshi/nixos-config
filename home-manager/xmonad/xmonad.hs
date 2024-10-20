@@ -1,12 +1,3 @@
---
--- xmonad example config file.
---
--- A template showing all available configuration hooks,
--- and how to override the defaults in your own xmonad.hs conf file.
---
--- Normally, you'd only override those defaults you care about.
---
-
 import Data.Map qualified as M
 import Data.Monoid
 import System.Exit
@@ -16,21 +7,15 @@ import XMonad.Hooks.DynamicLog
 import XMonad.StackSet qualified as W
 import XMonad.Util.Run
 
--- The preferred terminal program, which is used in a binding below and by
--- certain contrib modules.
---
 myTerminal = "kitty"
 
 -- Whether focus follows the mouse pointer.
-myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
 
 -- Whether clicking on a window to focus also passes the click to the window
-myClickJustFocuses :: Bool
 myClickJustFocuses = False
 
 -- Width of the window border in pixels.
---
 myBorderWidth = 1
 
 -- modMask lets you specify which modkey you want to use. The default
@@ -49,13 +34,13 @@ myModMask = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+myWorkspaces = map show [1 .. 9]
 
 -- Border colors for unfocused and focused windows, respectively.
---
-myNormalBorderColor = "#dddddd"
+-- Colors taken from "regular" kanagawa
+myNormalBorderColor = "#2D4F67"
 
-myFocusedBorderColor = "#ff0000"
+myFocusedBorderColor = "#957FB8"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -66,8 +51,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf),
       -- launch dmenu
       ((modm, xK_p), spawn "rofi -show drun"),
-      -- launch gmrun
-      ((modm .|. shiftMask, xK_p), spawn "gmrun"),
       -- close focused window
       ((modm .|. shiftMask, xK_c), kill),
       -- Rotate through the available layout algorithms
