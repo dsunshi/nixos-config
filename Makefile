@@ -13,6 +13,14 @@ install:
 clean:
 	rm -f result
 
+.PHONY: cleanos
+cleanos:
+	# for home-manager and such
+	nix-collect-garbage -d
+	# for NixOS itself
+	sudo nix-collect-garbage -d
+	sudo nix-store --optimise
+
 .PHONY: update
 update:
 	#nix --extra-experimental-features flakes --extra-experimental-features nix-command flake update
