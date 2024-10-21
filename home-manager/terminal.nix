@@ -33,6 +33,7 @@
         size = 14;
       };
       settings = {
+        background_opacity = "0.75";
         # The basic colors
         foreground = "#cdd6f4";
         background = "#1e1e2e";

@@ -4,7 +4,15 @@
 
 { config, inputs, pkgs, ... }:
 
-{
+let
+  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
+    export __NV_PRIME_RENDER_OFFLOAD=1
+    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export __VK_LAYER_NV_optimus=NVIDIA_only
+    exec "$@"
+  '';
+in {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
@@ -14,7 +22,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -39,6 +46,24 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+
+  # services.xserver.videoDrivers = [ "nvidia" "displaylink" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware = {
+    opengl.enable = true;
+    nvidia = {
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      prime = {
+        offload.enable = true;
+        intelBusId = "PCI:0:2:0";
+        nvidiaBusId = "PCI:1:0:0";
+      };
+      modesetting.enable = true;
+      powerManagement.enable = false;
+      powerManagement.finegrained = false;
+      nvidiaSettings = true;
+    };
+  };
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
@@ -77,6 +102,8 @@
   # services.xserver.libinput.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # TODO: I feel like there should be a better spot for this
   environment.variables.EDITOR = "nvim";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -90,7 +117,11 @@
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile.
-  environment.systemPackages = with pkgs; [ firefox tor-browser ];
+  environment.systemPackages = with pkgs; [
+    firefox
+    tor-browser
+    nvidia-offload
+  ];
 
   programs.fish = {
     enable = true;

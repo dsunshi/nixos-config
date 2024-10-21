@@ -26,7 +26,13 @@
             nixfmt-classic
             ripgrep
             tmux
+            yt-dlp
+            mypaint
+            okular
+            bat
+            mypaint-brushes
             yazi
+            eza
             prusa-slicer
             gimp
             blender

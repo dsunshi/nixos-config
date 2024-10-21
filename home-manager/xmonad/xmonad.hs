@@ -1,9 +1,9 @@
 import Data.Map qualified as M
-import Data.Monoid
 import System.Exit
 import XMonad
 import XMonad.Actions.WorkspaceNames
 import XMonad.Hooks.DynamicLog
+import XMonad.Layout.Spacing
 import XMonad.StackSet qualified as W
 import XMonad.Util.Run
 
@@ -16,7 +16,7 @@ myFocusFollowsMouse = True
 myClickJustFocuses = False
 
 -- Width of the window border in pixels.
-myBorderWidth = 1
+myBorderWidth = 2
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -150,7 +150,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = tiled ||| Mirror tiled ||| Full
+myLayout = spacingWithEdge 10 $ tiled ||| Mirror tiled ||| Full
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled = Tall nmaster delta ratio
@@ -232,7 +232,7 @@ myStartupHook = return ()
 --
 main = do
   -- xmproc <- spawnPipe "xmobar"
-  xmonad
+  xmonad $
     def
       { -- simple stuff
         terminal = myTerminal,
