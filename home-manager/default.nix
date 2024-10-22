@@ -35,7 +35,6 @@
             prusa-slicer
             gimp
             blender
-            xorg.xmessage
             gpick
             vlc
           ];

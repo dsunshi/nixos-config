@@ -218,7 +218,7 @@ xmobarHook proc =
     >>= dynamicLogWithPP
 
 delayedSpawn :: String -> X ()
-delayedSpawn c = spawn ("sleep 2 && " ++ c)
+delayedSpawn c = spawn ("sleep 1 && " ++ c)
 
 ------------------------------------------------------------------------
 -- Startup hook
@@ -237,7 +237,7 @@ myStartupHook = do
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do
-  xmproc <- spawnPipe "xmobar $HOME/.xmobarrc"
+  xmproc <- spawnPipe "xmobar $HOME/.config/xmonad/xmobar/xmobarrc"
   xmonad $
     docks
       def
