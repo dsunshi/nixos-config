@@ -3,6 +3,7 @@ import System.Exit
 import XMonad
 import XMonad.Actions.WorkspaceNames
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Spacing
 import XMonad.StackSet qualified as W
 import XMonad.Util.Run
@@ -205,6 +206,7 @@ myEventHook = mempty
 -- Perform an arbitrary action on each internal state change or X event.
 -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
 --
+myLogHook :: X ()
 myLogHook = return ()
 
 xmobarHook proc =
@@ -215,6 +217,9 @@ xmobarHook proc =
       }
     >>= dynamicLogWithPP
 
+delayedSpawn :: String -> X ()
+delayedSpawn c = spawn ("sleep 2 && " ++ c)
+
 ------------------------------------------------------------------------
 -- Startup hook
 
@@ -223,7 +228,8 @@ xmobarHook proc =
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
-myStartupHook = return ()
+myStartupHook = do
+  delayedSpawn "feh --bg-scale ~/.config/wallpaper.png"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
@@ -231,28 +237,29 @@ myStartupHook = return ()
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do
-  -- xmproc <- spawnPipe "xmobar"
+  xmproc <- spawnPipe "xmobar $HOME/.xmobarrc"
   xmonad $
-    def
-      { -- simple stuff
-        terminal = myTerminal,
-        focusFollowsMouse = myFocusFollowsMouse,
-        clickJustFocuses = myClickJustFocuses,
-        borderWidth = myBorderWidth,
-        modMask = myModMask,
-        workspaces = myWorkspaces,
-        normalBorderColor = myNormalBorderColor,
-        focusedBorderColor = myFocusedBorderColor,
-        -- key bindings
-        keys = myKeys,
-        mouseBindings = myMouseBindings,
-        -- hooks, layouts
-        layoutHook = myLayout,
-        manageHook = myManageHook,
-        handleEventHook = myEventHook,
-        logHook = myLogHook,
-        startupHook = myStartupHook
-      }
+    docks
+      def
+        { -- simple stuff
+          terminal = myTerminal,
+          focusFollowsMouse = myFocusFollowsMouse,
+          clickJustFocuses = myClickJustFocuses,
+          borderWidth = myBorderWidth,
+          modMask = myModMask,
+          workspaces = myWorkspaces,
+          normalBorderColor = myNormalBorderColor,
+          focusedBorderColor = myFocusedBorderColor,
+          -- key bindings
+          keys = myKeys,
+          mouseBindings = myMouseBindings,
+          -- hooks, layouts
+          layoutHook = myLayout,
+          manageHook = myManageHook,
+          handleEventHook = myEventHook,
+          logHook = xmobarHook xmproc,
+          startupHook = myStartupHook
+        }
 
 -- | Finally, a copy of the default bindings in simple textual tabular format.
 help :: String

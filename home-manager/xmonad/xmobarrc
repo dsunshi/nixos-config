@@ -1,4 +1,4 @@
 Config { overrideRedirect = False
-       , font = "xft:Iosevka:size=11"
+       , font = "xft:Iosevka:size=14"
        }
 

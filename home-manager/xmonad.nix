@@ -3,13 +3,11 @@
     # TODO: At lest on my first attempt, this did not work ..
     # Is this path not "absolute" enough?
     # xsession.windowManager.xmonad.config = ./xmonad/xmonad.hs;
-    xsession.enable = true;
-    # TODO: Since we are using the path to xmobarrc twice now, it should
-    # probably be a variable. Same with wallpaper.png now too.
-    xsession.initExtra = ''
-      feh --bg-scale ~/.config/wallpaper.png
-      xmobar ~/.xmobarrc
-    '';
+    # xsession.enable = true;
+    # # TODO: Path to wallpaper appears twice, should be variable
+    # xsession.initExtra = ''
+    #   feh --bg-scale ~/.config/wallpaper.png
+    # '';
     services.picom.enable = true;
     services.picom.settings = {
       backend = "glx";
@@ -26,8 +24,6 @@
       file.".xmonad/xmonad.hs".source = ./xmonad/xmonad.hs;
       file.".xmobarrc".source = ./xmonad/xmobarrc;
       file.".config/wallpaper.png".source = ./wallpaper.png;
-      # file.".config/eww/eww.yuck".source = ./xmonad/eww/eww.yuck;
-      # file.".config/eww/eww.scss".source = ./xmonad/eww/eww.scss;
     };
   };
 }
