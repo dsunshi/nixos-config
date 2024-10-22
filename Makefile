@@ -15,11 +15,13 @@ clean:
 
 .PHONY: cleanos
 cleanos:
+	# optimize before garbage collection (this can take a while, so be prepared)
+	nix-store --optimise
+	sudo nix-store --optimise
 	# for home-manager and such
 	nix-collect-garbage -d
 	# for NixOS itself
 	sudo nix-collect-garbage -d
-	sudo nix-store --optimise
 
 .PHONY: update
 update:
