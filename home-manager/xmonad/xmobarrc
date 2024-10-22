@@ -1,29 +1,4 @@
 Config { overrideRedirect = False
-       , font = "xft:iosevka-18"
-       , bgColor = "#111111"
-       , fgColor = "#505250"
-       , position = TopH 45
-       , template = "%UnsafeXMonadLog% }{ %battery% | %wlp0s20f3wi% |\
-                    \ %alsa:default:Master% | %date% "
-       , commands =
-           [ Run UnsafeXMonadLog
-           , Run Battery [ "--template" , "<fc=#cfdfd5><acstatus></fc>"
-                         , "--"
-                         , "-o", "<left>%"
-                         , "-O", "<left>% (Charging)"
-                         , "-i", "Charged"
-                         ] 50
-           , Run Wireless "wlp0s20f3" [ "-t"
-                                      , "<fc=#cfdfd5><essid></fc>"
-                                      ] 10
-           , Run Alsa "default" "Master"
-             [ "-t", "<fc=#cfdfd5><volume>%<status></fc>"
-             , "--"
-             , "-O", ""
-             , "-o", " (Muted)"
-             , "-c", "#cfdfd5"
-             ]
-           , Run Date "<fc=#cfdfd5>%F (%a) %H:%M</fc>" "date" 10
-           ]
+       , font = "xft:Iosevka:size=11"
        }
 

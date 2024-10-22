@@ -23,7 +23,15 @@
       ];
     };
     # Shell alliases
-    home = { shellAliases = { vim = "nvim"; }; };
+    home = {
+      shellAliases = {
+        vim = "nvim";
+        e = "nvim";
+        g = "lazygit";
+        og = "git";
+        q = "exit";
+      };
+    };
     # Terminal emulator
     programs.kitty = {
       enable = true;
