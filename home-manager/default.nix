@@ -8,7 +8,6 @@
     users = {
       david = {
         programs.direnv.enable = true;
-        programs.zoxide.enable = true;
         programs.git = {
           enable = true;
           userName = "D. Sunshine";
