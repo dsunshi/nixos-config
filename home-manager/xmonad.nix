@@ -3,14 +3,9 @@
     # TODO: At lest on my first attempt, this did not work ..
     # Is this path not "absolute" enough?
     # xsession.windowManager.xmonad.config = ./xmonad/xmonad.hs;
-    # xsession.enable = true;
-    # # TODO: Path to wallpaper appears twice, should be variable
-    # xsession.initExtra = ''
-    #   feh --bg-scale ~/.config/wallpaper.png
-    # '';
     services.picom.enable = true;
     services.picom.settings = {
-      backend = "glx";
+      backend = "glx"; # To have bluring not destroy performance, use the GPU
       shadow = true;
       blur = {
         method = "gaussian";
