@@ -4,6 +4,7 @@ import XMonad
 import XMonad.Actions.WorkspaceNames
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
+import XMonad.Layout.Gaps
 import XMonad.Layout.Spacing
 import XMonad.StackSet qualified as W
 import XMonad.Util.Run
@@ -151,7 +152,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = spacingWithEdge 10 $ tiled ||| Mirror tiled ||| Full
+myLayout = gaps [(D, 40)] $ spacingWithEdge 10 $ tiled ||| Mirror tiled ||| Full
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled = Tall nmaster delta ratio
