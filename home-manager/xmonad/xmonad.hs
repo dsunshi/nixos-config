@@ -1,4 +1,5 @@
 import Data.Map qualified as M
+import GHC.IO.Handle
 import System.Exit
 import XMonad
 import XMonad.Actions.WorkspaceNames
@@ -210,13 +211,13 @@ myEventHook = mempty
 myLogHook :: X ()
 myLogHook = return ()
 
+xmobarHook :: Handle -> X ()
 xmobarHook proc =
-  workspaceNamesPP
+  dynamicLogWithPP
     xmobarPP
       { ppOutput = hPutStrLn proc,
         ppTitle = id
       }
-    >>= dynamicLogWithPP
 
 delayedSpawn :: String -> X ()
 delayedSpawn c = spawn ("sleep 1 && " ++ c)
