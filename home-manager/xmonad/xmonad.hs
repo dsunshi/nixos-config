@@ -1,3 +1,4 @@
+import Data.List
 import Data.Map qualified as M
 import GHC.IO.Handle
 import System.Exit
@@ -215,12 +216,19 @@ myEventHook = mempty
 myLogHook :: X ()
 myLogHook = return ()
 
+myTitlePP :: String -> String
+myTitlePP t = if isFirefox t then justFirefox else t
+  where
+    isFirefox = isInfixOf justFirefox
+    justFirefox = "Mozilla Firefox"
+
+-- https://hackage.haskell.org/package/xmonad-contrib-0.18.1/docs/XMonad-Hooks-DynamicLog.html#v:dynamicLogWithPP
 xmobarHook :: Handle -> X ()
 xmobarHook proc =
   dynamicLogWithPP
     xmobarPP
       { ppOutput = hPutStrLn proc,
-        ppTitle = id
+        ppTitle = myTitlePP
       }
 
 delayedSpawn :: String -> X ()
