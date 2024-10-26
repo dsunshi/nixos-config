@@ -41,9 +41,9 @@ myWorkspaces = map show [1 .. 9]
 
 -- Border colors for unfocused and focused windows, respectively.
 -- Colors taken from "regular" kanagawa
-myNormalBorderColor = "#2D4F67"
+myNormalBorderColor = "#1F1F28"
 
-myFocusedBorderColor = "#957FB8"
+myFocusedBorderColor = "#B9B4D0"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -153,7 +153,11 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = gaps [(D, 40)] $ spacingWithEdge 10 $ tiled ||| Mirror tiled ||| Full
+myLayout =
+  let gapSize = 7
+   in gaps [(D, 40)] $
+        spacingRaw True (Border gapSize gapSize gapSize gapSize) True (Border gapSize gapSize gapSize gapSize) True $
+          tiled ||| Mirror tiled ||| Full
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled = Tall nmaster delta ratio

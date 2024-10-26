@@ -1,16 +1,10 @@
-Config { font = "Roboto Bold 10"
-       , additionalFonts =
-          [ "FontAwesome 12"
-          , "FontAwesome Bold 8"
-          , "FontAwesome 14"
-          , "Hack 19"
-          , "Hack 14"
-          ]
+Config { font = "Iosevka Bold 10"
+       , additionalFonts = ["Iosevka 14", "Iosevka 20"]
        , border = NoBorder
-       , bgColor = "#2B2E37"
-       , fgColor = "#929AAD"
-       , alpha = 255
-       , position = BottomSize L 100 40
+       , bgColor = "#1F1F28"
+       , fgColor = "#DCD7BA"
+       , alpha = 202
+       , position = BottomSize C 98 40
        -- , textOffset = 24
        -- , textOffsets = [ 25, 24 ]
        , lowerOnStart = True
@@ -18,9 +12,12 @@ Config { font = "Roboto Bold 10"
        , persistent = False
        , hideOnStart = False
        , iconRoot = "/home/david/.config/xmonad/xmobar/icons/"
+       -- https://codeberg.org/xmobar/xmobar/src/branch/master/doc/plugins.org
        , commands =
          [ Run UnsafeStdinReader
-         , Run Memory ["-t","Mem: <fc=#AAC0F0><usedratio></fc>%"] 10
+         , Run Memory ["-t","  <fc=#8EA4A2><usedratio></fc>%"] 10
+         , Run Date "%a, %b %d  <fc=#C4746E><fn=1> </fn></fc>  %I:%M:%S %p" "date" 10
+         , Run BatteryP ["BAT0"] ["-t", "<acstatus><watts> (<left>%)"] 360
          , Run Com "/home/david/.config/xmonad/xmobar/cpu_temp.sh" [] "cpu" 10
          , Run Com "/home/david/.config/xmonad/xmobar/gpu_temp.sh" [] "gpu" 10
          , Run Com "/home/david/.config/xmonad/xmobar/bluetooth.sh" [] "bluetooth" 10
@@ -29,21 +26,21 @@ Config { font = "Roboto Bold 10"
        , sepChar = "%"
        , alignSep = "}{"
        , template = "\
-            \    \
+            \  <fn=2><fc=#699AD7></fc><fc=#5E5086> </fc></fn>  \
             \%UnsafeStdinReader%\
             \}\
             \%date%\
             \{\
-            \     \
+            \%battery%\
+            \  \
             \%memory%\
-            \     \
-            \|\
-            \     \
+            \  \
             \%cpu%\
-            \     \
-            \|\
-            \     \
+            \  \
             \%gpu%\
-            \       \
+            \  \
+            \%bluetooth%\
+            \  \
+            \%network%    \
             \"
        }

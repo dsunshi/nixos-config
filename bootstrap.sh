@@ -4,7 +4,7 @@
 if ssh -T git@github.com ; then
   git clone git@github.com:dsunshi/nixos-config.git
 else
-  git clone https://github.com/dsunshi/nixos-config.git
+  git clone --depth 1 https://github.com/dsunshi/nixos-config.git
 fi
 cd nixos-config
 direnv allow # DANGEROUS! You should **not** allow this

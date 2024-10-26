@@ -2,6 +2,7 @@
   home-manager.users.david = {
     # Fish as the main shell
     programs.fish = {
+      # TODO: https://github.com/sho-87/kanagawa-paper.nvim/blob/master/extras/kanagawa_paper.fish
       enable = true;
       interactiveShellInit = ''
         set fish_greeting # Disable greeting
@@ -41,6 +42,7 @@
         size = 14;
       };
       settings = {
+        # TODO: https://github.com/sho-87/kanagawa-paper.nvim/blob/master/extras/kitty_kanagawa_paper.conf
         background_opacity = "0.85";
         # The basic colors
         foreground = "#cdd6f4";
