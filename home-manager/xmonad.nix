@@ -16,15 +16,17 @@
     home = {
       packages = with pkgs; [
         xmobar
-        feh
+        feh # sets the wallpaper
         rofi-wayland
-        picom
-        lm_sensors
-        trayer
+        picom # allow window transparency
+        lm_sensors # xmobar temperature
+        # trayer
         xorg.xmessage
       ];
       # TODO: See above
       file.".xmonad/xmonad.hs".source = ./xmonad/xmonad.hs;
+      file.".config/rofi/config.rasi".source = ./xmonad/rofi/confg.rasi;
+      file.".config/rofi/nord.rasi".source = ./xmonad/rofi/nord.rasi;
       file.".config/xmonad/xmobar/xmobarrc".source = ./xmonad/xmobarrc;
       file.".config/xmonad/xmobar/wifi.sh".source = ./xmonad/wifi.sh;
       file.".config/xmonad/xmobar/bluetooth.sh".source = ./xmonad/bluetooth.sh;

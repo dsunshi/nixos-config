@@ -213,14 +213,45 @@ myEventHook = mempty
 -- Perform an arbitrary action on each internal state change or X event.
 -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
 --
-myLogHook :: X ()
-myLogHook = return ()
+-- myLogHook :: X ()
+-- myLogHook = return ()
 
 myTitlePP :: String -> String
 myTitlePP t = if isFirefox t then justFirefox else t
   where
     isFirefox = isInfixOf justFirefox
     justFirefox = "Mozilla Firefox"
+
+-- myXmobarPP :: ScreenId -> PP
+-- myXmobarPP s  = filterOutWsPP [scratchpadWorkspaceTag] . marshallPP s $ def
+--   { ppSep = ""
+--   , ppWsSep = ""
+--   , ppCurrent = xmobarColor cyan "" . clickable wsIconFull
+--   , ppVisible = xmobarColor grey4 "" . clickable wsIconFull
+--   , ppVisibleNoWindows = Just (xmobarColor grey4 "" . clickable wsIconFull)
+--   , ppHidden = xmobarColor grey2 "" . clickable wsIconHidden
+--   , ppHiddenNoWindows = xmobarColor grey2 "" . clickable wsIconEmpty
+--   , ppUrgent = xmobarColor orange "" . clickable wsIconFull
+--   , ppOrder = \(ws : _ : _ : extras) -> ws : extras
+--   , ppExtras  = [ wrapL (actionPrefix ++ "n" ++ actionButton ++ "1>") actionSuffix
+--                 $ wrapL (actionPrefix ++ "q" ++ actionButton ++ "2>") actionSuffix
+--                 $ wrapL (actionPrefix ++ "Left" ++ actionButton ++ "4>") actionSuffix
+--                 $ wrapL (actionPrefix ++ "Right" ++ actionButton ++ "5>") actionSuffix
+--                 $ wrapL "    " "    " $ layoutColorIsActive s (logLayoutOnScreen s)
+--                 , wrapL (actionPrefix ++ "q" ++ actionButton ++ "2>") actionSuffix
+--                 $  titleColorIsActive s (shortenL 81 $ logTitleOnScreen s)
+--                 ]
+--   }
+--   where
+--     wsIconFull   = "  <fn=2>\xf111</fn>   "
+--     wsIconHidden = "  <fn=2>\xf111</fn>   "
+--     wsIconEmpty  = "  <fn=2>\xf10c</fn>   "
+--     titleColorIsActive n l = do
+--       c <- withWindowSet $ return . W.screen . W.current
+--       if n == c then xmobarColorL cyan "" l else xmobarColorL grey3 "" l
+--     layoutColorIsActive n l = do
+--       c <- withWindowSet $ return . W.screen . W.current
+--       if n == c then wrapL "<icon=/home/amnesia/.config/xmonad/xmobar/icons/" "_selected.xpm/>" l else wrapL "<icon=/home/amnesia/.config/xmonad/xmobar/icons/" ".xpm/>" l
 
 -- https://hackage.haskell.org/package/xmonad-contrib-0.18.1/docs/XMonad-Hooks-DynamicLog.html#v:dynamicLogWithPP
 xmobarHook :: Handle -> X ()
