@@ -9,11 +9,12 @@
       shadow = true;
       blur = {
         method = "gaussian";
-        size = 5;
+        size = 10;
         deviation = 2.0;
       };
     };
     home = {
+      sessionPath = [ "/home/david/.local/bin" ];
       packages = with pkgs; [
         xmobar
         feh # sets the wallpaper
@@ -24,8 +25,9 @@
         xorg.xmessage
       ];
       # TODO: See above
+      file.".local/bin/rofi-power-menu".source = ./bin/rofi-power-menu;
       file.".xmonad/xmonad.hs".source = ./xmonad/xmonad.hs;
-      file.".config/rofi/config.rasi".source = ./xmonad/rofi/confg.rasi;
+      file.".config/rofi/config.rasi".source = ./xmonad/rofi/config.rasi;
       file.".config/rofi/nord.rasi".source = ./xmonad/rofi/nord.rasi;
       file.".config/xmonad/xmobar/xmobarrc".source = ./xmonad/xmobarrc;
       file.".config/xmonad/xmobar/wifi.sh".source = ./xmonad/wifi.sh;

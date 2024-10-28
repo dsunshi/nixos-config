@@ -52,6 +52,7 @@ in {
   hardware = {
     opengl.enable = true;
     nvidia = {
+      # open = true;
       package = config.boot.kernelPackages.nvidiaPackages.stable;
       prime = {
         offload.enable = true;
@@ -66,6 +67,12 @@ in {
   };
 
   # Enable the GNOME Desktop Environment.
+  # services.xserver.displayManager.ly.enable = true;
+  # services.xserver.displayManager.ly.settings = {
+  #   load = false;
+  #   save = false;
+  # };
+  # services.xserver.displayManager.defaultSession = "none+xmonad";
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
   services.xserver.windowManager.xmonad = {

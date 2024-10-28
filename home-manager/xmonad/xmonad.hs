@@ -80,7 +80,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- Shrink the master area
       ((modm, xK_h), sendMessage Shrink),
       -- Expand the master area
-      ((modm, xK_l), sendMessage Expand),
+      -- TODO: What is a better mapping?
+      -- ((modm, xK_l), sendMessage Expand),
       -- Push window back into tiling
       ((modm, xK_t), withFocused $ windows . W.sink),
       -- Increment the number of windows in the master area
@@ -93,6 +94,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       --
       -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
 
+      ((modm, xK_l), spawn "rofi -show power-menu -modi power-menu:rofi-power-menu"),
       -- Quit xmonad
       ((modm .|. shiftMask, xK_q), io exitSuccess),
       -- Restart xmonad

@@ -1,5 +1,5 @@
 { config, inputs, lib, pkgs, ... }: {
-  imports = [ ./terminal.nix ./xmonad.nix ];
+  imports = [ ./nvim.nix ./terminal.nix ./xmonad.nix ];
 
   home-manager = {
     useGlobalPkgs = true;
@@ -17,13 +17,7 @@
           packages = with pkgs; [
             any-nix-shell # required to have fish as a shell within `nix-shell`
             calibre
-            fzf
             gnumake
-            inputs.nixvim.packages.${system}.default # neovim via nixvim
-            lazygit
-            nerdfonts
-            nixfmt-classic
-            ripgrep
             tmux
             yt-dlp
             mypaint
@@ -34,6 +28,7 @@
             eza
             prusa-slicer
             gimp
+            freetube
             blender
             gpick
             vlc
