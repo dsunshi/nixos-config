@@ -47,8 +47,8 @@ in {
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # services.xserver.videoDrivers = [ "nvidia" "displaylink" ];
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "nvidia" "displaylink" ];
+  # services.xserver.videoDrivers = [ "nvidia" ];
   hardware = {
     opengl.enable = true;
     nvidia = {

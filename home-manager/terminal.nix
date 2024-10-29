@@ -25,12 +25,17 @@
     };
     # Shell alliases
     home = {
+      packages = with pkgs; [ bat eza ];
       shellAliases = {
         vim = "nvim";
         e = "nvim";
         g = "lazygit";
         og = "git";
         q = "exit";
+        ls = "exa";
+        ll = "exa -alh";
+        tree = "exa --tree";
+        cat = "bat";
       };
     };
     # Terminal emulator
