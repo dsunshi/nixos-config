@@ -2,11 +2,13 @@ import Data.List
 import Data.Map qualified as M
 import GHC.IO.Handle
 import System.Exit
+import Text.Printf
 import XMonad
 import XMonad.Actions.WorkspaceNames
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Gaps
+import XMonad.Layout.IndependentScreens
 import XMonad.Layout.Spacing
 import XMonad.StackSet qualified as W
 import XMonad.Util.Run
@@ -284,32 +286,41 @@ myStartupHook = do
 -- Now run xmonad with all the defaults we set up.
 
 -- Run xmonad with the settings you specify. No need to modify this.
---
-main = do
-  xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.config/xmonad/xmobar/xmobarrc"
-  xmproc1 <- spawnPipe "xmobar -x 1 $HOME/.config/xmonad/xmobar/xmobarrc"
-  xmonad $
-    docks
-      def
-        { -- simple stuff
-          terminal = myTerminal,
-          focusFollowsMouse = myFocusFollowsMouse,
-          clickJustFocuses = myClickJustFocuses,
-          borderWidth = myBorderWidth,
-          modMask = myModMask,
-          workspaces = myWorkspaces,
-          normalBorderColor = myNormalBorderColor,
-          focusedBorderColor = myFocusedBorderColor,
-          -- key bindings
-          keys = myKeys,
-          mouseBindings = myMouseBindings,
-          -- hooks, layouts
-          layoutHook = myLayout,
-          manageHook = myManageHook,
-          handleEventHook = myEventHook,
-          logHook = xmobarHook [xmproc0, xmproc1],
-          startupHook = myStartupHook
-        }
+
+xmobarCommand s = unwords ["xmobar", "-x", show s, "$HOME/.config/xmonad/xmobar/xmobarrc"]
+
+main =
+  let xmobarConfig = "$HOME/.config/xmonad/xmobar/xmobarrc"
+      screens = [0, 1]
+   in do
+        xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.config/xmonad/xmobar/xmobarrc"
+        xmproc1 <- spawnPipe "xmobar -x 1 $HOME/.config/xmonad/xmobar/xmobarrc"
+        nScreens <- countScreens
+        hs <- mapM (spawnPipe . xmobarCommand) [0 .. (nScreens - 1)]
+        -- hs <- mapM (\screen -> spawnPipe $ printf "xmobar -x %d " ++ xmobarConfig) screens
+        xmonad $
+          docks
+            def
+              { -- simple stuff
+                terminal = myTerminal,
+                focusFollowsMouse = myFocusFollowsMouse,
+                clickJustFocuses = myClickJustFocuses,
+                borderWidth = myBorderWidth,
+                modMask = myModMask,
+                workspaces = myWorkspaces,
+                normalBorderColor = myNormalBorderColor,
+                focusedBorderColor = myFocusedBorderColor,
+                -- key bindings
+                keys = myKeys,
+                mouseBindings = myMouseBindings,
+                -- hooks, layouts
+                layoutHook = myLayout,
+                manageHook = myManageHook,
+                handleEventHook = myEventHook,
+                -- logHook = xmobarHook [xmproc0, xmproc1],
+                logHook = xmobarHook hs,
+                startupHook = myStartupHook
+              }
 
 -- | Finally, a copy of the default bindings in simple textual tabular format.
 help :: String
