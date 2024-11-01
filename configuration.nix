@@ -112,6 +112,7 @@ in {
 
   # TODO: I feel like there should be a better spot for this
   environment.variables.EDITOR = "nvim";
+  environment.localBinInPath = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.david = {

@@ -14,7 +14,6 @@
       };
     };
     home = {
-      sessionPath = [ "/home/david/.local/bin" ];
       packages = with pkgs; [
         xmobar
         feh # sets the wallpaper
