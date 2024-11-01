@@ -93,7 +93,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- See also the statusBar function from Hooks.DynamicLog.
       --
       -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
-
+      -- TODO: not working
+      ((modm, xK_c), spawn "setxkbmap -layout us -variant colemak_dh_ortho"),
+      ((modm .|. shiftMask, xK_c), spawn "setxkbmap -layout us"),
       ((modm, xK_l), spawn "rofi -show power-menu -modi power-menu:rofi-power-menu"),
       -- Quit xmonad
       ((modm .|. shiftMask, xK_q), io exitSuccess),
@@ -256,11 +258,11 @@ myTitlePP t = if isFirefox t then justFirefox else t
 --       if n == c then wrapL "<icon=/home/amnesia/.config/xmonad/xmobar/icons/" "_selected.xpm/>" l else wrapL "<icon=/home/amnesia/.config/xmonad/xmobar/icons/" ".xpm/>" l
 
 -- https://hackage.haskell.org/package/xmonad-contrib-0.18.1/docs/XMonad-Hooks-DynamicLog.html#v:dynamicLogWithPP
-xmobarHook :: Handle -> X ()
-xmobarHook proc =
+xmobarHook :: [Handle] -> X ()
+xmobarHook ps =
   dynamicLogWithPP
     xmobarPP
-      { ppOutput = hPutStrLn proc,
+      { ppOutput = \x -> mapM_ (`hPutStrLn` x) ps,
         ppTitle = myTitlePP
       }
 
@@ -284,7 +286,8 @@ myStartupHook = do
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do
-  xmproc <- spawnPipe "xmobar $HOME/.config/xmonad/xmobar/xmobarrc"
+  xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.config/xmonad/xmobar/xmobarrc"
+  xmproc1 <- spawnPipe "xmobar -x 1 $HOME/.config/xmonad/xmobar/xmobarrc"
   xmonad $
     docks
       def
@@ -304,7 +307,7 @@ main = do
           layoutHook = myLayout,
           manageHook = myManageHook,
           handleEventHook = myEventHook,
-          logHook = xmobarHook xmproc,
+          logHook = xmobarHook [xmproc0, xmproc1],
           startupHook = myStartupHook
         }
 
