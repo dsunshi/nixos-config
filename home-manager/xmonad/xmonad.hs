@@ -82,8 +82,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- Shrink the master area
       ((modm, xK_h), sendMessage Shrink),
       -- Expand the master area
-      -- TODO: What is a better mapping?
-      -- ((modm, xK_l), sendMessage Expand),
+      ((modm, xK_l), sendMessage Expand),
       -- Push window back into tiling
       ((modm, xK_t), withFocused $ windows . W.sink),
       -- Increment the number of windows in the master area
@@ -95,12 +94,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- See also the statusBar function from Hooks.DynamicLog.
       --
       -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
-      -- TODO: not working
       ((modm, xK_z), spawn "setxkbmap -layout us -variant colemak_dh_ortho"),
       ((modm .|. shiftMask, xK_z), spawn "setxkbmap -layout us"),
-      ((modm, xK_l), spawn "rofi -show power-menu -modi power-menu:rofi-power-menu"),
       -- Quit xmonad
-      ((modm .|. shiftMask, xK_q), io exitSuccess),
+      ((modm .|. shiftMask, xK_q), spawn "rofi -show power-menu -modi power-menu:rofi-power-menu"),
+      -- ((modm .|. shiftMask, xK_q), io exitSuccess),
       -- Restart xmonad
       ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart"),
       -- Run xmessage with a summary of the default keybindings (useful for beginners)
