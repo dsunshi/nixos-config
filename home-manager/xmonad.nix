@@ -19,6 +19,7 @@
         lm_sensors # xmobar temperature
         # trayer
         xorg.xmessage
+        pamixer # volume control and display
       ];
       file.".local/bin/rofi-power-menu".source = ./bin/rofi-power-menu;
       file.".xmonad/xmonad.hs".source = ./xmonad/xmonad.hs;

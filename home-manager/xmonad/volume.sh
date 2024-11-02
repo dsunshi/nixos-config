@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
-MUTE=$(pulseaudio-ctl full-status | awk '{print $2}')
-VOLUME=$(pulseaudio-ctl full-status | awk '{print $1}')
 
-if [ "$MUTE" = "yes" ]; then
-    echo "<fc=#696B71><fn=3></fn></fc> "
-elif [ "$VOLUME" -eq 0 ]; then
-    echo "<fc=#696B71><fn=3></fn></fc>   "
-elif [ "$VOLUME" -lt 77 ]; then
-    echo "<fc=#DFDFDF><fn=3></fn></fc>  "
+VOLUME=$(pamixer --get-volume)
+
+OFF_ICON="<fn=1></fn>"
+ON_ICON="<fn=1></fn>"
+if [ "$VOLUME" -eq 0 ]; then
+    echo "<fc=#C34043>$OFF_ICON</fc>"
 else
-    echo "<fc=#DFDFDF><fn=3></fn></fc>"
+    echo "$ON_ICON   $VOLUME%"
 fi

@@ -102,7 +102,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- Restart xmonad
       ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart"),
       -- Run xmessage with a summary of the default keybindings (useful for beginners)
-      ((modm .|. shiftMask, xK_slash), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
+      ((modm .|. shiftMask, xK_slash), spawn ("echo \"" ++ help ++ "\" | xmessage -file -")),
+      -- volume
+      ((0, xK_F2), spawn "pamixer -d 5"),
+      ((0, xK_F3), spawn "pamixer -i 5")
     ]
       ++
       --
