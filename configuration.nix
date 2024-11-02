@@ -73,8 +73,40 @@ in {
   #   load = false;
   #   save = false;
   # };
-  # services.xserver.displayManager.defaultSession = "none+xmonad";
-  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.defaultSession = "none+xmonad";
+  services.xserver.displayManager.lightdm = {
+    enable = true;
+    greeters.mini = {
+      enable = true;
+      user = "david";
+
+      extraConfig = ''
+        [greeter]
+        show-password-label = true
+        password-label-text = password
+        invalid-password-text = try again
+        show-input-cursor = false
+        password-alignment = right
+
+        [greeter-theme]
+        font = "Iosevka"
+        font-size = 14pt
+        text-color = "#DCD7BA"
+        error-color = "#C4746E"
+        background-image = ""
+        background-color = "#1F1F28"
+        window-color = "#1F1F28"
+        border-color = "#363646"
+        border-width = 1px
+        layout-space = 14
+        password-color = "#54546D"
+        password-background-color = "#2A2A37"
+      '';
+    };
+  };
+  # services.xserver.displayManager.gdm.enable = true;
+  # TODO: Disabling this seems to prevent external monitors from working,
+  # therefore for now we keep gnome enabled for simplicity :(
   services.xserver.desktopManager.gnome.enable = true;
   services.xserver.windowManager.xmonad = {
     enable = true;
@@ -106,8 +138,12 @@ in {
     #media-session.enable = true;
   };
 
+  # Bluetooth
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  services.xserver.libinput.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

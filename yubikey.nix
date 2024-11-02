@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs; [
     gnupg
     yubikey-personalization
+    yubioath-flutter
     libu2f-host
   ];
   environment.shellInit = ''
