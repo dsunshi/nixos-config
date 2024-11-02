@@ -14,6 +14,13 @@
           userEmail = "david@sunshines.org";
         };
         home = {
+          sessionVariables = {
+            BROWSER = "firefox";
+            EDITOR = "nvim";
+            SHELL = "fish";
+            TERMINAL = "kitty";
+          };
+
           packages = with pkgs; [
             any-nix-shell # required to have fish as a shell within `nix-shell`
             calibre
