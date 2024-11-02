@@ -96,8 +96,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       --
       -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
       -- TODO: not working
-      ((modm, xK_c), spawn "setxkbmap -layout us -variant colemak_dh_ortho"),
-      ((modm .|. shiftMask, xK_c), spawn "setxkbmap -layout us"),
+      ((modm, xK_z), spawn "setxkbmap -layout us -variant colemak_dh_ortho"),
+      ((modm .|. shiftMask, xK_z), spawn "setxkbmap -layout us"),
       ((modm, xK_l), spawn "rofi -show power-menu -modi power-menu:rofi-power-menu"),
       -- Quit xmonad
       ((modm .|. shiftMask, xK_q), io exitSuccess),

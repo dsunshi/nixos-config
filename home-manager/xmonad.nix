@@ -1,8 +1,5 @@
 { config, inputs, lib, pkgs, ... }: {
   home-manager.users.david = {
-    # TODO: At lest on my first attempt, this did not work ..
-    # Is this path not "absolute" enough?
-    # xsession.windowManager.xmonad.config = ./xmonad/xmonad.hs;
     services.picom.enable = true;
     services.picom.settings = {
       backend = "glx"; # To have bluring not destroy performance, use the GPU
@@ -23,7 +20,6 @@
         # trayer
         xorg.xmessage
       ];
-      # TODO: See above
       file.".local/bin/rofi-power-menu".source = ./bin/rofi-power-menu;
       file.".xmonad/xmonad.hs".source = ./xmonad/xmonad.hs;
       file.".config/rofi/config.rasi".source = ./xmonad/rofi/config.rasi;

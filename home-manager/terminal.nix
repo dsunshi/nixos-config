@@ -2,7 +2,6 @@
   home-manager.users.david = {
     # Fish as the main shell
     programs.fish = {
-      # TODO: https://github.com/sho-87/kanagawa-paper.nvim/blob/master/extras/kanagawa_paper.fish
       enable = true;
       interactiveShellInit = ''
         set fish_greeting # Disable greeting
@@ -43,43 +42,43 @@
       enable = true;
       font = {
         name = "Iosevka NF";
-        # package = null;
         size = 14;
       };
       settings = {
-        # TODO: https://github.com/sho-87/kanagawa-paper.nvim/blob/master/extras/kitty_kanagawa_paper.conf
         background_opacity = "0.85";
-        # The basic colors
-        foreground = "#cdd6f4";
-        background = "#1e1e2e";
-        # Cursor colors
-        cursor = "#f5e0dc";
-        cursor_text_color = "#1e1e2e";
-        # The 16 terminal colors
-        # black
-        color0 = "#45475a";
-        color8 = "#585b70";
-        # red
-        color1 = "#f38ba8";
-        color9 = "#f38ba8";
-        # green
-        color2 = "#a6e3a1";
-        color10 = "#a6e3a1";
-        # yellow
-        color3 = "#f9e2af";
-        color11 = "#f9e2af";
-        # blue
-        color4 = "#89b4fa";
-        color12 = "#89b4fa";
-        # magenta
-        color5 = "#f5c2e7";
-        color13 = "#f5c2e7";
-        # cyan
-        color6 = "#94e2d5";
-        color14 = "#94e2d5";
-        # white
-        color7 = "#bac2de";
-        color15 = "#a6adc8";
+        background = "#1F1F28";
+        foreground = "#DCD7BA";
+        selection_background = "#658594";
+        selection_foreground = "#c8c093";
+        url_color = "#8992a7";
+        cursor = "#c8c093";
+        # Tabs
+        active_tab_background = "#12120f";
+        active_tab_foreground = "#C8C093";
+        inactive_tab_background = "#12120f";
+        inactive_tab_foreground = "#a6a69c";
+        #tab_bar_background #15161E";
+        # normal
+        color0 = "#0d0c0c";
+        color1 = "#c4746e";
+        color2 = "#8a9a7b";
+        color3 = "#c4b28a";
+        color4 = "#8ba4b0";
+        color5 = "#a292a3";
+        color6 = "#8ea4a2";
+        color7 = "#C8C093";
+        # bright
+        color8 = "#a6a69c";
+        color9 = "#E46876";
+        color10 = "#87a987";
+        color11 = "#E6C384";
+        color12 = "#7FB4CA";
+        color13 = "#938AA9";
+        color14 = "#7AA89F";
+        color15 = "#c5c9c5";
+        # extended colors
+        color16 = "#b6927b";
+        color17 = "#ff5d62";
       };
     };
   };

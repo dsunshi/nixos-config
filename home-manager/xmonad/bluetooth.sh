@@ -1,18 +1,16 @@
 #!/usr/bin/env bash
 
-# TODO: colorscheme
-
 regex="([0-9A-Z]*:)+"
 DEVICES=$(bluetoothctl devices)
 ICON="󰂲"
-COLOR="#696B71"
+COLOR="#727169"
 for DEVICE in $DEVICES
 do
     if [[ $DEVICE =~ $regex ]]; then
         STATUS=$(bluetoothctl info $DEVICE | grep "Connected" | awk '{print $2}')
         if [ $STATUS = "yes" ]; then
             ICON="󰂯"
-            COLOR="#DFDFDF"
+            COLOR="#DCD7BA"
         fi
     fi
 done

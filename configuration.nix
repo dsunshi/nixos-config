@@ -73,7 +73,7 @@ in {
   #   load = false;
   #   save = false;
   # };
-  services.xserver.displayManager.defaultSession = "none+xmonad";
+  services.displayManager.defaultSession = "none+xmonad";
   services.xserver.displayManager.lightdm = {
     enable = true;
     greeters.mini = {
@@ -143,11 +143,10 @@ in {
   services.blueman.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+  # services.xserver.libinput.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # TODO: I feel like there should be a better spot for this
   environment.variables.EDITOR = "nvim";
   environment.localBinInPath = true;
 
