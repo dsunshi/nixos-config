@@ -35,7 +35,7 @@
         tmux
         yazi
         neofetch
-        any-nix-shell # required to have fish as a shell within `nix-shell`
+        # any-nix-shell # required to have fish as a shell within `nix-shell`
       ];
       shellAliases = {
         vim = "nvim";
@@ -56,10 +56,12 @@
         name = "Iosevka NF";
         size = 14;
       };
-      extraConfig = ''
-        scrollback_pager nvim + "source $HOME/.config/kitty/vi-mode.lua"  -c "map q :qa!<CR>"  -c "set clipboard+=unnamedplus"
-        map alt+s show_scrollback
-      '';
+      # https://github.com/mikesmithgh/kitty-scrollback.nvim
+      # extraConfig = ''
+      #   scrollback_pager nvim + "source $HOME/.config/kitty/vi-mode.lua"  -c "map q :qa!<CR>"  -c "set clipboard+=unnamedplus"
+      #   map alt+s show_scrollback
+      #   shell_integration enabled
+      # '';
       settings = {
         background_opacity = "0.85";
         background = "#1F1F28";

@@ -198,6 +198,8 @@ myManageHook =
   composeAll
     [ className =? "MPlayer" --> doFloat,
       className =? "Gimp" --> doFloat,
+      -- className =? "dwarfort" --> doFloat,
+      -- className =? "Dwarf_Fortress" --> doFloat,
       resource =? "desktop_window" --> doIgnore,
       resource =? "kdesktop" --> doIgnore
     ]

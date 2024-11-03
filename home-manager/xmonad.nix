@@ -24,7 +24,8 @@
       file.".local/bin/rofi-power-menu".source = ./bin/rofi-power-menu;
       file.".xmonad/xmonad.hs".source = ./xmonad/xmonad.hs;
       file.".config/rofi/config.rasi".source = ./xmonad/rofi/config.rasi;
-      file.".config/rofi/nord.rasi".source = ./xmonad/rofi/nord.rasi;
+      file.".config/rofi/colorscheme.rasi".source =
+        ./xmonad/rofi/colorscheme.rasi;
       file.".config/xmonad/xmobar/xmobarrc".source = ./xmonad/xmobarrc;
       file.".config/xmonad/xmobar/wifi.sh".source = ./xmonad/wifi.sh;
       file.".config/xmonad/xmobar/bluetooth.sh".source = ./xmonad/bluetooth.sh;

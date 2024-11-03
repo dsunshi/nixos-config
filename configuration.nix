@@ -12,6 +12,15 @@ let
     export __VK_LAYER_NV_optimus=NVIDIA_only
     exec "$@"
   '';
+  df = pkgs.dwarf-fortress-packages.dwarf-fortress-full.override {
+    dfVersion = "0.47.05";
+    enableIntro = false;
+    enableFPS = true;
+    theme = "vettlingr";
+    # theme = pkgs.dwarf-fortress-packages.themes.vettlingr;
+    # enableTWBT = true;
+    # enableTextMode = false;
+  };
 in {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -86,7 +95,7 @@ in {
         password-label-text = password
         invalid-password-text = try again
         show-input-cursor = false
-        password-alignment = right
+        password-alignment = left
 
         [greeter-theme]
         font = "Iosevka"
@@ -167,20 +176,17 @@ in {
     nvidia-offload
     sops
     # Games
+    freeciv
+    cataclysm-dda
     legendary-gl
     rare # GUI for ledendary
-    (dwarf-fortress-packages.dwarf-fortress-full.override {
-      enableIntro = false;
-      enableFPS = true;
-      theme = dwarf-fortress-packages.themes.vettlingr;
-    })
-    makeDesktopItem
-    {
+    df
+    (pkgs.makeDesktopItem {
       name = "dwarf-fortress";
       desktopName = "Dwarf Fortress";
-      exec = "${dwarf-fortress-packages.dwarf-fortress-full}/bin/dfhack";
+      exec = "dwarf-fortress";
       terminal = false;
-    }
+    })
   ];
 
   # Games
