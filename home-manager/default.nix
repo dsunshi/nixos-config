@@ -22,15 +22,12 @@
           };
 
           packages = with pkgs; [
-            any-nix-shell # required to have fish as a shell within `nix-shell`
             calibre
             gnumake
-            tmux
             yt-dlp
             mypaint
             okular
             mypaint-brushes
-            yazi
             prusa-slicer
             gimp
             freetube

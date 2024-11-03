@@ -169,6 +169,18 @@ in {
     # Games
     legendary-gl
     rare # GUI for ledendary
+    (dwarf-fortress-packages.dwarf-fortress-full.override {
+      enableIntro = false;
+      enableFPS = true;
+      theme = dwarf-fortress-packages.themes.vettlingr;
+    })
+    makeDesktopItem
+    {
+      name = "dwarf-fortress";
+      desktopName = "Dwarf Fortress";
+      exec = "${dwarf-fortress-packages.dwarf-fortress-full}/bin/dfhack";
+      terminal = false;
+    }
   ];
 
   # Games

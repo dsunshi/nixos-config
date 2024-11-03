@@ -283,6 +283,8 @@ delayedSpawn c = spawn ("sleep 1 && " ++ c)
 myStartupHook :: X ()
 myStartupHook = do
   delayedSpawn "xinput --map-to-output \"ELAN9008:00 04F3:2ED7\" eDP-1" -- set the touchscreen just to it's display
+  -- Set any stylus input just to the touchscreen
+  delayedSpawn "xinput --map-to-output \"ELAN9008:00 04F3:2ED7 Stylus Pen (0)\" eDP-1"
   delayedSpawn "feh --bg-scale ~/.config/wallpaper.png"
 
 ------------------------------------------------------------------------

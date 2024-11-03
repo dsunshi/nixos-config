@@ -9,8 +9,6 @@ build:
 install:
 	nix-prefetch-url file://$(shell pwd)/depends/displaylink-580.zip
 	nixos-rebuild switch --flake .
-	xmonad --recompile
-	xmonad --restart
 
 .PHONY: clean
 clean:

@@ -1,9 +1,14 @@
 { config, inputs, lib, pkgs, ... }: {
   home-manager.users.david = {
+    programs.zoxide = {
+      enable = true;
+      enableFishIntegration = true;
+    };
     # Fish as the main shell
     programs.fish = {
       enable = true;
       interactiveShellInit = ''
+        fish_vi_key_bindings
         set fish_greeting # Disable greeting
       '';
       # ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
@@ -22,9 +27,16 @@
         }
       ];
     };
-    # Shell alliases
     home = {
-      packages = with pkgs; [ bat eza ];
+      file.".config/kitty/vi-mode.lua".source = ./vi-mode.lua;
+      packages = with pkgs; [
+        bat
+        eza
+        tmux
+        yazi
+        neofetch
+        any-nix-shell # required to have fish as a shell within `nix-shell`
+      ];
       shellAliases = {
         vim = "nvim";
         e = "nvim";
@@ -44,6 +56,10 @@
         name = "Iosevka NF";
         size = 14;
       };
+      extraConfig = ''
+        scrollback_pager nvim + "source $HOME/.config/kitty/vi-mode.lua"  -c "map q :qa!<CR>"  -c "set clipboard+=unnamedplus"
+        map alt+s show_scrollback
+      '';
       settings = {
         background_opacity = "0.85";
         background = "#1F1F28";
