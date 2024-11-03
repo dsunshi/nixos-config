@@ -280,7 +280,9 @@ delayedSpawn c = spawn ("sleep 1 && " ++ c)
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
+myStartupHook :: X ()
 myStartupHook = do
+  delayedSpawn "xinput --map-to-output \"ELAN9008:00 04F3:2ED7\" eDP-1" -- set the touchscreen just to it's display
   delayedSpawn "feh --bg-scale ~/.config/wallpaper.png"
 
 ------------------------------------------------------------------------
@@ -288,40 +290,42 @@ myStartupHook = do
 
 -- Run xmonad with the settings you specify. No need to modify this.
 
+xmobarCommand :: Int -> String
 xmobarCommand s = unwords ["xmobar", "-x", show s, "$HOME/.config/xmonad/xmobar/xmobarrc"]
 
-main =
-  let xmobarConfig = "$HOME/.config/xmonad/xmobar/xmobarrc"
-      screens = [0, 1]
-   in do
-        xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.config/xmonad/xmobar/xmobarrc"
-        xmproc1 <- spawnPipe "xmobar -x 1 $HOME/.config/xmonad/xmobar/xmobarrc"
-        nScreens <- countScreens
-        hs <- mapM (spawnPipe . xmobarCommand) [0 .. (nScreens - 1)]
-        -- hs <- mapM (\screen -> spawnPipe $ printf "xmobar -x %d " ++ xmobarConfig) screens
-        xmonad $
-          docks
-            def
-              { -- simple stuff
-                terminal = myTerminal,
-                focusFollowsMouse = myFocusFollowsMouse,
-                clickJustFocuses = myClickJustFocuses,
-                borderWidth = myBorderWidth,
-                modMask = myModMask,
-                workspaces = myWorkspaces,
-                normalBorderColor = myNormalBorderColor,
-                focusedBorderColor = myFocusedBorderColor,
-                -- key bindings
-                keys = myKeys,
-                mouseBindings = myMouseBindings,
-                -- hooks, layouts
-                layoutHook = myLayout,
-                manageHook = myManageHook,
-                handleEventHook = myEventHook,
-                -- logHook = xmobarHook [xmproc0, xmproc1],
-                logHook = xmobarHook hs,
-                startupHook = myStartupHook
-              }
+main :: IO ()
+main = do
+  -- let xmobarConfig = "$HOME/.config/xmonad/xmobar/xmobarrc"
+  --     screens = [0, 1]
+  --  in do
+  --       xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.config/xmonad/xmobar/xmobarrc"
+  --       xmproc1 <- spawnPipe "xmobar -x 1 $HOME/.config/xmonad/xmobar/xmobarrc"
+  nScreens <- countScreens
+  hs <- mapM (spawnPipe . xmobarCommand) [0 .. (nScreens - 1)]
+  -- hs <- mapM (\screen -> spawnPipe $ printf "xmobar -x %d " ++ xmobarConfig) screens
+  xmonad $
+    docks
+      def
+        { -- simple stuff
+          terminal = myTerminal,
+          focusFollowsMouse = myFocusFollowsMouse,
+          clickJustFocuses = myClickJustFocuses,
+          borderWidth = myBorderWidth,
+          modMask = myModMask,
+          workspaces = myWorkspaces,
+          normalBorderColor = myNormalBorderColor,
+          focusedBorderColor = myFocusedBorderColor,
+          -- key bindings
+          keys = myKeys,
+          mouseBindings = myMouseBindings,
+          -- hooks, layouts
+          layoutHook = myLayout,
+          manageHook = myManageHook,
+          handleEventHook = myEventHook,
+          -- logHook = xmobarHook [xmproc0, xmproc1],
+          logHook = xmobarHook hs,
+          startupHook = myStartupHook
+        }
 
 -- | Finally, a copy of the default bindings in simple textual tabular format.
 help :: String
