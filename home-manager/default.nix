@@ -33,11 +33,9 @@
             blender
             gpick
             vlc
-            spotifyd
           ];
           # Custom prompt for GHCI
           file.".ghci".text = '':set prompt "λ> "'';
-          file.".config/spotifyd/spotifyd.conf".source = ./spotifyd.conf;
           # You do not need to change this if you're reading this in the future.
           # Don't ever change this after the first build.  Don't ask questions.
           stateVersion = "24.05";
