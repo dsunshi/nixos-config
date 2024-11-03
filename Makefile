@@ -7,7 +7,7 @@ build:
 
 .PHONY: install
 install:
-	nix-prefetch-url file://$(shell pwd)/depends/displaylink-580.zip
+	# nix-prefetch-url file://$(shell pwd)/depends/displaylink-580.zip
 	nixos-rebuild switch --flake .
 
 .PHONY: clean
