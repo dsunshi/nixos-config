@@ -33,6 +33,7 @@
             blender
             gpick
             vlc
+            flameshot
           ];
           # Custom prompt for GHCI
           file.".ghci".text = '':set prompt "λ> "'';

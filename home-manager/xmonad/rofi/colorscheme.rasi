@@ -1,3 +1,8 @@
+/**
+ * Kanagawa Paper theme
+ * Repository: https://github.com/dsunshi/rofi-kanagawa-paper
+ */
+
 * {
     bg0: #1F1F28;
     bg1: #223249;
