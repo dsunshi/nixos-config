@@ -17,7 +17,7 @@
           sessionVariables = {
             BROWSER = "firefox";
             EDITOR = "nvim";
-            SHELL = "fish";
+            # SHELL = "fish";
             TERMINAL = "kitty";
           };
           packages = with pkgs; [

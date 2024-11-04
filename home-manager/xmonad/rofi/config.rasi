@@ -12,6 +12,7 @@ configuration {
 
 @theme "~/.config/rofi/colorscheme.rasi"
 
+/*
 listview {
 	lines: 6;
 	columns: 2;
@@ -20,3 +21,4 @@ listview {
 window {
 	width: 800px;
 }
+*/

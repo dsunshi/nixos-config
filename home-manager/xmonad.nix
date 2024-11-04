@@ -17,9 +17,9 @@
         rofi-wayland
         picom # allow window transparency
         lm_sensors # xmobar temperature
-        # trayer
-        xorg.xmessage
+        xorg.xmessage # TODO: What is a better way to display help?
         pamixer # volume control and display
+        brightnessctl # screen brightness and keyboard LED
       ];
       file.".local/bin/rofi-power-menu".source = ./bin/rofi-power-menu;
       file.".xmonad/xmonad.hs".source = ./xmonad/xmonad.hs;

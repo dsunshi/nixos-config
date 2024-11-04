@@ -51,6 +51,10 @@ myFocusedBorderColor = "#B9B4D0"
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
+-- TODO: Ezconfig
+-- https://hackage.haskell.org/package/xmonad-contrib-0.18.1/docs/XMonad-Util-EZConfig.html
+-- https://www.youtube.com/watch?v=gPQ9mn9Nkpc @ 27:32
+-- https://github.com/vonabarak/xmonad-config/blob/master/src/Keys.hs
 myKeys conf@(XConfig {XMonad.modMask = modm}) =
   M.fromList $
     -- launch a terminal
@@ -105,7 +109,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm .|. shiftMask, xK_slash), spawn ("echo \"" ++ help ++ "\" | xmessage -file -")),
       -- volume
       ((0, xK_F2), spawn "pamixer -d 5"),
-      ((0, xK_F3), spawn "pamixer -i 5")
+      ((0, xK_F3), spawn "pamixer -i 5"),
+      -- screen brightness
+      ((0, xK_F7), spawn "brightnessctl set 5%- -d intel_backlight"),
+      ((0, xK_F8), spawn "brightnessctl set 5%+ -d intel_backlight")
     ]
       ++
       --
