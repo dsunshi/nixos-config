@@ -15,7 +15,7 @@ Config { font = "Iosevka Bold 10"
        -- https://codeberg.org/xmobar/xmobar/src/branch/master/doc/plugins.org
        , commands =
          [ Run UnsafeStdinReader
-         , Run Memory ["-t","  <fc=#8EA4A2><usedratio></fc>%"] 10
+         , Run Memory ["-t","  <fc=#8EA4A2><usedratio></fc>%"] 10
          , Run Date "%a, %b %d  <fc=#C4746E><fn=1> </fn></fc>  %I:%M:%S %p" "date" 10
          , Run BatteryP ["BAT0"] ["-t", "<acstatus><watts> (<left>%)"] 360
          , Run Com "/home/david/.config/xmonad/xmobar/cpu_temp.sh" [] "cpu" 10
@@ -24,7 +24,7 @@ Config { font = "Iosevka Bold 10"
          , Run Com "/home/david/.config/xmonad/xmobar/wifi.sh" [] "network" 10
          , Run Com "/home/david/.config/xmonad/xmobar/volume.sh" [] "volume" 10
          , Run Kbd [("us(colemak_dh_ortho)", "ck"), ("us", "us")]
-         , Run Brightness ["-t", "<fn=1>󰃞 </fn><percent>%", "--", "-D", "intel_backlight"] 60
+         , Run Brightness ["-t", "<fn=0>󰃞 </fn><percent>%", "--", "-D", "intel_backlight"] 60
          ]
        , sepChar = "%"
        , alignSep = "}{"

@@ -2,8 +2,8 @@
 
 VOLUME=$(pamixer --get-volume)
 
-OFF_ICON="<fn=1></fn>"
-ON_ICON="<fn=1></fn>"
+OFF_ICON="<fn=0></fn>"
+ON_ICON="<fn=0></fn>"
 if [ "$VOLUME" -eq 0 ]; then
     echo "<fc=#C34043>$OFF_ICON</fc>"
 else
