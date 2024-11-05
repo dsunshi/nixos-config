@@ -12,7 +12,7 @@ install:
 
 .PHONY: clean
 clean:
-	rm -f result
+	unlink ./result
 
 .PHONY: cleanos
 cleanos:

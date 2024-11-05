@@ -6,6 +6,7 @@ import Text.Printf
 import XMonad
 import XMonad.Actions.WorkspaceNames
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Gaps
 import XMonad.Layout.IndependentScreens
@@ -306,37 +307,33 @@ xmobarCommand s = unwords ["xmobar", "-x", show s, "$HOME/.config/xmonad/xmobar/
 
 main :: IO ()
 main = do
-  -- let xmobarConfig = "$HOME/.config/xmonad/xmobar/xmobarrc"
-  --     screens = [0, 1]
-  --  in do
-  --       xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.config/xmonad/xmobar/xmobarrc"
-  --       xmproc1 <- spawnPipe "xmobar -x 1 $HOME/.config/xmonad/xmobar/xmobarrc"
   nScreens <- countScreens
   hs <- mapM (spawnPipe . xmobarCommand) [0 .. (nScreens - 1)]
-  -- hs <- mapM (\screen -> spawnPipe $ printf "xmobar -x %d " ++ xmobarConfig) screens
   xmonad $
-    docks
-      def
-        { -- simple stuff
-          terminal = myTerminal,
-          focusFollowsMouse = myFocusFollowsMouse,
-          clickJustFocuses = myClickJustFocuses,
-          borderWidth = myBorderWidth,
-          modMask = myModMask,
-          workspaces = myWorkspaces,
-          normalBorderColor = myNormalBorderColor,
-          focusedBorderColor = myFocusedBorderColor,
-          -- key bindings
-          keys = myKeys,
-          mouseBindings = myMouseBindings,
-          -- hooks, layouts
-          layoutHook = myLayout,
-          manageHook = myManageHook,
-          handleEventHook = myEventHook,
-          -- logHook = xmobarHook [xmproc0, xmproc1],
-          logHook = xmobarHook hs,
-          startupHook = myStartupHook
-        }
+    ewmhFullscreen $
+      ewmh $
+        docks
+          def
+            { -- simple stuff
+              terminal = myTerminal,
+              focusFollowsMouse = myFocusFollowsMouse,
+              clickJustFocuses = myClickJustFocuses,
+              borderWidth = myBorderWidth,
+              modMask = myModMask,
+              workspaces = myWorkspaces,
+              normalBorderColor = myNormalBorderColor,
+              focusedBorderColor = myFocusedBorderColor,
+              -- key bindings
+              keys = myKeys,
+              mouseBindings = myMouseBindings,
+              -- hooks, layouts
+              layoutHook = myLayout,
+              manageHook = myManageHook,
+              handleEventHook = myEventHook,
+              -- logHook = xmobarHook [xmproc0, xmproc1],
+              logHook = xmobarHook hs,
+              startupHook = myStartupHook
+            }
 
 -- | Finally, a copy of the default bindings in simple textual tabular format.
 help :: String

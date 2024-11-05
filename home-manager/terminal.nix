@@ -47,6 +47,7 @@
         ll = "exa -alh";
         tree = "exa --tree";
         cat = "bat";
+        ".." = "cd ..";
       };
     };
     # Terminal emulator
