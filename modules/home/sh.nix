@@ -53,7 +53,6 @@ in {
 
   # nix-shell
   programs.bash = {
-    enable = true;
     enableCompletion = true;
     shellAliases = myAliases;
   };
