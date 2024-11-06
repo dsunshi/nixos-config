@@ -1,3 +1,5 @@
 { config, inputs, lib, pkgs, ... }: {
-  file.".config/wallpaper.png".source = ./wallpaper.png;
+  home-manager.users.david.home = {
+    file.".config/wallpaper.png".source = ./wallpaper.png;
+  };
 }
