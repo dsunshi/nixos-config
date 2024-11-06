@@ -1,6 +1,16 @@
 { config, inputs, lib, pkgs, ... }: {
-  imports =
-    [ ./nvim.nix ./terminal.nix ./xmonad ./rofi ./wallpaper ./xmonad ./xmobar ];
+  imports = [
+    ./nvim.nix
+    ./cli.nix
+    ./sh.nix
+    ./kitty.nix
+    ./picom.nix
+    ./xmonad
+    ./rofi
+    ./wallpaper
+    ./xmonad
+    ./xmobar
+  ];
 
   home-manager = {
     useGlobalPkgs = true;

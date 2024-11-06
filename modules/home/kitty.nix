@@ -1,55 +1,5 @@
 { config, inputs, lib, pkgs, ... }: {
   home-manager.users.david = {
-    programs.zoxide = {
-      enable = true;
-      enableFishIntegration = true;
-    };
-    # Fish as the main shell
-    programs.fish = {
-      enable = true;
-      interactiveShellInit = ''
-        fish_vi_key_bindings
-        set fish_greeting # Disable greeting
-      '';
-      # ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
-      functions = {
-        haskellEnv = ''
-          nix-shell -p "haskellPackages.ghcWithPackages (pkgs: with pkgs; [ $argv ])"'';
-      };
-      plugins = [
-        {
-          name = "pure";
-          src = pkgs.fishPlugins.pure.src;
-        }
-        {
-          name = "fzf";
-          src = pkgs.fishPlugins.fzf-fish.src;
-        }
-      ];
-    };
-    home = {
-      packages = with pkgs; [
-        bat
-        eza
-        tmux
-        yazi
-        neofetch
-        # any-nix-shell # required to have fish as a shell within `nix-shell`
-      ];
-      shellAliases = {
-        vim = "nvim";
-        e = "nvim";
-        g = "lazygit";
-        og = "git";
-        q = "exit";
-        ls = "exa";
-        ll = "exa -alh";
-        tree = "exa --tree";
-        cat = "bat";
-        ".." = "cd ..";
-      };
-    };
-    # Terminal emulator
     programs.kitty = {
       enable = true;
       font = {
