@@ -28,7 +28,6 @@
       ];
     };
     home = {
-      file.".config/kitty/vi-mode.lua".source = ./vi-mode.lua;
       packages = with pkgs; [
         bat
         eza
