@@ -1,6 +1,7 @@
 import Data.List
 import Data.Map qualified as M
 import GHC.IO.Handle
+import Prompt.Eval
 import System.Exit
 import Text.Printf
 import XMonad
@@ -11,6 +12,8 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Gaps
 import XMonad.Layout.IndependentScreens
 import XMonad.Layout.Spacing
+import XMonad.Prompt
+import XMonad.Prompt.FuzzyMatch (fuzzyMatch)
 import XMonad.StackSet qualified as W
 import XMonad.Util.Run
 
@@ -49,6 +52,30 @@ myNormalBorderColor = "#1F1F28"
 
 myFocusedBorderColor = "#B9B4D0"
 
+myFont = "xft:ioseveka:size=14:hinting=0:antialias=1"
+
+myBgColor = "black"
+
+myDefaultColor = "green"
+
+myXPConfig :: XPConfig
+myXPConfig =
+  def
+    { font = myFont,
+      bgColor = myBgColor,
+      fgColor = myDefaultColor,
+      bgHLight = myBgColor,
+      fgHLight = myFocusedBorderColor,
+      borderColor = myNormalBorderColor,
+      promptBorderWidth = 1,
+      height = 32,
+      position = Top,
+      historySize = 100000,
+      historyFilter = deleteConsecutive,
+      searchPredicate = fuzzyMatch
+      --    , autoComplete        = Nothing
+    }
+
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
@@ -62,6 +89,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf),
       -- launch dmenu
       ((modm, xK_p), spawn "rofi -show drun"),
+      -- launch Haskell prompt
+      ((modm .|. shiftMask, xK_p), evalPrompt myXPConfig),
       -- close focused window
       ((modm .|. shiftMask, xK_c), kill),
       -- Rotate through the available layout algorithms

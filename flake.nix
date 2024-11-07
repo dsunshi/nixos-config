@@ -1,8 +1,9 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-    nixvim.url = "github:dsunshi/nixvim";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
+    nixvim.url = "github:dsunshi/nixvim";
+    distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
   };
   outputs = { self, nixpkgs, nixvim, home-manager, ... }@inputs:
     let
@@ -16,7 +17,7 @@
         email = "david@sunshines.org";
       };
     in {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         specialArgs = {
           # Pass config variables from above
@@ -24,7 +25,12 @@
           inherit mySystem;
           inherit myUser;
         };
-        modules = [ home-manager.nixosModule ./modules/home ./hosts/nixos ];
+        modules = [
+          home-manager.nixosModule
+          ./modules/home
+          ./hosts/nixos
+          inputs.distro-grub-themes.nixosModules.${system}.default
+        ];
       };
     };
 }

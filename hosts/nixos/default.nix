@@ -1,5 +1,5 @@
 { config, myUser, mySystem, pkgs, ... }: {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
     ./hardware-configuration.nix
     ./../../modules/yubikey.nix
     ./../../modules/games.nix
@@ -12,6 +12,10 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  distro-grub-themes = {
+    enable = true;
+    theme = "nixos"; # asus-rog
+  };
 
   networking.hostName = "nixos"; # Define your hostname.
 
