@@ -5,6 +5,7 @@
     ./sh.nix
     ./kitty.nix
     ./picom.nix
+    ./games.nix
     ./xmonad
     ./rofi
     ./wallpaper

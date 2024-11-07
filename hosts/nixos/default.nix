@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, myUser, mySystem, pkgs, ... }:
 let
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
@@ -11,19 +7,11 @@ let
     export __VK_LAYER_NV_optimus=NVIDIA_only
     exec "$@"
   '';
-  df = pkgs.dwarf-fortress-packages.dwarf-fortress-full.override {
-    dfVersion = "0.47.05";
-    enableIntro = false;
-    enableFPS = true;
-    theme = "vettlingr";
-    # theme = pkgs.dwarf-fortress-packages.themes.vettlingr;
-    # enableTWBT = true;
-    # enableTextMode = false;
-  };
 in {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./../../modules/yubikey.nix
+    ./../../modules/display-manager.nix
   ];
 
   # Bootloader.
@@ -39,7 +27,7 @@ in {
   time.timeZone = "America/Detroit";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = mySystem.locale;
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = mySystem.locale;
@@ -53,9 +41,7 @@ in {
     LC_TIME = mySystem.locale;
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
+  # TODO: nvidia.nix
   services.xserver.videoDrivers = [ "nvidia" "displaylink" ];
   # services.xserver.videoDrivers = [ "nvidia" ];
   hardware = {
@@ -75,44 +61,9 @@ in {
     };
   };
 
-  # Enable the GNOME Desktop Environment.
-  # services.xserver.displayManager.ly.enable = true;
-  # services.xserver.displayManager.ly.settings = {
-  #   load = false;
-  #   save = false;
-  # };
-  services.displayManager.defaultSession = "none+xmonad";
-  services.xserver.displayManager.lightdm = {
-    enable = true;
-    greeters.mini = {
-      enable = true;
-      user = myUser.username;
-
-      extraConfig = ''
-        [greeter]
-        show-password-label = true
-        password-label-text = password
-        invalid-password-text = try again
-        show-input-cursor = false
-        password-alignment = left
-
-        [greeter-theme]
-        font = "Iosevka"
-        font-size = 14pt
-        text-color = "#DCD7BA"
-        error-color = "#C4746E"
-        background-image = ""
-        background-color = "#1F1F28"
-        window-color = "#1F1F28"
-        border-color = "#363646"
-        border-width = 1px
-        layout-space = 14
-        password-color = "#54546D"
-        password-background-color = "#2A2A37"
-      '';
-    };
-  };
-  # services.xserver.displayManager.gdm.enable = true;
+  # TODO: wm.nix
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
   # TODO: Disabling this seems to prevent external monitors from working,
   # therefore for now we keep gnome enabled for simplicity :(
   services.xserver.desktopManager.gnome.enable = true;
@@ -138,12 +89,6 @@ in {
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
   # Bluetooth
@@ -151,44 +96,31 @@ in {
   services.blueman.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  # TODO: What is this for?
+  # services.libinput.enable = true;
 
+  nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   environment.variables.EDITOR = "nvim";
-  environment.localBinInPath = true;
+  environment.localBinInPath = true; # add ~/.local/bin to PATH
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${myUser.username} = {
     isNormalUser = true;
     description = myUser.name;
     extraGroups = [ "networkmanager" "wheel" ];
-    # packages = with pkgs; [ ];
   };
-
-  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     firefox
     tor-browser
     nvidia-offload
-    sops
-    # Games
-    freeciv
-    cataclysm-dda
-    legendary-gl
-    rare # GUI for ledendary
-    df
-    (pkgs.makeDesktopItem {
-      name = "dwarf-fortress";
-      desktopName = "Dwarf Fortress";
-      exec = "dwarf-fortress";
-      terminal = false;
-    })
   ];
 
-  # Games
+  # TODO: Does this have to be at the system level?
+  # If so, then games.nix
   programs.steam = {
     enable = true;
     remotePlay.openFirewall =
@@ -199,13 +131,8 @@ in {
       true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
 
-  programs.fish = {
-    enable = true;
-    # enable fish when using `nix-shell`
-    # interactiveShellInit = ''
-    #   ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
-    # '';
-  };
+  # Use fish as the main system shell
+  programs.fish = { enable = true; };
 
   # It is not possible on Nix to have fish be the login shell. Therefore ...
   # as per: https://fishshell.com/docs/current/index.html#default-shell
@@ -219,10 +146,7 @@ in {
     '';
   };
 
-  # List services that you want to enable:
-
   # You do not need to change this if you're reading this in the future.
   # Don't ever change this after the first build.  Don't ask questions.
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }
