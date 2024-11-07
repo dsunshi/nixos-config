@@ -2,8 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, inputs, pkgs, ... }:
-
+{ config, myUser, mySystem, pkgs, ... }:
 let
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
@@ -43,15 +42,15 @@ in {
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
+    LC_ADDRESS = mySystem.locale;
+    LC_IDENTIFICATION = mySystem.locale;
+    LC_MEASUREMENT = mySystem.locale;
+    LC_MONETARY = mySystem.locale;
+    LC_NAME = mySystem.locale;
+    LC_NUMERIC = mySystem.locale;
+    LC_PAPER = mySystem.locale;
+    LC_TELEPHONE = mySystem.locale;
+    LC_TIME = mySystem.locale;
   };
 
   # Enable the X11 windowing system.
@@ -87,7 +86,7 @@ in {
     enable = true;
     greeters.mini = {
       enable = true;
-      user = "david";
+      user = myUser.username;
 
       extraConfig = ''
         [greeter]
@@ -160,9 +159,9 @@ in {
   environment.localBinInPath = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.david = {
+  users.users.${myUser.username} = {
     isNormalUser = true;
-    description = "David Sunshine";
+    description = myUser.name;
     extraGroups = [ "networkmanager" "wheel" ];
     # packages = with pkgs; [ ];
   };

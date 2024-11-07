@@ -1,4 +1,4 @@
-{ config, inputs, lib, pkgs, ... }:
+{ myUser, pkgs, ... }:
 let
   myAliases = {
     ".." = "cd ..";
@@ -14,7 +14,7 @@ let
     vim = "nvim";
   };
 in {
-  home-manager.users.david = {
+  home-manager.users.${myUser.username} = {
 
     programs.zoxide = {
       enable = true;

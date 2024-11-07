@@ -1,4 +1,4 @@
-{ config, inputs, lib, pkgs, ... }: {
+{ myUser, pkgs, ... }: {
   imports = [
     ./nvim.nix
     ./cli.nix
@@ -17,12 +17,12 @@
     useUserPackages = true;
 
     users = {
-      david = {
+      ${myUser.username} = {
         programs.direnv.enable = true;
         programs.git = {
           enable = true;
-          userName = "D. Sunshine";
-          userEmail = "david@sunshines.org";
+          userName = myUser.name;
+          userEmail = myUser.email;
         };
         home = {
           sessionVariables = {

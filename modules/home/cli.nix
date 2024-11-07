@@ -1,5 +1,5 @@
-{ config, inputs, lib, pkgs, ... }: {
-  home-manager.users.david = {
+{ myUser, pkgs, ... }: {
+  home-manager.users.${myUser.username} = {
     home = {
       packages = with pkgs; [
         bat

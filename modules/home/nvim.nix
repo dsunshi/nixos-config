@@ -1,7 +1,7 @@
-{ config, inputs, lib, pkgs, ... }: {
+{ inputs, pkgs, myUser, ... }: {
   home-manager = {
     users = {
-      david = {
+      ${myUser.username} = {
         home = {
           packages = with pkgs; [
             inputs.nixvim.packages.${system}.default # neovim via nixvim

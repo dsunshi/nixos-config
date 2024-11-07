@@ -1,5 +1,5 @@
-{ config, inputs, lib, pkgs, ... }: {
-  home-manager.users.david.home = {
+{ myUser, pkgs, ... }: {
+  home-manager.users.${myUser.username}.home = {
     packages = with pkgs; [ rofi-wayland ];
     file.".local/bin/rofi-power-menu".source = ./../bin/rofi-power-menu;
     file.".config/rofi/config.rasi".source = ./config.rasi;
