@@ -30,7 +30,7 @@
              , commands =
                [ Run UnsafeStdinReader
                , Run Memory ["-t","  <fc=#8EA4A2><usedratio></fc>%"] 10
-               , Run Date "%a, %b %d  <fc=#C4746E><fn=1> </fn></fc>  %I:%M:%S %p" "date" 10
+               , Run Date "%a, %b %d  <fc=#C4746E><fn=1> </fn></fc>  %I:%M %p" "date" 10
                , Run BatteryP ["BAT0"] ["-t", "<acstatus><watts> (<left>%)"] 360
                , Run Com "/home/${myUser.username}/.config/xmonad/xmobar/cpu_temp.sh" [] "cpu" 10
                , Run Com "/home/${myUser.username}/.config/xmonad/xmobar/gpu_temp.sh" [] "gpu" 10
