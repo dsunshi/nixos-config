@@ -325,6 +325,7 @@ myStartupHook = do
   -- Set any stylus input just to the touchscreen
   delayedSpawn "xinput --map-to-output \"ELAN9008:00 04F3:2ED7 Stylus Pen (0)\" eDP-1"
   delayedSpawn "feh --bg-scale ~/.config/wallpaper.png"
+  delayedSpawn "picom --config ~/.config/picom/picom.conf"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.

@@ -4,7 +4,7 @@
     ./cli.nix
     ./sh.nix
     ./kitty.nix
-    ./picom.nix
+    ./picom
     ./games.nix
     ./xmonad
     ./rofi

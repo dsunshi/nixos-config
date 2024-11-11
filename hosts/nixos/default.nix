@@ -1,4 +1,4 @@
-{ config, myUser, mySystem, pkgs, ... }: {
+{ myUser, mySystem, pkgs, ... }: {
   imports = [
     ./hardware-configuration.nix
     ./../../modules/yubikey.nix
@@ -7,6 +7,7 @@
     ./../../modules/sh.nix
     ./../../modules/wm.nix
     ./../../modules/display-manager.nix
+    ./../../modules/vpn.nix
   ];
 
   # Bootloader.
@@ -21,6 +22,9 @@
     enable = true;
     theme = "nixos"; # asus-rog
   };
+
+  # https://discourse.nixos.org/t/drm-kernel-driver-nvidia-drm-in-use-nvk-requires-nouveau/42222/19
+  boot.kernelParams = [ "nvidia-drm.fbdev=1" ];
 
   networking.hostName = "nixos"; # Define your hostname.
 
