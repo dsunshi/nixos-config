@@ -8,19 +8,20 @@
     ./../../modules/wm.nix
     ./../../modules/display-manager.nix
     ./../../modules/vpn.nix
+    ./../../modules/ios.nix
   ];
 
   # Bootloader.
   # boot.loader.systemd-boot.enable = true;
+  # boot.loader.grub.efiInstallAsRemovable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.enable = true;
   boot.loader.grub.devices = [ "nodev" ];
-  # boot.loader.grub.efiInstallAsRemovable = true;
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.useOSProber = true;
   distro-grub-themes = {
     enable = true;
-    theme = "nixos"; # asus-rog
+    theme = "nixos"; # or 'asus-rog'
   };
 
   # https://discourse.nixos.org/t/drm-kernel-driver-nvidia-drm-in-use-nvk-requires-nouveau/42222/19

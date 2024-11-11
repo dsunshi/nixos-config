@@ -26,8 +26,9 @@ cleanos:
 
 .PHONY: update
 update:
+ifneq ($(shell id -u), 0)
 	#nix --extra-experimental-features flakes --extra-experimental-features nix-command flake update
 	nix flake update
-
-.PHONY: rebuild
-rebuild: update install
+else
+	@echo "WARN: update CANNOT be run as the root user! Skipping ..."
+endif
