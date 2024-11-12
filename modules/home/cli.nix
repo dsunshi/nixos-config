@@ -5,7 +5,10 @@
         bat
         xorg.xkill
         eza
+        yt-dlp
+        flameshot
         tmux
+        nb
         yazi
         aria2
         bottom

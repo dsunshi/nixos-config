@@ -6,6 +6,7 @@
     ./../../modules/nvidia.nix
     ./../../modules/sh.nix
     ./../../modules/wm.nix
+    ./../../modules/vm.nix
     ./../../modules/display-manager.nix
     ./../../modules/vpn.nix
     ./../../modules/ios.nix
@@ -82,6 +83,14 @@
 
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [ firefox tor-browser ];
+
+  # https://nix.dev/permalink/stub-ld
+  # programs.nix-ld.enable = true;
+  # programs.nix-ld.libraries = with pkgs;
+  #   [
+  #     # Add any missing dynamic libraries for unpackaged programs
+  #     # here, NOT in environment.systemPackages
+  #   ];
 
   # You do not need to change this if you're reading this in the future.
   # Don't ever change this after the first build.  Don't ask questions.

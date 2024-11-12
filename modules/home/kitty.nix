@@ -1,4 +1,4 @@
-{ myUser, pkgs, ... }: {
+{ myUser, ... }: {
   home-manager.users.${myUser.username} = {
     programs.kitty = {
       enable = true;
@@ -6,14 +6,14 @@
         name = "Iosevka NF";
         size = 14;
       };
-      # https://github.com/mikesmithgh/kitty-scrollback.nvim
-      # extraConfig = ''
-      #   scrollback_pager nvim + "source $HOME/.config/kitty/vi-mode.lua"  -c "map q :qa!<CR>"  -c "set clipboard+=unnamedplus"
-      #   map alt+s show_scrollback
-      #   shell_integration enabled
-      # '';
       settings = {
+        tab_bar_min_tabs = "1";
+        tab_bar_edge = "bottom";
+        tab_bar_style = "powerline";
+
         background_opacity = "0.85";
+        background_blur = "5";
+
         background = "#1F1F28";
         foreground = "#DCD7BA";
         selection_background = "#658594";

@@ -11,6 +11,7 @@
     ./wallpaper
     ./xmonad
     ./xmobar
+    ./qutebrowser
   ];
 
   home-manager = {
@@ -35,7 +36,6 @@
           packages = with pkgs; [
             calibre
             gnumake
-            yt-dlp
             mypaint
             okular
             mypaint-brushes
@@ -45,7 +45,6 @@
             blender
             gpick
             vlc
-            flameshot
           ];
           # Custom prompt for GHCI
           file.".ghci".text = '':set prompt "λ> "'';

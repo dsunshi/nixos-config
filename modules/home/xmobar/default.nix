@@ -39,6 +39,7 @@
                , Run Com "/home/${myUser.username}/.config/xmonad/xmobar/volume.sh" [] "volume" 10
                , Run Kbd [("us(colemak_dh_ortho)", "ck"), ("us", "us")]
                , Run Brightness ["-t", "<fn=0>󰃞 </fn><percent>%", "--", "-D", "intel_backlight"] 60
+               , Run DiskU [("/", "/: <usedp>% (<used>/<size>)")] [] 20
                ]
              , sepChar = "%"
              , alignSep = "}{"
@@ -48,6 +49,8 @@
                   \}\
                   \%date%\
                   \{\
+                  \%disku%\
+                  \  \
                   \%battery%\
                   \  \
                   \%volume%\
