@@ -1,7 +1,10 @@
 {
+  description = "🌞 NixOS Configuration";
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixvim.url = "github:dsunshi/nixvim";
     distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
   };
@@ -17,20 +20,31 @@
         email = "david@sunshines.org";
       };
     in {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem rec {
-        system = "x86_64-linux";
-        specialArgs = {
-          # Pass config variables from above
-          inherit inputs outputs;
-          inherit mySystem;
-          inherit myUser;
+      nixosConfigurations = {
+        nixos = nixpkgs.lib.nixosSystem rec {
+          system = "x86_64-linux";
+          specialArgs = {
+            # Pass config variables from above
+            inherit inputs outputs;
+            inherit mySystem;
+            inherit myUser;
+          };
+          modules = [
+            home-manager.nixosModule
+            ./modules/home
+            ./hosts/nixos
+            inputs.distro-grub-themes.nixosModules.${system}.default
+          ];
         };
-        modules = [
-          home-manager.nixosModule
-          ./modules/home
-          ./hosts/nixos
-          inputs.distro-grub-themes.nixosModules.${system}.default
-        ];
+        ghost = nixpkgs.lib.nixosSystem {
+          # system = "x86_64-linux";
+          specialArgs = {
+            inherit inputs outputs;
+            inherit mySystem;
+            inherit myUser;
+          };
+          modules = [ home-manager.nixosModule ./modules/home ./hosts/wsl ];
+        };
       };
     };
 }
