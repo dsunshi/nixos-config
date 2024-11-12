@@ -1,14 +1,15 @@
-{ inputs, pkgs, ... }: {
-  imports = [ <nixos-wsl/modules> ];
+{ myUser, inputs, pkgs, ... }: {
+  imports = [ inputs.nixos-wsl.nixosModules.default ];
 
   wsl = {
     enable = true;
-    defaultUser = "nixos";
+    defaultUser = myUser.username;
     useWindowsDriver = true;
   };
 
   nixpkgs.hostPlatform = "x86_64-linux";
 
+  nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   programs.direnv.enable = true;
 
@@ -18,7 +19,7 @@
     lazygit
     gnumake
     yazi
-    # home-manager
+    home-manager
     inputs.nixvim.packages.${system}.default
     fzf
     ripgrep
