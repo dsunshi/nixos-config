@@ -1,30 +1,14 @@
-{ myUser, inputs, pkgs, ... }: {
-  imports = [ inputs.nixos-wsl.nixosModules.default ];
+{ myUser, inputs, ... }: {
+  imports =
+    [ inputs.nixos-wsl.nixosModules.default ./../../modules/common.nix ];
 
   wsl = {
     enable = true;
     defaultUser = myUser.username;
-    useWindowsDriver = true;
+    useWindowsDriver = true; # for the GPU
   };
 
   nixpkgs.hostPlatform = "x86_64-linux";
-
-  nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  # programs.direnv.enable = true;
-
-  environment.variables.EDITOR = "nvim";
-  environment.systemPackages = [
-    # git
-    # lazygit
-    # gnumake
-    # yazi
-    # home-manager
-    # inputs.nixvim.packages.${system}.default
-    # fzf
-    # ripgrep
-    # nixfmt-classic
-  ];
 
   # You do not need to change this if you're reading this in the future.
   # Don't ever change this after the first build.  Don't ask questions.

@@ -10,6 +10,7 @@
     ./../../modules/display-manager.nix
     ./../../modules/vpn.nix
     ./../../modules/ios.nix
+    ./../../modules/common.nix
   ];
 
   options = {
@@ -76,10 +77,6 @@
     hardware.bluetooth.enable = true;
     services.blueman.enable = true;
 
-    nixpkgs.config.allowUnfree = true;
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-    environment.variables.EDITOR = "nvim";
     environment.localBinInPath = true; # add ~/.local/bin to PATH
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
