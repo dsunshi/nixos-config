@@ -1,6 +1,7 @@
 { myUser, pkgs, ... }: {
   imports = [
     ./cli.nix
+    ./autorandr
     ./games.nix
     ./kitty.nix
     ./nvim.nix
