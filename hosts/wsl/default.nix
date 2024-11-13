@@ -11,20 +11,22 @@
 
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  programs.direnv.enable = true;
+  # programs.direnv.enable = true;
 
   environment.variables.EDITOR = "nvim";
-  environment.systemPackages = with pkgs; [
-    git
-    lazygit
-    gnumake
-    yazi
-    home-manager
-    inputs.nixvim.packages.${system}.default
-    fzf
-    ripgrep
-    nixfmt-classic
+  environment.systemPackages = [
+    # git
+    # lazygit
+    # gnumake
+    # yazi
+    # home-manager
+    # inputs.nixvim.packages.${system}.default
+    # fzf
+    # ripgrep
+    # nixfmt-classic
   ];
 
+  # You do not need to change this if you're reading this in the future.
+  # Don't ever change this after the first build.  Don't ask questions.
   system.stateVersion = "24.05";
 }
