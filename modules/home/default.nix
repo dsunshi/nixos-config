@@ -1,17 +1,16 @@
 { myUser, pkgs, ... }: {
   imports = [
-    ./nvim.nix
     ./cli.nix
-    ./sh.nix
-    ./kitty.nix
-    ./picom
     ./games.nix
-    ./xmonad
-    ./rofi
-    ./wallpaper
-    ./xmonad
-    ./xmobar
+    ./kitty.nix
+    ./nvim.nix
+    ./picom
     ./qutebrowser
+    ./rofi
+    ./sh.nix
+    ./wallpaper
+    ./xmobar
+    ./xmonad
   ];
 
   home-manager = {
