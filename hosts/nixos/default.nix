@@ -7,6 +7,7 @@
     ./../../modules/sh.nix
     ./../../modules/wm.nix
     ./../../modules/vm.nix
+    ./../../modules/autorandr.nix
     ./../../modules/display-manager.nix
     ./../../modules/vpn.nix
     ./../../modules/ios.nix
@@ -22,8 +23,6 @@
 
   config = {
     # Bootloader.
-    # boot.loader.systemd-boot.enable = true;
-    # boot.loader.grub.efiInstallAsRemovable = true;
     boot.loader.efi.canTouchEfiVariables = true;
     boot.loader.grub.enable = true;
     boot.loader.grub.devices = [ "nodev" ];
@@ -85,6 +84,8 @@
       description = myUser.name;
       extraGroups = [ "networkmanager" "wheel" ];
     };
+
+    # https://discourse.nixos.org/t/enabling-fixing-touch-gestures-in-nix-24-05/48784/2
 
     # List packages installed in system profile.
     environment.systemPackages = with pkgs; [ firefox tor-browser ];

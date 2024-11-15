@@ -1,7 +1,6 @@
 { myUser, pkgs, ... }: {
   imports = [
     ./cli.nix
-    ./autorandr
     ./games.nix
     ./kitty.nix
     ./nvim.nix
@@ -38,6 +37,7 @@
             gnumake
             mypaint
             okular
+            spotify
             mypaint-brushes
             prusa-slicer
             gimp

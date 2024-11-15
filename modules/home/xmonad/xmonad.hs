@@ -15,6 +15,7 @@ import XMonad.Layout.Spacing
 import XMonad.Prompt
 import XMonad.Prompt.FuzzyMatch (fuzzyMatch)
 import XMonad.StackSet qualified as W
+import XMonad.Util.Cursor
 import XMonad.Util.Run
 
 myTerminal = "kitty"
@@ -321,9 +322,15 @@ delayedSpawn c = spawn ("sleep 1 && " ++ c)
 -- By default, do nothing.
 myStartupHook :: X ()
 myStartupHook = do
+  -- set normal cursor, not the "X" one
+  setDefaultCursor xC_left_ptr
+  -- FIXME
   delayedSpawn "xinput --map-to-output \"ELAN9008:00 04F3:2ED7\" eDP-1" -- set the touchscreen just to it's display
+  delayedSpawn "xinput --map-to-output \"ELAN9008:00 04F3:2ED7\" eDP-1-1" -- set the touchscreen just to it's display
   -- Set any stylus input just to the touchscreen
+  -- FIXME
   delayedSpawn "xinput --map-to-output \"ELAN9008:00 04F3:2ED7 Stylus Pen (0)\" eDP-1"
+  delayedSpawn "xinput --map-to-output \"ELAN9008:00 04F3:2ED7 Stylus Pen (0)\" eDP-1-1"
   delayedSpawn "feh --bg-scale ~/.config/wallpaper.png"
   delayedSpawn "picom --config ~/.config/picom/picom.conf"
 

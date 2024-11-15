@@ -1,17 +1,12 @@
-{ config, pkgs, ... }:
-let
-  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
-    export __NV_PRIME_RENDER_OFFLOAD=1
-    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-    export __GLX_VENDOR_LIBRARY_NAME=nvidia
-    export __VK_LAYER_NV_optimus=NVIDIA_only
-    exec "$@"
-  '';
-in {
+{ config, pkgs, ... }: {
   services.xserver.videoDrivers = [ "nvidia" "displaylink" ];
   # services.xserver.videoDrivers = [ "nvidia" ];
   hardware = {
-    opengl.enable = true;
+    opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+    };
     nvidia = {
       # open = true;
       # package = config.boot.kernelPackages.nvidiaPackages.beta;
@@ -35,10 +30,11 @@ in {
       #   patches = [ rcu_patch ];
       # };
       prime = {
-        offload = {
-          enable = true;
-          enableOffloadCmd = true;
-        };
+        sync.enable = true;
+        # offload = {
+        #   enable = true;
+        #   enableOffloadCmd = true;
+        # };
         # FIXME: Change the following values to the correct Bus ID values for your system!
         intelBusId = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";
@@ -51,7 +47,7 @@ in {
     };
   };
 
-  environment.systemPackages = [ nvidia-offload ];
+  # environment.systemPackages = [ nvidia-offload ];
 
   # Enable touchpad support (enabled default in most desktopManager).
   # TODO: What is this for?
