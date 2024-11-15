@@ -1,7 +1,9 @@
 let
+  # Since the docking statation can cause xrandr to return different names we make the names configurable
   laptopName = "eDP-1-1";
   upliftLeftName = "DVI-I-3-2";
   upliftRightName = "DVI-I-2-1";
+  # The fingerprint values do not change, they are just here to make the following section more readable
   laptopFP =
     "00ffffffffffff004d104f15000000002e1f0104a51d127807de50a3544c99260f505400000001010101010101010101010101010101ed7b80a070b047403020360020b410000018ed7b80a070b03e453020360020b410000018000000fd003078999920010a202020202020000000fc004c513133344e314a5735340a2000a9";
   upliftRightFP =

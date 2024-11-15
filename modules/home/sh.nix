@@ -10,6 +10,7 @@ let
     ls = "exa";
     og = "git";
     q = "exit";
+    ":q" = "exit";
     tree = "exa --tree";
     vim = "nvim";
   };
