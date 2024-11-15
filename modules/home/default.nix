@@ -19,7 +19,10 @@
 
     users = {
       ${myUser.username} = {
-        programs.direnv.enable = true;
+        xsession = {
+          enable = true;
+          initExtra = "${pkgs.autorandr}/bin/autorandr --change";
+        };
         programs.git = {
           enable = true;
           userName = myUser.name;
