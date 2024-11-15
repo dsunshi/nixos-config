@@ -7,10 +7,11 @@
     yubioath-flutter
     libu2f-host
   ];
-  environment.shellInit = ''
-    gpg-connect-agent /bye
-    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-  '';
+  environment.shellInit = # bash
+    ''
+      gpg-connect-agent /bye
+      export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+    '';
   services.udev.packages = with pkgs; [ yubikey-personalization ];
   programs.gnupg.agent = {
     enable = true;

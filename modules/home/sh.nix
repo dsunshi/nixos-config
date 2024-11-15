@@ -25,13 +25,16 @@ in {
     programs.fish = {
       enable = true;
       shellAliases = myAliases;
-      interactiveShellInit = ''
-        fish_vi_key_bindings
-        set fish_greeting # Disable greeting
-      '';
+      interactiveShellInit = # fish
+        ''
+          fish_vi_key_bindings
+          set fish_greeting # Disable greeting
+        '';
       functions = {
-        haskellEnv = ''
-          nix-shell -p "haskellPackages.ghcWithPackages (pkgs: with pkgs; [ $argv ])"'';
+        haskellEnv = # fish
+          ''
+            nix-shell -p "haskellPackages.ghcWithPackages (pkgs: with pkgs; [ $argv ])"
+          '';
       };
       plugins = [
         {

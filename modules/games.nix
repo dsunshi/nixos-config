@@ -1,8 +1,8 @@
 { pkgs, config, lib, ... }: {
   config = lib.mkIf (!config.wsl.enable) {
     environment.systemPackages = with pkgs; [
-      lutris
-      bottles
+      # lutris
+      # bottles
       # Wine
       wine64
       winetricks
@@ -20,7 +20,5 @@
       localNetworkGameTransfers.openFirewall =
         true; # Open ports in the firewall for Steam Local Network Game Transfers
     };
-    # Needed for the Epic game store
-    hardware.opengl.driSupport32Bit = true;
   };
 }

@@ -4,7 +4,7 @@
 
   # TODO: Disabling this seems to prevent external monitors from working,
   # therefore for now we keep gnome enabled for simplicity :(
-  services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
 
   services.xserver.windowManager.xmonad = {
     enable = true;
