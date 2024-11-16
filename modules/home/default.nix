@@ -4,6 +4,7 @@
     ./games.nix
     ./kitty.nix
     ./nvim.nix
+    ./cursor.nix
     ./picom
     ./qutebrowser
     ./rofi

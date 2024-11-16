@@ -323,7 +323,8 @@ delayedSpawn c = spawn ("sleep 1 && " ++ c)
 myStartupHook :: X ()
 myStartupHook = do
   -- set normal cursor, not the "X" one
-  setDefaultCursor xC_left_ptr
+  -- setDefaultCursor xC_left_ptr
+  spawn "set_xcursor"
   -- FIXME
   delayedSpawn "xinput --map-to-output \"ELAN9008:00 04F3:2ED7\" eDP-1" -- set the touchscreen just to it's display
   delayedSpawn "xinput --map-to-output \"ELAN9008:00 04F3:2ED7\" eDP-1-1" -- set the touchscreen just to it's display
