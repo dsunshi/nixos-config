@@ -29,6 +29,8 @@
           enable = true;
           userName = myUser.name;
           userEmail = myUser.email;
+          delta = { enable = true; };
+          aliases = { who = "show -s --format='%ae' HEAD"; };
         };
         home = {
           sessionVariables = {
