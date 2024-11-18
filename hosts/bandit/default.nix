@@ -36,7 +36,7 @@
     # https://discourse.nixos.org/t/drm-kernel-driver-nvidia-drm-in-use-nvk-requires-nouveau/42222/19
     boot.kernelParams = [ "nvidia-drm.fbdev=1" ];
 
-    networking.hostName = "nixos"; # Define your hostname.
+    networking.hostName = "bandit"; # Define your hostname.
 
     # Enable networking
     networking.networkmanager.enable = true;

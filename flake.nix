@@ -21,7 +21,7 @@
       };
     in {
       nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem rec {
+        bandit = nixpkgs.lib.nixosSystem rec {
           system = "x86_64-linux";
           specialArgs = {
             # Pass config variables from above
@@ -32,18 +32,17 @@
           modules = [
             home-manager.nixosModule
             ./modules/home
-            ./hosts/nixos
+            ./hosts/bandit
             inputs.distro-grub-themes.nixosModules.${system}.default
           ];
         };
         ghost = nixpkgs.lib.nixosSystem {
-          # system = "x86_64-linux";
           specialArgs = {
             inherit inputs outputs;
             inherit mySystem;
             inherit myUser;
           };
-          modules = [ home-manager.nixosModule ./modules/home ./hosts/wsl ];
+          modules = [ home-manager.nixosModule ./modules/home ./hosts/ghost ];
         };
       };
     };
