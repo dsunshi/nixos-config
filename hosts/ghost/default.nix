@@ -5,8 +5,11 @@
   wsl = {
     enable = true;
     defaultUser = myUser.username;
-    useWindowsDriver = true; # for the GPU
+    useWindowsDriver =
+      true; # Whether to enable OpenGL driver from the Windows host.
+    wslConf.network.hostname = "ghost";
   };
+  networking.hostName = "ghost";
 
   nixpkgs.hostPlatform = "x86_64-linux";
 
