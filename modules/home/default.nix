@@ -3,6 +3,7 @@
     ./cli.nix
     ./games.nix
     ./kitty.nix
+    ./programs.nix
     ./nvim.nix
     ./cursor.nix
     ./picom
@@ -31,25 +32,12 @@
         };
         home = {
           sessionVariables = {
+            MANPAGER = "nvim +Man!";
             BROWSER = "firefox";
             EDITOR = "nvim";
             # SHELL = "fish";
             TERMINAL = "kitty";
           };
-          packages = with pkgs; [
-            calibre
-            gnumake
-            mypaint
-            okular
-            spotify
-            mypaint-brushes
-            prusa-slicer
-            gimp
-            freetube
-            blender
-            gpick
-            vlc
-          ];
           # Custom prompt for GHCI
           file.".ghci".text = '':set prompt "λ> "'';
           # You do not need to change this if you're reading this in the future.

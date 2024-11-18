@@ -9,6 +9,9 @@
         flameshot
         tmux
         nb
+        nh
+        nix-output-monitor
+        nvd
         yazi
         aria2
         bottom

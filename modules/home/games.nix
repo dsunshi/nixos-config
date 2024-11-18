@@ -15,6 +15,7 @@ in {
       home = {
         packages = with pkgs; [
           freeciv
+          kdePackages.kigo
           cataclysm-dda
           legendary-gl
           rare # GUI for ledendary
