@@ -3,12 +3,12 @@ all: build
 
 .PHONY: build
 build:
-	nixos-rebuild build --flake .#nixos
+	nh os test
 
 .PHONY: install
 install:
 	# nix-prefetch-url file://$(shell pwd)/depends/displaylink-580.zip
-	nixos-rebuild switch --flake .#nixos
+	nh os switch
 
 .PHONY: clean
 clean:

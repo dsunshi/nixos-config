@@ -21,4 +21,5 @@ in pkgs.stdenv.mkDerivation {
     cabal-install # https://github.com/NixOS/nixpkgs/issues/321569
   ];
   shellHook = "eval $(egrep ^export ${ghc}/bin/ghc)";
+  env = { FLAKE = builtins.getEnv "PWD"; };
 }
