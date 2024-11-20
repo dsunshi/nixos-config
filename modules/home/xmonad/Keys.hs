@@ -62,6 +62,11 @@ myKeys c =
         ("<F7>", addName "Lower screen brightness by 5%" $ spawn "brightnessctl set 5%- -d intel_backlight"),
         ("<F8>", addName "Raise screen brightness by 5%" $ spawn "brightnessctl set 5%+ -d intel_backlight")
       ]
+    ^++^ subKeys
+      "Keyboard Layout"
+      [ ("M-z", addName "Switch to Colemak mod-DH ortho layout" $ spawn "setxkbmap -layout us -variant colemak_dh_ortho"),
+        ("M-S-z", addName "Switch to QWERTY layout" $ spawn "setxkbmap -layout us")
+      ]
   where
     subKeys str ks = subtitle str : mkNamedKeymap c ks
 
