@@ -1,9 +1,9 @@
 
 <div align="center">
-![NixOS](https://img.shields.io/badge/NixOS-5277C3?style=for-the-badge&logo=nixos&logoColor=white)
-![Neovim](https://img.shields.io/badge/NeoVim-%2357A143.svg?&style=for-the-badge&logo=neovim&logoColor=white)
-![XMonad](https://img.shields.io/badge/xmonad-%23fc4c5c.svg?style=for-the-badge&logo=xmonad&logoColor=white)
-![Haskell](https://img.shields.io/badge/Haskell-5D4F85?style=for-the-badge&logo=haskell&logoColor=white)
+![nixos](https://img.shields.io/badge/NixOS-5277C3?style=for-the-badge&logo=nixos&logoColor=white)
+![neovim](https://img.shields.io/badge/NeoVim-%2357A143.svg?&style=for-the-badge&logo=neovim&logoColor=white)
+![xmonad](https://img.shields.io/badge/xmonad-%23fc4c5c.svg?style=for-the-badge&logo=xmonad&logoColor=white)
+![haskell](https://img.shields.io/badge/Haskell-5D4F85?style=for-the-badge&logo=haskell&logoColor=white)
 </div>
 
 ## 📖 About
