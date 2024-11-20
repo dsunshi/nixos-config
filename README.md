@@ -1,7 +1,7 @@
 
 <div align="center">
 ![nixos](https://img.shields.io/badge/NixOS-5277C3?style=for-the-badge&logo=nixos&logoColor=white)
-![neovim](https://img.shields.io/badge/NeoVim-%2357A143.svg?&style=for-the-badge&logo=neovim&logoColor=white)
+[![neovim](https://img.shields.io/badge/NeoVim-%2357A143.svg?&style=for-the-badge&logo=neovim&logoColor=white)](https://neovim.io)
 ![xmonad](https://img.shields.io/badge/xmonad-%23fc4c5c.svg?style=for-the-badge&logo=xmonad&logoColor=white)
 ![haskell](https://img.shields.io/badge/Haskell-5D4F85?style=for-the-badge&logo=haskell&logoColor=white)
 </div>
