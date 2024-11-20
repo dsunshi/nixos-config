@@ -90,6 +90,11 @@
     # List packages installed in system profile.
     environment.systemPackages = with pkgs; [ firefox tor-browser ];
 
+    programs.thunar = {
+      enable = true;
+      plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
+    };
+
     # You do not need to change this if you're reading this in the future.
     # Don't ever change this after the first build.  Don't ask questions.
     system.stateVersion = "24.05"; # Did you read the comment?
