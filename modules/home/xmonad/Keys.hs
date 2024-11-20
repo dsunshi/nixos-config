@@ -17,6 +17,17 @@ showKeybindings x = addName "Show Keybindings" $ io $ do
   hClose h
   return ()
 
+--       -- launch Haskell prompt
+--       ((modm .|. shiftMask, xK_p), evalPrompt myXPConfig),
+--     -- launch a terminal
+--     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf),
+--       -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
+--       -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
+--       --
+--       [ ((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
+--         | (key, sc) <- zip [xK_w, xK_e, xK_r] [0 ..],
+--           (f, m) <- [(W.view, 0), (W.shift, shiftMask)]
+--       ]
 myKeys :: XConfig l -> [((KeyMask, KeySym), NamedAction)]
 myKeys c =
   subKeys
@@ -66,7 +77,7 @@ switchWorkspaceCommand id = [(key, addName description $ windows $ W.greedyView 
     description = "Switch to workspace " ++ show id
 
 switchWorkspaces :: [(String, NamedAction)]
-switchWorkspaces = foldl (<>) [] $ map switchWorkspaceCommand [0 .. 9]
+switchWorkspaces = foldl (<>) [] $ map switchWorkspaceCommand [1 .. 9]
 
 sendWorkspaceCommand :: Int -> [(String, NamedAction)]
 sendWorkspaceCommand id = [(key, addName description $ windows $ W.shift $ show id)]
@@ -75,4 +86,4 @@ sendWorkspaceCommand id = [(key, addName description $ windows $ W.shift $ show 
     description = "Send to workspace " ++ show id
 
 sendWorkspaces :: [(String, NamedAction)]
-sendWorkspaces = foldl (<>) [] $ map sendWorkspaceCommand [0 .. 9]
+sendWorkspaces = foldl (<>) [] $ map sendWorkspaceCommand [1 .. 9]
