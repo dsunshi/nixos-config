@@ -10,6 +10,7 @@
     ./../../modules/autorandr.nix
     ./../../modules/display-manager.nix
     ./../../modules/vpn.nix
+    ./../../modules/thunar.nix
     ./../../modules/ios.nix
     ./../../modules/common.nix
   ];
@@ -89,11 +90,6 @@
 
     # List packages installed in system profile.
     environment.systemPackages = with pkgs; [ firefox tor-browser ];
-
-    programs.thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
-    };
 
     # You do not need to change this if you're reading this in the future.
     # Don't ever change this after the first build.  Don't ask questions.
