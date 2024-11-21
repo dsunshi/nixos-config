@@ -8,6 +8,8 @@
           ];
         file.".xmonad/xmonad.hs".source = ./xmonad.hs;
         file.".xmonad/lib/Keys.hs".source = ./Keys.hs;
+        file.".xmonad/lib/Config.hs".source = ./Config.hs;
+        file.".xmonad/lib/Bar.hs".source = ./Bar.hs;
         file.".xmonad/lib/Prompt/Eval.hs".source = ./Prompt/Eval.hs;
       };
     };

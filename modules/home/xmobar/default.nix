@@ -14,8 +14,8 @@
       file.".config/xmonad/xmobar/gpu_temp.sh".source = ./gpu_temp.sh;
       file.".config/xmonad/xmobar/xmobarrc".text = # Haskell
         ''
-          Config { font = "Iosevka Bold 10"
-                 , additionalFonts = ["Iosevka 14", "Iosevka 20"]
+          Config { font = "Iosevka 10"
+                 , additionalFonts = ["Iosevka 14", "Iosevka 18"]
                  , border = NoBorder
                  , bgColor = "#1F1F28"
                  , fgColor = "#DCD7BA"

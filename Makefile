@@ -8,7 +8,7 @@ build:
 .PHONY: install
 install:
 	# nix-prefetch-url file://$(shell pwd)/depends/displaylink-580.zip
-	nh os switch
+	nh os switch .
 
 .PHONY: clean
 clean:

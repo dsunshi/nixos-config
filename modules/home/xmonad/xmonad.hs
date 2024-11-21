@@ -1,10 +1,7 @@
-import Data.List
+import Bar
+import Config
 import Data.Map qualified as M
-import GHC.IO.Handle
 import Keys
-import Prompt.Eval
-import System.Exit
-import Text.Printf
 import XMonad
 import XMonad.Actions.WorkspaceNames
 import XMonad.Hooks.DynamicLog
@@ -15,71 +12,9 @@ import XMonad.Layout.Gaps
 import XMonad.Layout.IndependentScreens
 import XMonad.Layout.ShowWName
 import XMonad.Layout.Spacing
-import XMonad.Prompt
-import XMonad.Prompt.FuzzyMatch (fuzzyMatch)
 import XMonad.StackSet qualified as W
-import XMonad.Util.Cursor
 import XMonad.Util.NamedActions
 import XMonad.Util.Run
-
-myTerminal = "kitty"
-
--- Whether focus follows the mouse pointer.
-myFocusFollowsMouse = True
-
--- Whether clicking on a window to focus also passes the click to the window
-myClickJustFocuses = False
-
--- Width of the window border in pixels.
-myBorderWidth = 2
-
--- modMask lets you specify which modkey you want to use. The default
--- is mod1Mask ("left alt").  You may also consider using mod3Mask
--- ("right alt"), which does not conflict with emacs keybindings. The
--- "windows key" is usually mod4Mask.
---
-myModMask = mod4Mask
-
--- The default number of workspaces (virtual screens) and their names.
--- By default we use numeric strings, but any string may be used as a
--- workspace name. The number of workspaces is determined by the length
--- of this list.
---
--- A tagging example:
---
--- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
---
-myWorkspaces = map show [1 .. 9]
-
--- Border colors for unfocused and focused windows, respectively.
--- Colors taken from "regular" kanagawa
-myNormalBorderColor = "#1F1F28"
-
-myFocusedBorderColor = "#B9B4D0"
-
-myFont = "xft:ioseveka:size=14:hinting=0:antialias=1"
-
-myBgColor = "black"
-
-myDefaultColor = "green"
-
-myXPConfig :: XPConfig
-myXPConfig =
-  def
-    { font = myFont,
-      bgColor = myBgColor,
-      fgColor = myDefaultColor,
-      bgHLight = myBgColor,
-      fgHLight = myFocusedBorderColor,
-      borderColor = myNormalBorderColor,
-      promptBorderWidth = 1,
-      height = 32,
-      position = Top,
-      historySize = 100000,
-      historyFilter = deleteConsecutive,
-      searchPredicate = fuzzyMatch
-      --    , autoComplete        = Nothing
-    }
 
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
@@ -179,61 +114,6 @@ myShowWNameTheme =
       swn_color = "#DCD7BA"
     }
 
-------------------------------------------------------------------------
--- Status bars and logging
-
--- Perform an arbitrary action on each internal state change or X event.
--- See the 'XMonad.Hooks.DynamicLog' extension for examples.
---
--- myLogHook :: X ()
--- myLogHook = return ()
-
-myTitlePP :: String -> String
-myTitlePP t = if isFirefox t then justFirefox else t
-  where
-    isFirefox = isInfixOf justFirefox
-    justFirefox = "Mozilla Firefox"
-
--- myXmobarPP :: ScreenId -> PP
--- myXmobarPP s  = filterOutWsPP [scratchpadWorkspaceTag] . marshallPP s $ def
---   { ppSep = ""
---   , ppWsSep = ""
---   , ppCurrent = xmobarColor cyan "" . clickable wsIconFull
---   , ppVisible = xmobarColor grey4 "" . clickable wsIconFull
---   , ppVisibleNoWindows = Just (xmobarColor grey4 "" . clickable wsIconFull)
---   , ppHidden = xmobarColor grey2 "" . clickable wsIconHidden
---   , ppHiddenNoWindows = xmobarColor grey2 "" . clickable wsIconEmpty
---   , ppUrgent = xmobarColor orange "" . clickable wsIconFull
---   , ppOrder = \(ws : _ : _ : extras) -> ws : extras
---   , ppExtras  = [ wrapL (actionPrefix ++ "n" ++ actionButton ++ "1>") actionSuffix
---                 $ wrapL (actionPrefix ++ "q" ++ actionButton ++ "2>") actionSuffix
---                 $ wrapL (actionPrefix ++ "Left" ++ actionButton ++ "4>") actionSuffix
---                 $ wrapL (actionPrefix ++ "Right" ++ actionButton ++ "5>") actionSuffix
---                 $ wrapL "    " "    " $ layoutColorIsActive s (logLayoutOnScreen s)
---                 , wrapL (actionPrefix ++ "q" ++ actionButton ++ "2>") actionSuffix
---                 $  titleColorIsActive s (shortenL 81 $ logTitleOnScreen s)
---                 ]
---   }
---   where
---     wsIconFull   = "  <fn=2>\xf111</fn>   "
---     wsIconHidden = "  <fn=2>\xf111</fn>   "
---     wsIconEmpty  = "  <fn=2>\xf10c</fn>   "
---     titleColorIsActive n l = do
---       c <- withWindowSet $ return . W.screen . W.current
---       if n == c then xmobarColorL cyan "" l else xmobarColorL grey3 "" l
---     layoutColorIsActive n l = do
---       c <- withWindowSet $ return . W.screen . W.current
---       if n == c then wrapL "<icon=/home/amnesia/.config/xmonad/xmobar/icons/" "_selected.xpm/>" l else wrapL "<icon=/home/amnesia/.config/xmonad/xmobar/icons/" ".xpm/>" l
-
--- https://hackage.haskell.org/package/xmonad-contrib-0.18.1/docs/XMonad-Hooks-DynamicLog.html#v:dynamicLogWithPP
-xmobarHook :: [Handle] -> X ()
-xmobarHook ps =
-  dynamicLogWithPP
-    xmobarPP
-      { ppOutput = \x -> mapM_ (`hPutStrLn` x) ps,
-        ppTitle = myTitlePP
-      }
-
 -- FIXME: Needed?
 delayedSpawn :: String -> X ()
 delayedSpawn c = spawn ("sleep 1 && " ++ c)
@@ -257,9 +137,7 @@ myStartupHook = do
   delayedSpawn "set_xcursor"
 
 ------------------------------------------------------------------------
--- Now run xmonad with all the defaults we set up.
-
--- Run xmonad with the settings you specify. No need to modify this.
+-- main
 
 xmobarCommand :: Int -> String
 xmobarCommand s = unwords ["xmobar", "-x", show s, "$HOME/.config/xmonad/xmobar/xmobarrc"]
@@ -268,8 +146,8 @@ main :: IO ()
 main = do
   nScreens <- countScreens
   hs <- mapM (spawnPipe . xmobarCommand) [0 .. (nScreens - 1)]
-  xmonad $ -- M-<F1> to show key bindings
-    addDescrKeys' ((myModMask, xK_F1), showKeybindings) myKeys $
+  xmonad $
+    addDescrKeys' (myHelpKey, showKeybindings) myKeys $
       ewmhFullscreen $
         ewmh $
           docks
