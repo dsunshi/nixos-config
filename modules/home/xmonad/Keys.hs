@@ -18,24 +18,15 @@ import XMonad.Util.Run
 
 showKeybindings :: [((KeyMask, KeySym), NamedAction)] -> NamedAction
 showKeybindings x = addName "Show Keybindings" $ io $ do
-  -- FIXME: what to use instead of yad?
-  h <- spawnPipe "yad --text-info --fontname=\"SauceCodePro Nerd Font Mono 12\" --fore=#46d9ff back=#282c36 --center --geometry=1200x800 --title \"XMonad keybindings\""
-  -- hPutStr h (unlines $ showKm x) -- showKM adds ">>" before subtitles
-  hPutStr h (unlines $ showKmSimple x) -- showKmSimple doesn't add ">>" to subtitles
+  h <- spawnPipe "yad --text-info --fontname=\"Ioseveka 12\" --fore=#DCD7BA --back=#1F1F28 --center --geometry=1200x800 --title \"XMonad keybindings\""
+  hPutStr h (unlines $ showKmSimple x)
   hClose h
   return ()
 
 -- Keycode to run `showKeybindings`
 myHelpKey :: (KeyMask, KeySym)
-myHelpKey = (myModMask, xK_F1)
+myHelpKey = (myModMask .|. shiftMask, xK_h)
 
---       -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
---       -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
---       --
---       [ ((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
---         | (key, sc) <- zip [xK_w, xK_e, xK_r] [0 ..],
---           (f, m) <- [(W.view, 0), (W.shift, shiftMask)]
---       ]
 myKeys :: XConfig l -> [((KeyMask, KeySym), NamedAction)]
 myKeys c =
   subKeys
@@ -109,16 +100,18 @@ myKeys c =
 type WsCmd = ([String] -> Int -> [(String, NamedAction)])
 
 switch :: WsCmd
-switch ws id = [(key, addName description $ windows $ W.greedyView $ ws !! (id - 1))]
+switch ws id = [(key, addName description $ windows $ W.greedyView wsName)]
   where
-    key = "M-" ++ show id
-    description = "Switch to workspace " ++ show id
+    wsName = ws !! id
+    key = "M-" ++ show (id + 1)
+    description = "Switch to workspace " ++ wsName
 
 send :: WsCmd
-send ws id = [(key, addName description $ windows $ W.shift $ ws !! (id - 1))]
+send ws id = [(key, addName description $ windows $ W.shift wsName)]
   where
-    key = "M-S-" ++ show id
-    description = "Send to workspace " ++ show id
+    wsName = ws !! id
+    key = "M-S-" ++ show (id + 1)
+    description = "Send to workspace " ++ wsName
 
 foldCmd :: WsCmd -> [(String, NamedAction)]
 foldCmd = foldCmd' myWorkspaces
