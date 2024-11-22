@@ -8,4 +8,4 @@ else
 fi
 cd nixos-config
 direnv allow # DANGEROUS! You should **not** allow this
-sudo nixos-rebuild switch --flake .
+make install
