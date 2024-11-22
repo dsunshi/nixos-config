@@ -1,14 +1,22 @@
 
-all: build
+DISPLAYLINK=./depends/displaylink-580.zip
 
-.PHONY: build
-build:
+all: test
+
+.PHONY: test
+test:
 	nh os test
 
 .PHONY: install
 install:
-	# nix-prefetch-url file://$(shell pwd)/depends/displaylink-580.zip
+ifneq ("$(wildcard $(DISPLAYLINK))", "")
+	@echo "[INFO]: enabling displaylink"
+	nix-prefetch-url file://$(shell pwd)/$(DISPLAYLINK)
+	nh os switch -s displaylink .
+else
+	@echo "[WARN]: disabling displaylink"
 	nh os switch .
+endif
 
 .PHONY: clean
 clean:
@@ -27,8 +35,7 @@ cleanos:
 .PHONY: update
 update:
 ifneq ($(shell id -u), 0)
-	#nix --extra-experimental-features flakes --extra-experimental-features nix-command flake update
 	nix flake update
 else
-	@echo "WARN: update CANNOT be run as the root user! Skipping ..."
+	@echo "[WARN]: update CANNOT be run as the root user! Skipping ..."
 endif
