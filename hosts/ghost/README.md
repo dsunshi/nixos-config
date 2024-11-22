@@ -52,11 +52,11 @@ If you run `wsl` and nothing happens (no errors reported, but WSL does not launc
 
 1. First, [download the latest release](https://github.com/nix-community/NixOS-WSL/releases/latest).
 2. Import NixOS-WSL (run these commands in the same folder where the release `nixos-wsl.tar.gz` was downloaded):
-    - Using PowerShell:
+Using PowerShell:
 ```powershell
 wsl --import NixOS $env:USERPROFILE\NixOS\ nixos-wsl.tar.gz
 ```
-    - Using Command Prompt:
+Using Command Prompt:
 ```cmd
 wsl --import NixOS %USERPROFILE%\NixOS\ nixos-wsl.tar.gz
 ```
