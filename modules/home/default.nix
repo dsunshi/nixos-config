@@ -4,6 +4,7 @@
     ./games.nix
     ./kitty.nix
     ./programs.nix
+    ./gtk.nix
     ./nvim.nix
     ./cursor.nix
     ./picom
