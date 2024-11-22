@@ -29,8 +29,11 @@
         nvidiaSettings = true;
       };
     };
-    specialisation."displaylink".configuration = {
-      services.xserver.videoDrivers = [ "nvidia" "displaylink" ];
+    specialisation."displaylink" = {
+      inheritParentConfig = true;
+      configuration = {
+        services.xserver.videoDrivers = [ "nvidia" "displaylink" ];
+      };
     };
   };
 }
