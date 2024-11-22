@@ -1,4 +1,6 @@
-{ myUser, inputs, ... }: {
+{ myUser, inputs, ... }:
+let hostname = "ghost";
+in {
   imports =
     [ inputs.nixos-wsl.nixosModules.default ./../../modules/common.nix ];
 
@@ -7,9 +9,9 @@
     defaultUser = myUser.username;
     useWindowsDriver =
       true; # Whether to enable OpenGL driver from the Windows host.
-    wslConf.network.hostname = "ghost";
+    wslConf.network.hostname = hostname;
   };
-  networking.hostName = "ghost";
+  networking.hostName = hostname;
 
   nixpkgs.hostPlatform = "x86_64-linux";
 
