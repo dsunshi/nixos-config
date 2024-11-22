@@ -1,8 +1,11 @@
 { myUser, inputs, ... }:
 let hostname = "ghost";
 in {
-  imports =
-    [ inputs.nixos-wsl.nixosModules.default ./../../modules/common.nix ];
+  imports = [
+    inputs.nixos-wsl.nixosModules.default
+    ./../../modules/common.nix
+    ./../../modules/sh.nix
+  ];
 
   wsl = {
     enable = true;
