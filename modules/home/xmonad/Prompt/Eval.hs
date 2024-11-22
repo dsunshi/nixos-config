@@ -14,7 +14,7 @@ import XMonad.Prompt
 data EvalPrompt = EvalPrompt
 
 instance XPrompt EvalPrompt where
-  showXPrompt = const "λ> "
+  showXPrompt EvalPrompt = "λ> "
   commandToComplete _ = id
 
 evalComplFunction :: (MonadIO m) => String -> m [String]
