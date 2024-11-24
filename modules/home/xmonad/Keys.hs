@@ -16,14 +16,7 @@ import XMonad.Util.EZConfig
 import XMonad.Util.NamedActions
 import XMonad.Util.Run
 
-showKeybindings :: [((KeyMask, KeySym), NamedAction)] -> NamedAction
-showKeybindings x = addName "Show Keybindings" $ io $ do
-  h <- spawnPipe "yad --text-info --fontname=\"Ioseveka 12\" --fore=#DCD7BA --back=#1F1F28 --center --geometry=1200x800 --title \"XMonad keybindings\""
-  hPutStr h (unlines $ showKmSimple x)
-  hClose h
-  return ()
-
--- Keycode to run `showKeybindings`
+-- Keycode to run `showKeybindings`, i.e. display help
 myHelpKey :: (KeyMask, KeySym)
 myHelpKey = (myModMask .|. shiftMask, xK_h)
 
@@ -41,10 +34,10 @@ myKeys c =
     ]
     ^++^ subKeys
       "Switch to Workspace"
-      (foldCmd switch) -- M-# -> Switch to workspace #
+      (foldWs myWorkspaces switch) -- M-# -> Switch to workspace #
     ^++^ subKeys
       "Send Window to Workspace"
-      (foldCmd send) -- M-S-# -> Send window to workspace #
+      (foldWs myWorkspaces send) -- M-S-# -> Send window to workspace #
     ^++^ subKeys
       "Window Navigation"
       [ ("M-<Down>", addName "Move focus to next window" $ windows W.focusDown),
@@ -93,28 +86,34 @@ myKeys c =
   where
     subKeys str ks = subtitle str : mkNamedKeymap c ks
 
+showKeybindings :: [((KeyMask, KeySym), NamedAction)] -> NamedAction
+showKeybindings x = addName "Show Keybindings" $ io $ do
+  h <-
+    spawnPipe
+      "yad --text-info --fontname=\"Ioseveka 12\" --fore=#DCD7BA --back=#1F1F28\
+      \ --center --geometry=1200x800 --title \"XMonad keybindings\""
+  hPutStr h (unlines $ showKmSimple x)
+  hClose h
+  return ()
+
 ------------------------------------------------------------------------
 -- Functions to generate keybindings for switching and sending windows
--- based on `myWorkspaces`.
+-- based on a [String] of workspace names.
 
 type WsCmd = ([String] -> Int -> [(String, NamedAction)])
 
 switch :: WsCmd
-switch ws id = [(key, addName description $ windows $ W.greedyView wsName)]
-  where
-    wsName = ws !! id
-    key = "M-" ++ show (id + 1)
-    description = "Switch to workspace " ++ wsName
+switch = move "M-" "Switch to workspace " W.greedyView
 
 send :: WsCmd
-send ws id = [(key, addName description $ windows $ W.shift wsName)]
+send = move "M-S-" "Send to Workspace " W.shift
+
+move :: String -> String -> (String -> WindowSet -> WindowSet) -> [String] -> Int -> [(String, NamedAction)]
+move k d stackCmd ws id = [(key, addName description $ windows $ stackCmd wsName)]
   where
     wsName = ws !! id
-    key = "M-S-" ++ show (id + 1)
-    description = "Send to workspace " ++ wsName
+    key = k ++ show (id + 1)
+    description = d ++ wsName
 
-foldCmd :: WsCmd -> [(String, NamedAction)]
-foldCmd = foldCmd' myWorkspaces
-
-foldCmd' :: [String] -> WsCmd -> [(String, NamedAction)]
-foldCmd' ws cmd = foldl (<>) [] $ map (cmd ws) [0 .. length ws - 1]
+foldWs :: [String] -> WsCmd -> [(String, NamedAction)]
+foldWs ws cmd = foldl (<>) [] $ map (cmd ws) [0 .. length ws - 1]
