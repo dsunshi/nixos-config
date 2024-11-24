@@ -4,8 +4,10 @@
       home = {
         packages = with pkgs;
           [
-            yad # FIXME: Replace
+            yad
           ];
+        # TODO: home.file.<name>.onChange
+        # TODO: recursive copy? Move source on right hand side to lib folder
         file.".xmonad/xmonad.hs".source = ./xmonad.hs;
         file.".xmonad/lib/Keys.hs".source = ./Keys.hs;
         file.".xmonad/lib/Config.hs".source = ./Config.hs;
