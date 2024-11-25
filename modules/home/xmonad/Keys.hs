@@ -90,7 +90,7 @@ showKeybindings :: [((KeyMask, KeySym), NamedAction)] -> NamedAction
 showKeybindings x = addName "Show Keybindings" $ io $ do
   h <-
     spawnPipe
-      "yad --text-info --fontname=\"Ioseveka 12\" --fore=#DCD7BA --back=#1F1F28\
+      "yad --text-info --fontname=\"Iosevka 12\" --fore=#DCD7BA --back=#1F1F28\
       \ --center --geometry=1200x800 --title \"XMonad keybindings\""
   hPutStr h (unlines $ showKmSimple x)
   hClose h

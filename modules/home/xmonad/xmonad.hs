@@ -109,7 +109,7 @@ myEventHook = mempty
 myShowWNameTheme :: SWNConfig
 myShowWNameTheme =
   def
-    { swn_font = "xft:Ioseveka:bold:size=60",
+    { swn_font = "xft:Iosevka:bold:size=60",
       swn_fade = 1.0,
       swn_bgcolor = "#1F1F28",
       swn_color = "#DCD7BA"

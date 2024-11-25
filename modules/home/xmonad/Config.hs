@@ -44,7 +44,7 @@ myFocusedBorderColor :: String
 myFocusedBorderColor = "#B9B4D0"
 
 myFont :: String
-myFont = "xft:ioseveka:size=14:hinting=0:antialias=1"
+myFont = "xft:iosevka:size=14:hinting=0:antialias=1"
 
 myBgColor :: String
 myBgColor = "#1F1F28"

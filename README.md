@@ -26,7 +26,7 @@
 | Terminal         | ![Kitty](https://sw.kovidgoyal.net/kitty/) + ![Starship](https://starship.rs/)                             |
 | Fetch Utility    | Neofetch                                                                                                   |
 | Theme            | ![Kanagawa Paper](https://github.com/sho-87/kanagawa-paper.nvim)                                           |
-| Font             | ![Ioseveka](https://github.com/be5invis/Iosevka) + ![Nerd Font Patch](https://www.nerdfonts.com/)          |
+| Font             | ![Iosevka](https://github.com/be5invis/Iosevka) + ![Nerd Font Patch](https://www.nerdfonts.com/)          |
 | Player           | Spotify                                                                                                    |
 | File Browser     | ![Yazi](https://yazi-rs.github.io/)                                                                        |
 | Internet Browser | ![Qutebrowser](https://www.qutebrowser.org/), Firefox                                                      |
