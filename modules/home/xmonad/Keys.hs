@@ -34,10 +34,10 @@ myKeys c =
     ]
     ^++^ subKeys
       "Switch to Workspace"
-      (foldWs myWorkspaces switch) -- M-# -> Switch to workspace #
+      (foldWs switch myWorkspaces) -- M-# -> Switch to workspace #
     ^++^ subKeys
       "Send Window to Workspace"
-      (foldWs myWorkspaces send) -- M-S-# -> Send window to workspace #
+      (foldWs send myWorkspaces) -- M-S-# -> Send window to workspace #
     ^++^ subKeys
       "Window Navigation"
       [ ("M-<Down>", addName "Move focus to next window" $ windows W.focusDown),
@@ -115,5 +115,5 @@ move k d stackCmd ws id = [(key, addName description $ windows $ stackCmd wsName
     key = k ++ show (id + 1)
     description = d ++ wsName
 
-foldWs :: [String] -> WsCmd -> [(String, NamedAction)]
-foldWs ws cmd = foldl (<>) [] $ map (cmd ws) [0 .. length ws - 1]
+foldWs :: WsCmd -> [String] -> [(String, NamedAction)]
+foldWs cmd ws = foldl (<>) [] $ map (cmd ws) [0 .. length ws - 1]
