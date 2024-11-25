@@ -16,6 +16,9 @@ import XMonad.StackSet qualified as W
 import XMonad.Util.NamedActions
 import XMonad.Util.Run
 
+-- https://github.com/ValveSoftware/steam-for-linux/issues/9376
+-- https://github.com/xmonad/xmonad-contrib/pull/886
+-- https://github.com/NixOS/nixpkgs/issues/340712
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
 --
