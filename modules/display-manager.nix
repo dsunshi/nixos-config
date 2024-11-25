@@ -20,6 +20,19 @@
           show-input-cursor = false
           password-alignment = left
 
+          [greeter-hotkeys]
+          # The modifier key used to trigger hotkeys. Possible values are:
+          # "alt", "control" or "meta"
+          # meta is also known as the "Windows"/"Super" key
+          mod-key = meta
+          # Power management shortcuts (single-key, case-sensitive)
+          shutdown-key = s
+          restart-key = r
+          hibernate-key = h
+          suspend-key = u
+          # Cycle through available sessions
+          session-key = e
+
           [greeter-theme]
           font = "Iosevka"
           font-size = 14pt
@@ -31,6 +44,11 @@
           border-color = "#363646"
           border-width = 1px
           layout-space = 14
+          # The character used to mask your password. Possible values are:
+          # "-1", "0", or a single unicode character(including emojis)
+          # A value of -1 uses the default bullet & 0 displays no characters when you
+          # type your password.
+          password-character = 0
           password-color = "#54546D"
           password-background-color = "#2A2A37"
         '';
