@@ -10,7 +10,7 @@ import XMonad.Prompt
   )
 
 -- Eval prompt.
--- evaluate any haskell expression
+-- evaluate any Haskell expression
 data EvalPrompt = EvalPrompt
 
 instance XPrompt EvalPrompt where

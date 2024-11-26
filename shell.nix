@@ -9,6 +9,7 @@ let
       xmonad-extras
       xmonad-contrib
       xmobar
+      hint
       # "tools"
       haskell-language-server # This must match the GHC version in order to work
     ]);
