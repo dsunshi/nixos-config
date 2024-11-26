@@ -10,7 +10,7 @@ executable xmonad-lsp
   build-depends:
     , base
     , xmonad
-    , xmonad-contrib
+    , xmonad-contrib >= 0.18.1
     , xmobar
     , xmonad-extras
     , containers

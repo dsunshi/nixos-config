@@ -1,13 +1,13 @@
-{ nixpkgs ? import <nixpkgs> { }, compiler ? "ghc965" }:
+{ nixpkgs ? import <nixpkgs> { }, compiler ? "ghc98" }:
 let
   inherit (nixpkgs) pkgs;
   ghc = pkgs.haskell.packages.${compiler}.ghcWithPackages (ps:
     with ps; [
       # libraries
-      xmonad
+      xmonad_0_18_0
       xmonad-utils
       xmonad-extras
-      xmonad-contrib
+      xmonad-contrib_0_18_1
       xmobar
       hint
       # "tools"

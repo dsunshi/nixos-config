@@ -11,6 +11,7 @@ import XMonad.Layout.IndependentScreens
 import XMonad.Layout.ShowWName
 import XMonad.Layout.Spacing
 import XMonad.StackSet qualified as W
+import XMonad.Util.Hacks (fixSteamFlicker)
 import XMonad.Util.NamedActions
 import XMonad.Util.Run
 
@@ -164,7 +165,7 @@ main = do
                 mouseBindings = myMouseBindings,
                 layoutHook = showWName' myShowWNameTheme myLayout,
                 manageHook = myManageHook,
-                handleEventHook = myEventHook,
+                handleEventHook = fixSteamFlicker <+> myEventHook,
                 logHook = xmobarHook hs,
                 startupHook = myStartupHook
               }

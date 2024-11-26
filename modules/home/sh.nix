@@ -69,7 +69,7 @@ in {
 
   # nix-shell
   programs.bash = {
-    enableCompletion = true;
+    completion.enable = true;
     shellAliases = myAliases;
   };
 

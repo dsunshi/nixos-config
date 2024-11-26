@@ -70,12 +70,3 @@ sudo nixos-rebuild switch --flake .#bandit
 ```bash
 sudo nixos-rebuild switch --flake .#ghost
 ```
-
-## Known limitations
-
- - Steam client subheader items cannot be clicked/entered:
-    - Currently this configuration uses `xmonad-contrib 0.18.0`, there may be a fix available in version `0.18.1`:
-        - https://github.com/ValveSoftware/steam-for-linux/issues/9376
-        - https://github.com/xmonad/xmonad-contrib/pull/886
-        - https://github.com/NixOS/nixpkgs/issues/340712
-

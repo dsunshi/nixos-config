@@ -1,5 +1,5 @@
 
-DISPLAYLINK=./depends/displaylink-580.zip
+DISPLAYLINK=./depends/displaylink-600.zip
 
 all: test
 

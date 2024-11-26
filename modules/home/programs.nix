@@ -5,10 +5,10 @@
         packages = with pkgs; [
           calibre
           gnumake
-          mypaint
           okular
           spotify
-          mypaint-brushes
+          # mypaint
+          # mypaint-brushes
           prusa-slicer
           gimp
           freetube
