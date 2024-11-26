@@ -3,8 +3,6 @@ import Config
 import Data.Map qualified as M
 import Keys
 import XMonad
-import XMonad.Actions.WorkspaceNames
-import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ShowWName
@@ -19,6 +17,7 @@ import XMonad.Util.Run
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
 --
+myMouseBindings :: XConfig l -> M.Map (KeyMask, Button) (Window -> X ())
 myMouseBindings (XConfig {XMonad.modMask = modm}) =
   M.fromList
     -- mod-button1, Set the window to floating mode and move by dragging
@@ -84,6 +83,7 @@ myLayout =
 -- To match on the WM_NAME, you can use 'title' in the same way that
 -- 'className' and 'resource' are used below.
 --
+-- myManageHook :: Query (Data.Semigroup.Internal.Endo WindowSet)
 myManageHook =
   composeAll
     [ className =? "MPlayer" --> doFloat,

@@ -15,7 +15,6 @@ executable xmonad-lsp
     , xmonad-extras
     , containers
     , hint
-  ghc-options: -Wall -Wmissing-local-signatures
   hs-source-dirs: ./modules/home/xmonad/, ./modules/home/xmonad/lib
   other-modules:   Bar, Keys, Config, Prompt.Eval
   default-language: Haskell2010
