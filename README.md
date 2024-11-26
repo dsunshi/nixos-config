@@ -10,6 +10,8 @@
 
 ## 📖 About
 
+NixOS system config and Home-Manager user config.
+
 ## 🌟 Showcase
 
 ## 🔧 Components
@@ -26,7 +28,7 @@
 | Terminal         | ![Kitty](https://sw.kovidgoyal.net/kitty/) + ![Starship](https://starship.rs/)                             |
 | Fetch Utility    | Neofetch                                                                                                   |
 | Theme            | ![Kanagawa Paper](https://github.com/sho-87/kanagawa-paper.nvim)                                           |
-| Font             | ![Iosevka](https://github.com/be5invis/Iosevka) + ![Nerd Font Patch](https://www.nerdfonts.com/)          |
+| Font             | ![Iosevka](https://github.com/be5invis/Iosevka) + ![Nerd Font Patch](https://www.nerdfonts.com/)           |
 | Player           | Spotify                                                                                                    |
 | File Browser     | ![Yazi](https://yazi-rs.github.io/)                                                                        |
 | Internet Browser | ![Qutebrowser](https://www.qutebrowser.org/), Firefox                                                      |
@@ -40,7 +42,40 @@
 
 ## ⌨️ Keybindings
 
+| Key | Description |
+| --- | ----------- |
+| <kbd>Super</kbd> | XMonad mod key |
+| <kbd>Super + SHIFT + h</kbd> | Display help menu of all XMonad key bindings |
+
 ### Main
 
 ## 🚀 Installation
+
+Currently there are two seperate profiles or hosts provided by this configuration:
+ - [bandit](./hosts/bandit) - My personal laptop/desktop
+ - [ghost](./hosts/ghost) - WSL configuration for use at work
+
+1. Check out this repo.
+2. Use one of the following two commands to install either bandit or ghost.
+3. After the initial installation it is possible to use `make install` for either profile. This is possible since `nh` can detect the current system.
+
+### Bandit Installation
+
+```bash
+sudo nixos-rebuild switch --flake .#bandit
+```
+
+### Ghost Installation
+
+```bash
+sudo nixos-rebuild switch --flake .#ghost
+```
+
+## Known limitations
+
+ - Steam client subheader items cannot be clicked/entered:
+    - Currently this configuration uses `xmonad-contrib 0.18.0`, there may be a fix available in version `0.18.1`:
+        - https://github.com/ValveSoftware/steam-for-linux/issues/9376
+        - https://github.com/xmonad/xmonad-contrib/pull/886
+        - https://github.com/NixOS/nixpkgs/issues/340712
 
