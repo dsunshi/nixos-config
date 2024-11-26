@@ -16,29 +16,29 @@ NixOS system config and Home-Manager user config.
 
 ## 🔧 Components
 
-| Component        | Version/Name                                                                                               |
-|------------------|------------------------------------------------------------------------------------------------------------|
-| Distro           | ![NixOS](https://nixos.org/)                                                                               |
-| Shell            | ![Fish](https://fishshell.com/)                                                                            |
-| Display Server   | Wayland                                                                                                    |
-| WM (Compositor)  | ![XMonad](https://xmonad.org/) + ![picom-pijulius](https://github.com/pijulius/picom)                      |
-| Bar              | ![Xmobar](https://codeberg.org/xmobar/xmobar)                                                              |
-| Launcher         | ![Rofi-Wayland](https://github.com/lbonn/rofi)                                                             |
-| Editor           | ![Custom Nixvim](https://github.com/dsunshi/nixvim)                                                        |
-| Terminal         | ![Kitty](https://sw.kovidgoyal.net/kitty/) + ![Starship](https://starship.rs/)                             |
-| Fetch Utility    | Neofetch                                                                                                   |
-| Theme            | ![Kanagawa Paper](https://github.com/sho-87/kanagawa-paper.nvim)                                           |
-| Font             | ![Iosevka](https://github.com/be5invis/Iosevka) + ![Nerd Font Patch](https://www.nerdfonts.com/)           |
-| Player           | Spotify                                                                                                    |
-| File Browser     | ![Yazi](https://yazi-rs.github.io/)                                                                        |
-| Internet Browser | ![Qutebrowser](https://www.qutebrowser.org/), Firefox                                                      |
-| Image Editor     | ![Gimp](https://www.gimp.org/)                                                                             |
-| Screenshot       | ![Flameshot](https://flameshot.org/)                                                                       |
-| Color Picker     | ![Gpick](https://www.gpick.org/)                                                                           |
-| Wallpaper        | ![Feh](https://feh.finalrewind.org/)                                                                       |
-| Graphical Boot   | ![Distro-grub-theme](https://github.com/AdisonCavani/distro-grub-themes) + "nixos" theme                   |
-| Display Manager  | ![Lightdm](https://github.com/canonical/lightdm) + ![mini](https://github.com/prikhi/lightdm-mini-greeter) |
-| Containerization | ![Distrobox](https://github.com/89luca89/distrobox) + ![Podman](https://podman.io/)                        |
+| Component        | Version/Name                                                                                             |
+|------------------|----------------------------------------------------------------------------------------------------------|
+| Distro           | [NixOS](https://nixos.org/)                                                                              |
+| Shell            | [Fish](https://fishshell.com/)                                                                           |
+| Display Server   | Wayland                                                                                                  |
+| WM (Compositor)  | [XMonad](https://xmonad.org/) + [picom-pijulius](https://github.com/pijulius/picom)                      |
+| Bar              | [Xmobar](https://codeberg.org/xmobar/xmobar)                                                             |
+| Launcher         | [Rofi-Wayland](https://github.com/lbonn/rofi)                                                            |
+| Editor           | [Custom Nixvim](https://github.com/dsunshi/nixvim)                                                       |
+| Terminal         | [Kitty](https://sw.kovidgoyal.net/kitty/) + [Starship](https://starship.rs/)                             |
+| Fetch Utility    | Neofetch                                                                                                 |
+| Theme            | [Kanagawa Paper](https://github.com/sho-87/kanagawa-paper.nvim)                                          |
+| Font             | [Iosevka](https://github.com/be5invis/Iosevka) + [Nerd Font Patch](https://www.nerdfonts.com/)           |
+| Player           | Spotify                                                                                                  |
+| File Browser     | [Yazi](https://yazi-rs.github.io/)                                                                       |
+| Internet Browser | [Qutebrowser](https://www.qutebrowser.org/), Firefox                                                     |
+| Image Editor     | [Gimp](https://www.gimp.org/)                                                                            |
+| Screenshot       | [Flameshot](https://flameshot.org/)                                                                      |
+| Color Picker     | [Gpick](https://www.gpick.org/)                                                                          |
+| Wallpaper        | [Feh](https://feh.finalrewind.org/)                                                                      |
+| Graphical Boot   | [Distro-grub-theme](https://github.com/AdisonCavani/distro-grub-themes) + "nixos" theme                  |
+| Display Manager  | [Lightdm](https://github.com/canonical/lightdm) + [mini](https://github.com/prikhi/lightdm-mini-greeter) |
+| Containerization | [Distrobox](https://github.com/89luca89/distrobox) + [Podman](https://podman.io/)                        |
 
 ## ⌨️ Keybindings
 
