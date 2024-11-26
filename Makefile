@@ -38,6 +38,8 @@ cleanos:
 	nix-collect-garbage -d
 	# for NixOS itself
 	sudo nix-collect-garbage -d
+	# Using nh
+	nh clean all
 
 .PHONY: update
 update:
