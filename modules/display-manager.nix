@@ -1,10 +1,11 @@
-{ myUser, ... }: {
+{ myUser, mySystem, ... }: {
+  # Available 24.11
   # services.xserver.displayManager.ly.enable = true;
   # services.xserver.displayManager.ly.settings = {
   #   load = false;
   #   save = false;
   # };
-  services.displayManager.defaultSession = "none+xmonad";
+  services.displayManager.defaultSession = if mySystem.wm == "xmonad" then "none+xmonad" else mySystem.wm;
   services.xserver.displayManager.lightdm = {
     enable = true;
     greeters.mini = {

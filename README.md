@@ -45,7 +45,7 @@ NixOS system config and Home-Manager user config.
 | Key | Description |
 | --- | ----------- |
 | <kbd>Super</kbd> | XMonad mod key |
-| <kbd>Super + SHIFT + h</kbd> | Display help menu of all XMonad key bindings |
+| <kbd>Super</kbd> + <kbd>SHIFT</kbd> + <kbd>h</kbd> | Display help menu of all XMonad key bindings |
 
 ### Main
 

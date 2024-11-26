@@ -37,6 +37,10 @@
     # https://discourse.nixos.org/t/drm-kernel-driver-nvidia-drm-in-use-nvk-requires-nouveau/42222/19
     boot.kernelParams = [ "nvidia-drm.fbdev=1" ];
 
+    # Might be needed for hyprland
+    # https://wiki.hyprland.org/Nvidia/
+    # boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
+
     networking.hostName = "bandit";
 
     # Enable networking

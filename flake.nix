@@ -12,7 +12,10 @@
     let
       inherit (self) outputs;
       # System Settings
-      mySystem = { locale = "en_US.UTF-8"; };
+      mySystem = {
+        locale = "en_US.UTF-8";
+        wm = "xmonad"; # hyprland does **not** work yet!
+      };
       # User configuration
       myUser = {
         username = "david";
