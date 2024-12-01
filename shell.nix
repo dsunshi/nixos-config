@@ -24,6 +24,6 @@ in pkgs.stdenv.mkDerivation {
       haskellPackages.hoogle
       cabal-install # https://github.com/NixOS/nixpkgs/issues/321569
     ] else []);
-  shellHook = "eval $(egrep ^export ${ghc}/bin/ghc)";
+  # shellHook = "eval $(egrep ^export ${ghc}/bin/ghc)";
   env = { FLAKE = builtins.getEnv "PWD"; };
 }
