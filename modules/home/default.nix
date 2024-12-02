@@ -6,6 +6,7 @@
     ./programs.nix
     ./gtk.nix
     ./nvim.nix
+    ./openscad.nix
     ./cursor.nix
     ./picom
     ./qutebrowser

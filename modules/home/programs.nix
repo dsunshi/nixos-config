@@ -7,8 +7,9 @@
           gnumake
           okular
           spotify
-          # mypaint
+          # mypaint # https://github.com/NixOS/nixpkgs/issues/348748
           # mypaint-brushes
+          krita
           prusa-slicer
           gimp
           freetube
