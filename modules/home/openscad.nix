@@ -6,6 +6,12 @@ let
     rev = "9fc472032fad5d5fd3f25ea0e230b44fe95c9ccf";
     hash = "sha256-Snxl9MPfc3rVGFNVyuHEHjt5bDXGxFip6uCPctXWI2E=";
   };
+  bosl = pkgs.fetchFromGitHub {
+    owner = "revarbat";
+    repo = "BOSL";
+    rev = "4ce427a8a38786e5f74b728c1e33d9fe7d4904d2";
+    hash = "sha256-24vqGt0TPe09K1WTP8fDX2Wx4MlsDnigzx7Ha0mXCOg=";
+  };
   bosl2 = pkgs.fetchFromGitHub {
     owner = "BelfrySCAD";
     repo = "BOSL2";
@@ -25,6 +31,7 @@ in {
       home = {
         packages = with pkgs; [ openscad-unstable ];
         file."${libPath}/tray".source = tray;
+        file."${libPath}/BOSL".source = bosl;
         file."${libPath}/BOSL2".source = bosl2;
         file."${libPath}/catchnhole".source = catchnhole;
       };
