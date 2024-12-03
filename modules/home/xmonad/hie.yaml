@@ -1,0 +1,31 @@
+cradle:
+  cabal:
+    - path: "./xmonad.hs"
+      component: "xmonad-exe:exe:xmonad-exe"
+
+    - path: "./lib/xmonad.hs"
+      component: "xmonad-exe:exe:xmonad-exe"
+
+    - path: "./Bar.hs"
+      component: "xmonad-exe:exe:xmonad-exe"
+
+    - path: "./Keys.hs"
+      component: "xmonad-exe:exe:xmonad-exe"
+
+    - path: "./Config.hs"
+      component: "xmonad-exe:exe:xmonad-exe"
+
+    - path: "./Prompt/Eval.hs"
+      component: "xmonad-exe:exe:xmonad-exe"
+
+    - path: "./lib/Bar.hs"
+      component: "xmonad-exe:exe:xmonad-exe"
+
+    - path: "./lib/Keys.hs"
+      component: "xmonad-exe:exe:xmonad-exe"
+
+    - path: "./lib/Config.hs"
+      component: "xmonad-exe:exe:xmonad-exe"
+
+    - path: "./lib/Prompt/Eval.hs"
+      component: "xmonad-exe:exe:xmonad-exe"

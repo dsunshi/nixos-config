@@ -11,7 +11,6 @@ import XMonad.Hooks.ShowWName
 import XMonad.Layout.IndependentScreens
 import XMonad.Layout.LayoutModifier
 import XMonad.Layout.LimitWindows
-import XMonad.Layout.MultiToggle.Instances
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Renamed
 import XMonad.Layout.ResizableTile
