@@ -16,5 +16,5 @@ executable xmonad-exe
     , containers
     , hint
   hs-source-dirs: ., ./lib
-  other-modules: Bar, Keys, Config, Prompt.Eval
+  other-modules: Bar, Keys, Config, Layouts, Mouse, Prompt.Eval
   default-language: Haskell2010
