@@ -7,6 +7,10 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixvim.url = "github:dsunshi/nixvim";
     distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions/?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = { self, nixpkgs, nixvim, home-manager, ... }@inputs:
     let

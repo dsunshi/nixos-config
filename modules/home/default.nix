@@ -8,6 +8,7 @@
     ./nvim.nix
     ./openscad.nix
     ./cursor.nix
+    ./firefox.nix
     ./picom
     ./qutebrowser
     ./rofi
@@ -20,6 +21,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
+    backupFileExtension = "backup";
 
     users = {
       ${myUser.username} = {
