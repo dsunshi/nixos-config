@@ -27,6 +27,10 @@
         email = "david@sunshines.org";
       };
     in {
+      packages = {
+        nixvim = inputs.nixvim.legacyPackages.makeNixvim
+          (import ./modules/home/nixvim { inherit nixpkgs; });
+      };
       nixosConfigurations = {
         bandit = nixpkgs.lib.nixosSystem rec {
           system = "x86_64-linux";
