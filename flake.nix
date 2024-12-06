@@ -14,6 +14,7 @@
   };
   outputs = { self, nixpkgs, nixvim, home-manager, ... }@inputs:
     let
+      system = "x86_64-linux";
       inherit (self) outputs;
       # System Settings
       mySystem = {
@@ -27,13 +28,8 @@
         email = "david@sunshines.org";
       };
     in {
-      packages = {
-        nixvim = inputs.nixvim.legacyPackages.makeNixvim
-          (import ./modules/home/nixvim { inherit nixpkgs; });
-      };
       nixosConfigurations = {
-        bandit = nixpkgs.lib.nixosSystem rec {
-          system = "x86_64-linux";
+        bandit = nixpkgs.lib.nixosSystem {
           specialArgs = {
             # Pass config variables from above
             inherit inputs outputs;
