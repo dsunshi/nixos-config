@@ -27,6 +27,17 @@
         name = "D. Sunshine";
         email = "david@sunshines.org";
       };
+      sharedModules = [
+        nixvim.nixosModules.nixvim
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.${myUser.username}.imports =
+            [ nixvim.homeManagerModules.nixvim ];
+        }
+        ./modules/home
+      ];
     in {
       nixosConfigurations = {
         bandit = nixpkgs.lib.nixosSystem {
@@ -37,18 +48,9 @@
             inherit myUser;
           };
           modules = [
-            nixvim.nixosModules.nixvim
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${myUser.username}.imports =
-                [ nixvim.homeManagerModules.nixvim ];
-            }
-            ./modules/home
             ./hosts/bandit
             inputs.distro-grub-themes.nixosModules.${system}.default
-          ];
+          ] ++ sharedModules;
         };
         ghost = nixpkgs.lib.nixosSystem {
           specialArgs = {
@@ -56,18 +58,7 @@
             inherit mySystem;
             inherit myUser;
           };
-          modules = [
-            nixvim.nixosModules.nixvim
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${myUser.username}.imports =
-                [ nixvim.homeManagerModules.nixvim ];
-            }
-            ./modules/home
-            ./hosts/ghost
-          ];
+          modules = [ ./hosts/ghost ] ++ sharedModules;
         };
       };
     };
