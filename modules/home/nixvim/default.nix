@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 let tabsize = 2;
 in {
 
@@ -42,27 +42,30 @@ in {
 
     clipboard = {
       register = "unnamedplus";
-      providers.xclip.enable = true;
-      providers.wl-copy.enable = true;
+      # Disable xclip and wayland for WSL
+      providers.xclip.enable = !config.wsl.enable;
+      providers.wl-copy.enable = !config.wsl.enable;
     };
 
-    # extraConfigLua = #lua
-    #   ''
-    #     if vim.fn.has('wsl') == 1 then
-    #         vim.g.clipboard = {
-    #             name = 'WslClipboard',
-    #             copy = {
-    #                 ['+'] = 'clip.exe',
-    #                 ['*'] = 'clip.exe',
-    #             },
-    #             paste = {
-    #                 ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    #                 ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    #             },
-    #             cache_enabled = 0,
-    #         }
-    #     end
-    #   ''; 
+    # Enable clip and powershell for WSL
+    extraConfigLua = if config.wsl.enable then # lua
+    ''
+      if vim.fn.has('wsl') == 1 then
+          vim.g.clipboard = {
+              name = 'WslClipboard',
+              copy = {
+                  ['+'] = 'clip.exe',
+                  ['*'] = 'clip.exe',
+              },
+              paste = {
+                  ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+                  ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+              },
+              cache_enabled = 0,
+          }
+      end
+    '' else
+      "";
 
     opts = {
       number = true;
