@@ -53,6 +53,10 @@ in pkgs.stdenv.mkDerivation {
       cabal-install # https://github.com/NixOS/nixpkgs/issues/321569
     ] else
       [ ]);
-  shellHook = "eval $(egrep ^export ${ghc}/bin/ghc)";
+  shellHook = # bash
+    ''
+      eval $(egrep ^export ${ghc}/bin/ghc)
+      cabal v2-update
+    '';
   # env = { FLAKE = builtins.getEnv "PWD"; };
 }
