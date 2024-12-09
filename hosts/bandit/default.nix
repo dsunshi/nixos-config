@@ -10,6 +10,7 @@
     ./../../modules/autorandr.nix
     ./../../modules/display-manager.nix
     ./../../modules/vpn.nix
+    ./../../modules/agenix.nix
     ./../../modules/thunar.nix
     ./../../modules/ios.nix
     ./../../modules/common.nix
