@@ -5,6 +5,7 @@ in {
     inputs.nixos-wsl.nixosModules.default
     ./../../modules/common.nix
     ./../../modules/sh.nix
+    ./../../modules/agenix.nix
   ];
 
   wsl = {

@@ -11,8 +11,13 @@
       url = "gitlab:rycee/nur-expressions/?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-  outputs = { self, nixpkgs, nixvim, home-manager, ... }@inputs:
+  outputs =
+    { self, nixpkgs, nixvim, home-manager, firefox-addons, agenix, ... }@inputs:
     let
       system = "x86_64-linux";
       inherit (self) outputs;
@@ -20,6 +25,7 @@
       mySystem = {
         locale = "en_US.UTF-8";
         wm = "xmonad"; # hyprland does **not** work yet!
+        agenix.enable = true;
       };
       # User configuration
       myUser = {
@@ -31,13 +37,14 @@
       nixosConfigurations = {
         bandit = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            # Pass config variables from above
+            inherit (inputs.rycee-nurpkgs.lib) buildFirefoxXpiAddon;
             inherit inputs outputs;
             inherit mySystem;
             inherit myUser;
           };
           modules = [
             nixvim.nixosModules.nixvim
+            agenix.nixosModules.default
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -52,12 +59,14 @@
         };
         ghost = nixpkgs.lib.nixosSystem {
           specialArgs = {
+            inherit (inputs.rycee-nurpkgs.lib) buildFirefoxXpiAddon;
             inherit inputs outputs;
             inherit mySystem;
             inherit myUser;
           };
           modules = [
             nixvim.nixosModules.nixvim
+            agenix.nixosModules.default
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
