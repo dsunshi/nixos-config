@@ -1,5 +1,6 @@
 { pkgs, config, ... }:
 let
+  key = config.age.secrets."expressvpn-key".path;
   vpn = pkgs.writeShellScriptBin "vpn" # bash
     ''
       #!/usr/bin/env bash
@@ -18,7 +19,7 @@ let
       }
 
       activate() {
-        key=${config.age.secrets.expressvpn.path}
+        key=${key}
         echo "Attempting to activate with key: $key"
         # expressvpn activate < $key
       }

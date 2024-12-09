@@ -6,8 +6,7 @@ let
     addonId = "{05a4ff46-7c82-4e9d-832c-a6b8554a59c0}";
     url =
       "https://addons.mozilla.org/firefox/downloads/latest/hoogle-search/latest.xpi";
-    sha256 =
-      lib.fakeHash; # "sha256-age3Nj2n4X3Zg1bTElChOpgDDGCQd4nOqHebW8zNsBQ=";
+    sha256 = "sha256-A81yWxmPHoOFCIa5E5nBIsGscBvPwyXG0skTsIhiZo8=";
     meta = with lib; {
       homepage = "https://github.com/DRL9/hoogle-search-extension";
       description =

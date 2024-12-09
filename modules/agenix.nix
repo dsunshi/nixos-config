@@ -11,7 +11,7 @@ in {
     services.openssh.enable = true;
     environment.systemPackages =
       [ inputs.agenix.packages.${pkgs.system}.default ];
-    age.secrets."expressvpn" = {
+    age.secrets."expressvpn-key" = {
       file = "${private}/expressvpn.age";
       owner = myUser.username;
     };

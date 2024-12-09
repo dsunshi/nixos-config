@@ -20,6 +20,13 @@
     { self, nixpkgs, nixvim, home-manager, firefox-addons, agenix, ... }@inputs:
     let
       system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+      displaylink_src = pkgs.fetchurl {
+        url =
+          "https://www.synaptics.com/sites/default/files/exe_files/2024-05/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu6.0-EXE.zip";
+        name = "displaylink-600.zip";
+        hash = "sha256-/HqlGvq+ahnuBCO3ScldJCZp8AX02HM8K4IfMzmducc=";
+      };
       inherit (self) outputs;
       # System Settings
       mySystem = {
@@ -33,29 +40,42 @@
         name = "D. Sunshine";
         email = "david@sunshines.org";
       };
+      sharedModules = [
+        nixvim.nixosModules.nixvim
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.${myUser.username}.imports =
+            [ nixvim.homeManagerModules.nixvim ];
+        }
+        ./modules/home
+      ];
     in {
+      displaylink_overlay = (final: prev: {
+        displaylink =
+          prev.displaylink.overrideAttrs (new: old: { src = displaylink_src; });
+      });
+      packages = {
+        mitchvim = inputs.nixvim.legacyPackages.makeNixvim
+          (import ./modules/home/nixvim { inherit pkgs; });
+      };
       nixosConfigurations = {
         bandit = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit (inputs.rycee-nurpkgs.lib) buildFirefoxXpiAddon;
+            inherit self;
+            inherit (inputs.firefox-addons.lib.${system}) buildFirefoxXpiAddon;
             inherit inputs outputs;
             inherit mySystem;
             inherit myUser;
           };
           modules = [
-            nixvim.nixosModules.nixvim
-            agenix.nixosModules.default
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${myUser.username}.imports =
-                [ nixvim.homeManagerModules.nixvim ];
-            }
-            ./modules/home
+            ({ self, ... }: {
+              nixpkgs.overlays = [ self.displaylink_overlay ];
+            })
             ./hosts/bandit
             inputs.distro-grub-themes.nixosModules.${system}.default
-          ];
+          ] ++ sharedModules;
         };
         ghost = nixpkgs.lib.nixosSystem {
           specialArgs = {
@@ -64,19 +84,7 @@
             inherit mySystem;
             inherit myUser;
           };
-          modules = [
-            nixvim.nixosModules.nixvim
-            agenix.nixosModules.default
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${myUser.username}.imports =
-                [ nixvim.homeManagerModules.nixvim ];
-            }
-            ./modules/home
-            ./hosts/ghost
-          ];
+          modules = [ ./hosts/ghost ] ++ sharedModules;
         };
       };
     };
