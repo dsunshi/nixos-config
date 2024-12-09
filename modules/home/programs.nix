@@ -11,6 +11,7 @@
           # mypaint-brushes
           krita
           prusa-slicer
+          qbittorrent
           gimp
           freetube
           blender

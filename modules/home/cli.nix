@@ -11,18 +11,24 @@
         nb
         nh
         nix-output-monitor
+        fd
         nvd
         yazi
         aria2
         bottom
         neofetch
+        fastfetch
+        cowsay
         cbonsai
         direnv
+        restic
         nix-direnv
+        ouch
         unzip
         unrar
         p7zip
         tealdeer
+        tokei
       ];
     };
   };

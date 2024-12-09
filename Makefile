@@ -1,29 +1,13 @@
 
-DISPLAYLINK=./depends/displaylink-600.zip
-
-all: test
+all: install
 
 .PHONY: test
 test:
-ifneq ("$(wildcard $(DISPLAYLINK))", "")
-	@echo "[INFO]: enabling displaylink"
-	nix-prefetch-url file://$(shell pwd)/$(DISPLAYLINK)
-	nh os test -s displaylink
-else
-	@echo "[WARN]: disabling displaylink"
 	nh os test
-endif
 
 .PHONY: install
 install:
-ifneq ("$(wildcard $(DISPLAYLINK))", "")
-	@echo "[INFO]: enabling displaylink"
-	nix-prefetch-url file://$(shell pwd)/$(DISPLAYLINK)
-	nh os switch -s displaylink .
-else
-	@echo "[WARN]: disabling displaylink"
 	nh os switch .
-endif
 
 .PHONY: clean
 clean:

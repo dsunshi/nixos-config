@@ -15,6 +15,13 @@
   outputs = { self, nixpkgs, nixvim, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+      displaylink_src = pkgs.fetchurl {
+        url =
+          "https://www.synaptics.com/sites/default/files/exe_files/2024-05/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu6.0-EXE.zip";
+        name = "displaylink-600.zip";
+        hash = "sha256-/HqlGvq+ahnuBCO3ScldJCZp8AX02HM8K4IfMzmducc=";
+      };
       inherit (self) outputs;
       # System Settings
       mySystem = {
@@ -39,15 +46,27 @@
         ./modules/home
       ];
     in {
+      displaylink_overlay = (final: prev: {
+        displaylink =
+          prev.displaylink.overrideAttrs (new: old: { src = displaylink_src; });
+      });
+      packages = {
+        mitchvim = inputs.nixvim.legacyPackages.makeNixvim
+          (import ./modules/home/nixvim { inherit pkgs; });
+      };
       nixosConfigurations = {
         bandit = nixpkgs.lib.nixosSystem {
           specialArgs = {
             # Pass config variables from above
+            inherit self;
             inherit inputs outputs;
             inherit mySystem;
             inherit myUser;
           };
           modules = [
+            ({ self, ... }: {
+              nixpkgs.overlays = [ self.displaylink_overlay ];
+            })
             ./hosts/bandit
             inputs.distro-grub-themes.nixosModules.${system}.default
           ] ++ sharedModules;

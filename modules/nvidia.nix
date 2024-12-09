@@ -1,6 +1,6 @@
 { config, ... }: {
   config = {
-    services.xserver.videoDrivers = [ "nvidia" ];
+    services.xserver.videoDrivers = [ "displaylink" "nvidia" ];
     hardware = {
       graphics = {
         enable = true;
@@ -8,11 +8,11 @@
         # driSupport32Bit = true;
       };
       nvidia = {
-        # open = true;
+        open = true;
         # package = config.boot.kernelPackages.nvidiaPackages.beta;
         # package = config.boot.kernelPackages.nvidiaPackages.latest;
-        # package = config.boot.kernelPackages.nvidiaPackages.stable;
-        package = config.boot.kernelPackages.nvidiaPackages.legacy_535;
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        # package = config.boot.kernelPackages.nvidiaPackages.legacy_535;
         prime = {
           sync.enable = true;
           # offload = {
@@ -29,11 +29,11 @@
         nvidiaSettings = true;
       };
     };
-    specialisation."displaylink" = {
-      inheritParentConfig = true;
-      configuration = {
-        services.xserver.videoDrivers = [ "nvidia" "displaylink" ];
-      };
-    };
+    # specialisation."displaylink" = {
+    #   inheritParentConfig = true;
+    #   configuration = {
+    #     services.xserver.videoDrivers = [ "nvidia" "displaylink" ];
+    #   };
+    # };
   };
 }
