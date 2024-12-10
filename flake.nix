@@ -42,6 +42,7 @@
       };
       sharedModules = [
         nixvim.nixosModules.nixvim
+        agenix.nixosModules.age
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;

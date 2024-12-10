@@ -19,7 +19,7 @@ let
       }
 
       activate() {
-        key=${key}
+        cat < ${key}
         echo "Attempting to activate with key: $key"
         # expressvpn activate < $key
       }

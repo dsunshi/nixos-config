@@ -3,7 +3,7 @@ let
   private = builtins.fetchGit {
     url = "git+ssh://git@github.com/dsunshi/secrets";
     ref = "master";
-    rev = "fcf5ced4418eb380253fd88311e54ac6b8b9f9ab";
+    rev = "3ee9ac296ad22b2d353e9e09c8d3c693a25c82d4";
     allRefs = true;
   };
 in {
