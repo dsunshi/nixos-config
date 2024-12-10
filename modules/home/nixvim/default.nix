@@ -1,4 +1,5 @@
-{ pkgs, lib, config, ... }:
+{ lib, config, nixvim, pkgs, ... }:
+with lib;
 let tabsize = 2;
 in {
 

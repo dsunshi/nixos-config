@@ -21,6 +21,9 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      lib = pkgs.lib;
+      config = nixpkgs.config;
+      nixvimModules = nixvim.nixvimModules.nxvim;
       displaylink_src = pkgs.fetchurl {
         url =
           "https://www.synaptics.com/sites/default/files/exe_files/2024-05/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu6.0-EXE.zip";
@@ -57,9 +60,15 @@
         displaylink =
           prev.displaylink.overrideAttrs (new: old: { src = displaylink_src; });
       });
-      packages = {
-        mitchvim = inputs.nixvim.legacyPackages.makeNixvim
-          (import ./modules/home/nixvim { inherit pkgs; });
+      packages.${system} = {
+        default = inputs.nixvim.legacyPackages.${system}.makeNixvim
+          (import ./modules/home/nixvim {
+            inherit pkgs;
+            inherit config;
+            inherit lib;
+            inherit nixvim;
+            inherit nixvimModules;
+          });
       };
       nixosConfigurations = {
         bandit = nixpkgs.lib.nixosSystem {

@@ -71,7 +71,8 @@ myStartupHook = do
 
 ------------------------------------------------------------------------
 -- main
-
+-- TODO: https://stackoverflow.com/questions/65146632/xmonad-how-to-show-the-currently-visible-workspace-on-xmobar-when-using-multipl
+-- https://hackage.haskell.org/package/xmonad-contrib-0.18.1/docs/XMonad-Layout-IndependentScreens.html
 xmobarCommand :: Int -> String
 xmobarCommand s = unwords ["xmobar", "-x", show s, "$HOME/.config/xmonad/xmobar/xmobarrc"]
 

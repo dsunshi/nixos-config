@@ -15,6 +15,7 @@
         # package = config.boot.kernelPackages.nvidiaPackages.legacy_535;
         prime = {
           sync.enable = true;
+          # TODO: specialisation?
           # offload = {
           #   enable = true;
           #   enableOffloadCmd = true;

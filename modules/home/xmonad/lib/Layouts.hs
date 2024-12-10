@@ -70,6 +70,8 @@ mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
 --       inactiveTextColor = ""
 --     }
 
+-- TODO: https://www.reddit.com/r/xmonad/comments/jqa4ne/set_layout_with_keybinding/
+
 tall =
   renamed [Replace "tall"] $
     limitWindows 5 $

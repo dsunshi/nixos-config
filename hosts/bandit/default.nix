@@ -23,6 +23,10 @@
     };
   };
 
+  # TODO: Restic and server examples: https://github.com/pceiley/nix-config/tree/60848e0d38330f4d9c00683799c57e59a1cf4daa
+  # Restic is a service and **not** part of home-manager
+  # Another restic example: https://github.com/teto/home/blob/315ec23bc5ee54cde0db4b2b2098e86f2728218c/nixos/profiles/restic.nix#L11
+
   config = {
     # Bootloader.
     boot.loader.efi.canTouchEfiVariables = true;
