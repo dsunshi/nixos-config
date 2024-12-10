@@ -7,6 +7,7 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixvim.url = "github:nix-community/nixvim/";
     distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
+    secrets.url = "git+ssh://git@github.com/dsunshi/secrets";
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions/?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,8 +17,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs =
-    { self, nixpkgs, nixvim, home-manager, firefox-addons, agenix, ... }@inputs:
+  outputs = { self, nixpkgs, nixvim, home-manager, firefox-addons, agenix
+    , secrets, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};

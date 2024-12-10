@@ -1,18 +1,23 @@
-{ pkgs, lib, mySystem, inputs, myUser, ... }:
-let
-  private = builtins.fetchGit {
-    url = "git+ssh://git@github.com/dsunshi/secrets";
-    ref = "master";
-    rev = "3ee9ac296ad22b2d353e9e09c8d3c693a25c82d4";
-    allRefs = true;
-  };
-in {
+{ pkgs, lib, mySystem, inputs, myUser, config, ... }: {
   config = lib.mkIf mySystem.agenix.enable {
-    services.openssh.enable = true;
-    environment.systemPackages =
-      [ inputs.agenix.packages.${pkgs.system}.default ];
+    # Just generate the host key for Agenix
+    services.openssh = {
+      enable = true;
+      openFirewall = false;
+      hostKeys = [{
+        path = "/etc/ssh/ssh_${config.networking.hostName}_ed25519_key";
+        type = "ed25519";
+      }];
+    };
+    environment.systemPackages = with pkgs; [
+      (inputs.agenix.packages.${pkgs.system}.default.override {
+        ageBin = "${pkgs.rage}/bin/rage";
+      })
+      rage
+    ];
+    environment.sessionVariables = { };
     age.secrets."expressvpn-key" = {
-      file = "${private}/expressvpn.age";
+      file = "${inputs.secrets}/expressvpn.age";
       owner = myUser.username;
     };
   };
