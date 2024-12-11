@@ -1,3 +1,6 @@
+{-# LANGUAGE FlexibleContexts #-}
+{-# LANGUAGE NoMonomorphismRestriction #-}
+
 module Layouts (myLayoutHook, myManageHook) where
 
 import Config
@@ -60,21 +63,20 @@ tall =
     limitWindows 5 $
       smartBorders $
         windowNavigation $
-          -- addTabs shrinkText myTabTheme $
           subLayout [] (smartBorders Simplest) $
             mySpacing 8 $
               ResizableTall 1 (3 / 100) (1 / 2) []
 
 monocle =
   renamed [Replace "monocle"] $
-    smartBorders $
+    noBorders $
       windowNavigation $
-        -- addTabs shrinkText myTabTheme $
         subLayout
           []
           (smartBorders Simplest)
           Full
 
+-- myDefaultLayout = withBorder myBorderWidth tall ||| noBorders monocle
 myLayoutHook = avoidStruts $ windowArrange myDefaultLayout
   where
-    myDefaultLayout = withBorder myBorderWidth tall ||| noBorders monocle
+    myDefaultLayout = withBorder myBorderWidth $ named "tall" tall ||| named "monocle" monocle --   myDefaultLayout = (named "tall" tall) ||| named "monocle" monocle

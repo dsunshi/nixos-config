@@ -17,13 +17,14 @@ let
       }
 
       activate() {
-        key=$(cat /run/agenix/expressvpn-key)
+        key=$(cat ${key})
         setxkbmap -layout us
         xdotool sleep 0.45 type "$key" &
         xdotool sleep 0.70 key Return &
         xdotool sleep 2.50 type "n" &
         xdotool sleep 3.00 key Return &
         expressvpn activate
+        # TODO: restore original keymap
       }
 
       main() {

@@ -9,6 +9,7 @@ import XMonad.Actions.Promote
 import XMonad.Actions.RotSlaves
 import XMonad.Actions.WithAll
 import XMonad.Hooks.ManageDocks
+import XMonad.Layout.LayoutCombinators
 import XMonad.Layout.ResizableThreeColumns
 import XMonad.Layout.ToggleLayouts qualified as T
 import XMonad.StackSet qualified as W
@@ -22,67 +23,72 @@ myHelpKey = (myModMask .|. shiftMask, xK_h)
 
 myKeys :: XConfig l -> [((KeyMask, KeySym), NamedAction)]
 myKeys c =
-  subKeys
-    "XMonad Essentials"
-    [ ("M-q", addName "Restart XMonad" $ spawn "xmonad --recompile; xmonad --restart"),
-      ("M-S-q", addName "Quit XMonad" $ spawn "rofi -show power-menu -modi power-menu:rofi-power-menu"),
-      ("M-S-c", addName "Kill focused window" kill),
-      ("M-p", addName "Run application launcher" $ spawn "rofi -show drun"),
-      ("M-S-p", addName "Run Haskell prompt" $ evalPrompt myXPConfig),
-      ("M-S-<Return>", addName "Launch a terminal" $ spawn myTerminal),
-      ("M-S-b", addName "Toggle bar show/hide" $ sendMessage ToggleStruts)
-    ]
-    ^++^ subKeys
-      "Switch to Workspace"
-      (foldWs switch myWorkspaces) -- M-# -> Switch to workspace #
-    ^++^ subKeys
-      "Send Window to Workspace"
-      (foldWs send myWorkspaces) -- M-S-# -> Send window to workspace #
-    ^++^ subKeys
-      "Window Navigation"
-      [ ("M-<Down>", addName "Move focus to next window" $ windows W.focusDown),
-        ("M-<Up>", addName "Move focus to prev window" $ windows W.focusUp),
-        ("M-m", addName "Move focus to master window" $ windows W.focusMaster),
-        ("M-S-<Down>", addName "Swap focused window with next window" $ windows W.swapDown),
-        ("M-S-<Up>", addName "Swap focused window with prev window" $ windows W.swapUp),
-        ("M-S-m", addName "Swap focused window with master window" $ windows W.swapMaster),
-        ("M-<Backspace>", addName "Move focused window to master" promote),
-        ("M-S-,", addName "Rotate all windows except master" rotSlavesDown),
-        ("M-S-.", addName "Rotate all windows current stack" rotAllDown)
-      ]
-    ^++^ subKeys
-      "Monitors"
-      [ ("M-.", addName "Switch focus to next monitor" nextScreen),
-        ("M-,", addName "Switch focus to prev monitor" prevScreen)
-      ]
-    ^++^ subKeys
-      "Switch layouts"
-      [("M-<Tab>", addName "Switch to next layout" $ sendMessage NextLayout)]
-    ^++^ subKeys
-      "Window resizing"
-      [ ("M-h", addName "Shrink window" $ sendMessage Shrink),
-        ("M-l", addName "Expand window" $ sendMessage Expand),
-        ("M-M1-j", addName "Shrink window vertically" $ sendMessage MirrorShrink),
-        ("M-M1-k", addName "Expand window vertically" $ sendMessage MirrorExpand)
-      ]
-    ^++^ subKeys
-      "Floating windows"
-      [ ("M-f", addName "Toggle float layout" $ sendMessage (T.Toggle "floats")),
-        ("M-t", addName "Sink a floating window" $ withFocused $ windows . W.sink),
-        ("M-S-t", addName "Sink all floated windows" sinkAll)
-      ]
-    ^++^ subKeys
-      "Multimedia Keys"
-      [ ("<F2>", addName "Lower volume by 5%" $ spawn "pamixer -d 5"),
-        ("<F3>", addName "Raise volume by 5%" $ spawn "pamixer -i 5"),
-        ("<F7>", addName "Lower screen brightness by 5%" $ spawn "brightnessctl set 5%- -d intel_backlight"),
-        ("<F8>", addName "Raise screen brightness by 5%" $ spawn "brightnessctl set 5%+ -d intel_backlight")
-      ]
-    ^++^ subKeys
-      "Keyboard Layout"
-      [ ("M-z", addName "Switch to Colemak mod-DH ortho layout" $ spawn "setxkbmap -layout us -variant colemak_dh_ortho"),
-        ("M-S-z", addName "Switch to QWERTY layout" $ spawn "setxkbmap -layout us")
-      ]
+  let fullscreen = do
+        sendMessage $ JumpToLayout "monocle"
+        sendMessage ToggleStruts
+   in subKeys
+        "XMonad Essentials"
+        [ ("M-q", addName "Restart XMonad" $ spawn "xmonad --recompile; xmonad --restart"),
+          ("M-S-q", addName "Quit XMonad" $ spawn "rofi -show power-menu -modi power-menu:rofi-power-menu"),
+          ("M-S-c", addName "Kill focused window" kill),
+          ("M-p", addName "Run application launcher" $ spawn "rofi -show drun"),
+          ("M-S-p", addName "Run Haskell prompt" $ evalPrompt myXPConfig),
+          ("M-S-<Return>", addName "Launch a terminal" $ spawn myTerminal),
+          ("M-S-b", addName "Toggle bar show/hide" $ sendMessage ToggleStruts)
+        ]
+        ^++^ subKeys
+          "Switch to Workspace"
+          (foldWs switch myWorkspaces) -- M-# -> Switch to workspace #
+        ^++^ subKeys
+          "Send Window to Workspace"
+          (foldWs send myWorkspaces) -- M-S-# -> Send window to workspace #
+        ^++^ subKeys
+          "Window Navigation"
+          [ ("M-<Down>", addName "Move focus to next window" $ windows W.focusDown),
+            ("M-<Up>", addName "Move focus to prev window" $ windows W.focusUp),
+            ("M-m", addName "Move focus to master window" $ windows W.focusMaster),
+            ("M-S-<Down>", addName "Swap focused window with next window" $ windows W.swapDown),
+            ("M-S-<Up>", addName "Swap focused window with prev window" $ windows W.swapUp),
+            ("M-S-m", addName "Swap focused window with master window" $ windows W.swapMaster),
+            ("M-<Backspace>", addName "Move focused window to master" promote),
+            ("M-S-,", addName "Rotate all windows except master" rotSlavesDown),
+            ("M-S-.", addName "Rotate all windows current stack" rotAllDown)
+          ]
+        ^++^ subKeys
+          "Monitors"
+          [ ("M-.", addName "Switch focus to next monitor" nextScreen),
+            ("M-,", addName "Switch focus to prev monitor" prevScreen)
+          ]
+        ^++^ subKeys
+          "Switch layouts"
+          [ ("M-<Tab>", addName "Switch to next layout" $ sendMessage NextLayout),
+            ("M-n", addName "Switch to next layout" fullscreen)
+          ]
+        ^++^ subKeys
+          "Window resizing"
+          [ ("M-h", addName "Shrink window" $ sendMessage Shrink),
+            ("M-l", addName "Expand window" $ sendMessage Expand),
+            ("M-M1-j", addName "Shrink window vertically" $ sendMessage MirrorShrink),
+            ("M-M1-k", addName "Expand window vertically" $ sendMessage MirrorExpand)
+          ]
+        ^++^ subKeys
+          "Floating windows"
+          [ ("M-f", addName "Toggle float layout" $ sendMessage (T.Toggle "floats")),
+            ("M-t", addName "Sink a floating window" $ withFocused $ windows . W.sink),
+            ("M-S-t", addName "Sink all floated windows" sinkAll)
+          ]
+        ^++^ subKeys
+          "Multimedia Keys"
+          [ ("<F2>", addName "Lower volume by 5%" $ spawn "pamixer -d 5"),
+            ("<F3>", addName "Raise volume by 5%" $ spawn "pamixer -i 5"),
+            ("<F7>", addName "Lower screen brightness by 5%" $ spawn "brightnessctl set 5%- -d intel_backlight"),
+            ("<F8>", addName "Raise screen brightness by 5%" $ spawn "brightnessctl set 5%+ -d intel_backlight")
+          ]
+        ^++^ subKeys
+          "Keyboard Layout"
+          [ ("M-z", addName "Switch to Colemak mod-DH ortho layout" $ spawn "setxkbmap -layout us -variant colemak_dh_ortho"),
+            ("M-S-z", addName "Switch to QWERTY layout" $ spawn "setxkbmap -layout us")
+          ]
   where
     subKeys str ks = subtitle str : mkNamedKeymap c ks
 
