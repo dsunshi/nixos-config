@@ -14,6 +14,7 @@
         ageBin = "${pkgs.rage}/bin/rage";
       })
       rage
+      xdotool
     ];
     environment.sessionVariables = { };
     age.secrets."expressvpn-key" = {

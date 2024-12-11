@@ -10,32 +10,32 @@ let
 
       connect() {
         . <({ verr=$({ mapfile -t vout< <(connect_cmd; vret=$?; declare -p vret >&3); } 3>&2 2>&1; declare -p vout >&2); declare -p verr; } 2>&1)
-
-        echo "stdout: $vout"
-        echo "stderr: $verr"
-        echo "return code: $vret"
-
+        if [[ $verr == *"connect again"* ]]; then
+          exit 0
+        fi
         return $vret
       }
 
       activate() {
-        cat < ${key}
-        echo "Attempting to activate with key: $key"
-        # expressvpn activate < $key
+        key=$(cat /run/agenix/expressvpn-key)
+        setxkbmap -layout us
+        xdotool sleep 0.45 type "$key" &
+        xdotool sleep 0.70 key Return &
+        xdotool sleep 2.50 type "n" &
+        xdotool sleep 3.00 key Return &
+        expressvpn activate
       }
 
       main() {
-        # Try and connect
-        activate
-        # echo "Attempting to connect"
-        # connect
-        # if [ $? -ne 0 ]; then
-        #   echo "Failed to connect"
-        # fi
+        connect
+        if [ $? -ne 0 ]; then
+          activate
+          connect
+        fi
+        expressvpn status
       }
 
       main "$@"
-
     '';
 in {
   services.expressvpn.enable = true;
