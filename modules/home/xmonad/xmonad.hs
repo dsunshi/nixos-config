@@ -1,29 +1,14 @@
 import Bar
 import Config
--- import Data.Map qualified as M
--- import Data.Monoid
 import Keys
 import Layouts
 import Mouse
 import XMonad
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
--- import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.ShowWName
 import XMonad.Layout.IndependentScreens
--- import XMonad.Layout.LayoutModifier
--- import XMonad.Layout.LimitWindows
--- import XMonad.Layout.NoBorders
--- import XMonad.Layout.Renamed
--- import XMonad.Layout.ResizableTile
 import XMonad.Layout.ShowWName
--- import XMonad.Layout.Simplest
--- import XMonad.Layout.Spacing
--- import XMonad.Layout.SubLayouts
--- import XMonad.Layout.Tabbed
--- import XMonad.Layout.WindowArranger
--- import XMonad.Layout.WindowNavigation
--- import XMonad.StackSet qualified as W
 import XMonad.Util.Hacks (fixSteamFlicker)
 import XMonad.Util.NamedActions
 import XMonad.Util.Run

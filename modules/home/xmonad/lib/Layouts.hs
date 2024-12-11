@@ -4,9 +4,6 @@ import Config
 import Data.Monoid
 import XMonad
 import XMonad.Hooks.ManageDocks
--- import XMonad.Hooks.ManageHelpers
--- import XMonad.Hooks.ShowWName
--- import XMonad.Layout.IndependentScreens
 import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.LayoutModifier
 import XMonad.Layout.LimitWindows
@@ -16,10 +13,8 @@ import XMonad.Layout.ResizableTile
 import XMonad.Layout.Simplest
 import XMonad.Layout.Spacing
 import XMonad.Layout.SubLayouts
--- import XMonad.Layout.Tabbed
 import XMonad.Layout.WindowArranger
 import XMonad.Layout.WindowNavigation
--- import XMonad.StackSet qualified as W
 import XMonad.Util.Hacks (fixSteamFlicker)
 
 ------------------------------------------------------------------------
@@ -57,18 +52,6 @@ myManageHook =
 --
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
-
--- setting colors for tabs layout and tabs sublayout.
--- myTabTheme =
---   def
---     { fontName = "",
---       activeColor = "",
---       inactiveColor = "",
---       activeBorderColor = "",
---       inactiveBorderColor = "",
---       activeTextColor = "",
---       inactiveTextColor = ""
---     }
 
 -- TODO: https://www.reddit.com/r/xmonad/comments/jqa4ne/set_layout_with_keybinding/
 
