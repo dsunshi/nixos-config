@@ -14,6 +14,7 @@
         fd
         nvd
         yazi
+        rdfind
         aria2
         bottom
         neofetch
