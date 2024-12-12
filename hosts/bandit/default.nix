@@ -98,9 +98,17 @@
     # https://discourse.nixos.org/t/enabling-fixing-touch-gestures-in-nix-24-05/48784/2
 
     # List packages installed in system profile.
-    environment.systemPackages = [ ];
+    environment.systemPackages = with pkgs; [ appimage-run ];
     programs.nix-ld.enable = true;
-
+    programs.nix-ld.libraries = with pkgs; [
+      openssl_1_1
+      libdrm
+      xorg.libX11
+      xorg.libXext
+      stdenv.cc.cc
+      libva
+    ];
+    nixpkgs.config.permittedInsecurePackages = [ "openssl-1.1.1w" ];
     # You do not need to change this if you're reading this in the future.
     # Don't ever change this after the first build.  Don't ask questions.
     system.stateVersion = "24.05"; # Did you read the comment?

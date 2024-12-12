@@ -26,16 +26,6 @@ import XMonad.Util.SpawnOnce
 --
 myEventHook = mempty
 
--- Theme for showWName which prints current workspace when you change workspaces.
-myShowWNameTheme :: SWNConfig
-myShowWNameTheme =
-  def
-    { swn_font = "xft:Iosevka:bold:size=60",
-      swn_fade = 1.0,
-      swn_bgcolor = "#1F1F28",
-      swn_color = "#DCD7BA"
-    }
-
 ------------------------------------------------------------------------
 -- Startup hook
 
@@ -50,7 +40,7 @@ myStartupHook = do
   -- Set any stylus input just to the touchscreen
   spawn "xinput --map-to-output \"ELAN9008:00 04F3:2ED7 Stylus Pen (0)\" eDP-1-1"
   spawn "feh --bg-scale --no-fehbg ~/.config/wallpaper.png"
-  spawnOnce "picom --config ~/.config/picom/picom.conf"
+  spawn "picom --config ~/.config/picom/picom.conf"
   -- set cursor from cursor.nix, not the "X" one
   spawn "set_xcursor"
 

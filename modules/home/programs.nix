@@ -11,9 +11,11 @@
           # mypaint-brushes
           krita
           prusa-slicer
+          fstl
           qbittorrent
           tor-browser
           gimp
+          anki
           freetube
           blender
           gpick

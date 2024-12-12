@@ -7,11 +7,13 @@ module Config
     myBorderWidth,
     myNormalBorderColor,
     myFocusedBorderColor,
+    myShowWNameTheme,
     myXPConfig,
   )
 where
 
 import XMonad
+import XMonad.Layout.ShowWName
 import XMonad.Prompt
 import XMonad.Prompt.FuzzyMatch (fuzzyMatch)
 
@@ -68,4 +70,14 @@ myXPConfig =
       historyFilter = deleteConsecutive,
       searchPredicate = fuzzyMatch
       --    , autoComplete        = Nothing
+    }
+
+-- Theme for showWName which prints current workspace when you change workspaces.
+myShowWNameTheme :: SWNConfig
+myShowWNameTheme =
+  def
+    { swn_font = "xft:Iosevka:bold:size=60",
+      swn_fade = 1.5,
+      swn_bgcolor = "#1F1F28",
+      swn_color = "#DCD7BA"
     }

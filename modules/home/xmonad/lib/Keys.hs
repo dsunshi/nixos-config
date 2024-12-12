@@ -1,6 +1,7 @@
 module Keys (myKeys, myHelpKey, showKeybindings) where
 
 import Config
+import Control.Monad
 import Prompt.Eval
 import System.IO
 import XMonad
@@ -9,6 +10,8 @@ import XMonad.Actions.Promote
 import XMonad.Actions.RotSlaves
 import XMonad.Actions.WithAll
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ShowWName
+import XMonad.Layout.IndependentScreens
 import XMonad.Layout.LayoutCombinators
 import XMonad.Layout.ResizableThreeColumns
 import XMonad.Layout.ToggleLayouts qualified as T
@@ -26,6 +29,13 @@ myKeys c =
   let fullscreen = do
         sendMessage $ JumpToLayout "monocle"
         sendMessage ToggleStruts
+      showScreens = do
+        nScreens <- countScreens
+        replicateM_ nScreens showThenNext
+        where
+          showThenNext = do
+            flashName myShowWNameTheme
+            nextScreen
    in subKeys
         "XMonad Essentials"
         [ ("M-q", addName "Restart XMonad" $ spawn "xmonad --recompile; xmonad --restart"),
@@ -34,6 +44,8 @@ myKeys c =
           ("M-p", addName "Run application launcher" $ spawn "rofi -show drun"),
           ("M-S-p", addName "Run Haskell prompt" $ evalPrompt myXPConfig),
           ("M-S-<Return>", addName "Launch a terminal" $ spawn myTerminal),
+          -- ("M-w", addName "Display current workspace" $ flashName myShowWNameTheme),
+          ("M-w", addName "Display current workspace" showScreens),
           ("M-S-b", addName "Toggle bar show/hide" $ sendMessage ToggleStruts)
         ]
         ^++^ subKeys
@@ -62,7 +74,7 @@ myKeys c =
         ^++^ subKeys
           "Switch layouts"
           [ ("M-<Tab>", addName "Switch to next layout" $ sendMessage NextLayout),
-            ("M-n", addName "Switch to next layout" fullscreen)
+            ("M-n", addName "Switch to fullscreen (devel)" fullscreen)
           ]
         ^++^ subKeys
           "Window resizing"
