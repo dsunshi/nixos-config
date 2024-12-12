@@ -98,7 +98,8 @@
     # https://discourse.nixos.org/t/enabling-fixing-touch-gestures-in-nix-24-05/48784/2
 
     # List packages installed in system profile.
-    environment.systemPackages = with pkgs; [ tor-browser ];
+    environment.systemPackages = [ ];
+    programs.nix-ld.enable = true;
 
     # You do not need to change this if you're reading this in the future.
     # Don't ever change this after the first build.  Don't ask questions.

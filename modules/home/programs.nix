@@ -12,6 +12,7 @@
           krita
           prusa-slicer
           qbittorrent
+          tor-browser
           gimp
           freetube
           blender

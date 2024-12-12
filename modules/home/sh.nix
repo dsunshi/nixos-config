@@ -2,6 +2,7 @@
 let
   myAliases = {
     ".." = "cd ..";
+    "..." = "cd ../..";
     cat = "bat";
     e = "nvim";
     g = "lazygit";
@@ -13,6 +14,7 @@ let
     ":q" = "exit";
     tree = "exa --tree";
     vim = "nvim";
+    rungame = "gamemoderun steam-run";
   };
 in {
   home-manager.users.${myUser.username} = {

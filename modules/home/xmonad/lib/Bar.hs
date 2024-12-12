@@ -32,7 +32,7 @@ xmobarHook ps =
         -- Visible but not current workspace
         ppVisible = xmobarColor "#54546D" "",
         -- Hidden workspace
-        ppHidden = xmobarColor "#363646" "",
+        ppHidden = xmobarColor "#5E5086" "",
         -- Hidden workspaces (no windows)
         ppHiddenNoWindows = xmobarColor "#2A2A37" "",
         -- separator to use between different log sections (window name, layout, workspaces)

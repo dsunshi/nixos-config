@@ -10,6 +10,7 @@
     ./cursor.nix
     ./firefox.nix
     ./picom
+    ./fastfetch.nix
     ./qutebrowser
     ./rofi
     ./sh.nix
