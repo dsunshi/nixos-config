@@ -1,16 +1,17 @@
 { myUser, lib, config, pkgs, ... }: {
   config = lib.mkIf (!config.wsl.enable) {
     home-manager.users.${myUser.username} = {
-      # gtk = {
-      #   enable = true;
-      #   iconTheme = {
-      #     name = "Papirus-Dark";
-      #     package = pkgs.papirus-icon-theme;
-      #   };
-      #   theme = {
-      #     name = "Tokyonight-Dark-BL";
-      #     package = pkgs.tokyonight-gtk-theme;
-      #   };
+      gtk = {
+        enable = true;
+        iconTheme = {
+          name = "Papirus-Dark";
+          package = pkgs.papirus-icon-theme;
+        };
+        theme = {
+          name = "Tokyonight-Dark-BL";
+          package = pkgs.tokyonight-gtk-theme;
+        };
+      };
       #   gtk3.extraConfig = {
       #     Settings = ''
       #       gtk-application-prefer-dark-theme=1

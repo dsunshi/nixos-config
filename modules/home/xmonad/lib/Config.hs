@@ -9,6 +9,8 @@ module Config
     myFocusedBorderColor,
     myShowWNameTheme,
     myXPConfig,
+    tallN,
+    monocoleN,
   )
 where
 
@@ -81,3 +83,9 @@ myShowWNameTheme =
       swn_bgcolor = "#1F1F28",
       swn_color = "#DCD7BA"
     }
+
+tallN :: String
+tallN = "\60360"
+
+monocoleN :: String
+monocoleN = "\983881"

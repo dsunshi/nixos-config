@@ -37,7 +37,7 @@ showScreens = do
 myKeys :: XConfig l -> [((KeyMask, KeySym), NamedAction)]
 myKeys c =
   let fullscreen = do
-        sendMessage $ JumpToLayout "monocle"
+        sendMessage $ JumpToLayout monocoleN
         sendMessage ToggleStruts
    in subKeys
         "XMonad Essentials"

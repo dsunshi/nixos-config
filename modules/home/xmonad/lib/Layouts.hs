@@ -59,7 +59,7 @@ mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
 -- TODO: https://www.reddit.com/r/xmonad/comments/jqa4ne/set_layout_with_keybinding/
 
 tall =
-  renamed [Replace "tall"] $
+  renamed [Replace tallN] $
     limitWindows 5 $
       smartBorders $
         windowNavigation $
@@ -68,7 +68,7 @@ tall =
               ResizableTall 1 (3 / 100) (1 / 2) []
 
 monocle =
-  renamed [Replace "monocle"] $
+  renamed [Replace monocoleN] $
     noBorders $
       windowNavigation $
         subLayout
@@ -79,4 +79,4 @@ monocle =
 -- myDefaultLayout = withBorder myBorderWidth tall ||| noBorders monocle
 myLayoutHook = avoidStruts $ windowArrange myDefaultLayout
   where
-    myDefaultLayout = withBorder myBorderWidth $ named "tall" tall ||| named "monocle" monocle --   myDefaultLayout = (named "tall" tall) ||| named "monocle" monocle
+    myDefaultLayout = withBorder myBorderWidth $ named tallN tall ||| named monocoleN monocle --   myDefaultLayout = (named "tall" tall) ||| named "monocle" monocle
