@@ -24,18 +24,21 @@ import XMonad.Util.Run
 myHelpKey :: (KeyMask, KeySym)
 myHelpKey = (myModMask .|. shiftMask, xK_h)
 
+showScreens :: X ()
+showScreens = do
+  nScreens <- countScreens
+  replicateM_ nScreens showThenNext
+  where
+    showThenNext = do
+      flashName myShowWNameTheme
+      nextScreen
+      spawn "sleep 0.1"
+
 myKeys :: XConfig l -> [((KeyMask, KeySym), NamedAction)]
 myKeys c =
   let fullscreen = do
         sendMessage $ JumpToLayout "monocle"
         sendMessage ToggleStruts
-      showScreens = do
-        nScreens <- countScreens
-        replicateM_ nScreens showThenNext
-        where
-          showThenNext = do
-            flashName myShowWNameTheme
-            nextScreen
    in subKeys
         "XMonad Essentials"
         [ ("M-q", addName "Restart XMonad" $ spawn "xmonad --recompile; xmonad --restart"),
@@ -44,8 +47,8 @@ myKeys c =
           ("M-p", addName "Run application launcher" $ spawn "rofi -show drun"),
           ("M-S-p", addName "Run Haskell prompt" $ evalPrompt myXPConfig),
           ("M-S-<Return>", addName "Launch a terminal" $ spawn myTerminal),
-          -- ("M-w", addName "Display current workspace" $ flashName myShowWNameTheme),
-          ("M-w", addName "Display current workspace" showScreens),
+          -- ("M-w", addName "Display current workspace name" $ flashName myShowWNameTheme),
+          ("M-w", addName "Display current workspace name on each screen" showScreens),
           ("M-S-b", addName "Toggle bar show/hide" $ sendMessage ToggleStruts)
         ]
         ^++^ subKeys
