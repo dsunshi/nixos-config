@@ -11,6 +11,7 @@
     ./firefox.nix
     ./picom
     ./fastfetch.nix
+    ./lockscreen.nix
     ./qutebrowser
     ./rofi
     ./sh.nix

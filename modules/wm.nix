@@ -2,15 +2,6 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.libinput.touchpad.disableWhileTyping = true;
-  # TODO: Move to home-manager and add config
-  environment.systemPackages = with pkgs;
-    [
-      (betterlockscreen.overrideAttrs ({ fixupPhase ? "", ... }: {
-        fixupPhase = fixupPhase + ''
-          ${betterlockscreen}/bin/betterlockscreen -u ~/.config/wallpaper.png
-        '';
-      }))
-    ];
   services.xserver.windowManager.xmonad = lib.mkIf (mySystem.wm == "xmonad") {
     enable = true;
     enableContribAndExtras = true;
