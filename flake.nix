@@ -12,13 +12,18 @@
       url = "gitlab:rycee/nur-expressions/?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sddm-sugar-candy-nix = {
+      url = "gitlab:Zhaith-Izaliel/sddm-sugar-candy-nix";
+      # Optional, by default this flake follows nixpkgs-unstable.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
   outputs = { self, nixpkgs, nixvim, home-manager, firefox-addons, agenix
-    , secrets, ... }@inputs:
+    , secrets, sddm-sugar-candy-nix, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -69,10 +74,14 @@
           };
           modules = [
             ({ self, ... }: {
-              nixpkgs.overlays = [ self.displaylink_overlay ];
+              nixpkgs.overlays = [
+                self.displaylink_overlay
+                sddm-sugar-candy-nix.overlays.default
+              ];
             })
             ./hosts/bandit
             inputs.distro-grub-themes.nixosModules.${system}.default
+            sddm-sugar-candy-nix.nixosModules.default
           ] ++ sharedModules;
         };
         ghost = nixpkgs.lib.nixosSystem {
