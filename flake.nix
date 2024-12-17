@@ -37,7 +37,6 @@
       # System Settings
       mySystem = {
         locale = "en_US.UTF-8";
-        wm = "xmonad"; # hyprland does **not** work yet!
         agenix.enable = true;
       };
       # User configuration

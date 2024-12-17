@@ -15,6 +15,8 @@
         FormPosition = "left";
         HaveFormBackground = true;
         PartialBlur = true;
+        BlurRadius = 25;
+        MainColor = "#DCD7BA";
         # ...
       };
     };
