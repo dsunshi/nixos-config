@@ -2,15 +2,7 @@
   config = lib.mkIf (!config.wsl.enable) {
     home-manager.users.${myUser.username} = {
       home = {
-        packages = with pkgs;
-          [
-            betterlockscreen
-            # (betterlockscreen.overrideAttrs ({ fixupPhase ? "", ... }: {
-            #   fixupPhase = fixupPhase + ''
-            #     ${betterlockscreen}/bin/betterlockscreen -u ~/.config/wallpaper.png
-            #   '';
-            # })];
-          ];
+        packages = with pkgs; [ betterlockscreen ];
         file.".config/betterlockscreen/betterlockscreenrc".text = # toml
           ''
             # ~/.config/betterlockscreenrc

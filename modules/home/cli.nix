@@ -18,11 +18,6 @@
         aria2
         bottom
         haskellPackages.hoogle
-        # (haskellPackages.hoogle.overrideAttrs ({ fixupPhase ? "", ... }: {
-        #   fixupPhase = fixupPhase + ''
-        #     ${haskellPackages.hoogle}/bin/hoogle generate
-        #   '';
-        # }))
         neofetch
         fastfetch
         cowsay
@@ -35,11 +30,6 @@
         unrar
         p7zip
         tealdeer
-        # (tealdeer.overrideAttrs ({ fixupPhase ? "", ... }: {
-        #   fixupPhase = fixupPhase + ''
-        #     ${tealdeer}/bin/tldr --update
-        #   '';
-        # }))
         tokei
       ];
     };
