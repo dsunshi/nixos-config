@@ -12,6 +12,7 @@
     ./picom
     ./fastfetch.nix
     ./lockscreen.nix
+    ./hyprland.nix
     ./qutebrowser
     ./rofi
     ./sh.nix
