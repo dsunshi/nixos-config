@@ -41,3 +41,45 @@ cradle:
 
     - path: "./lib/Prompt/Eval.hs"
       component: "xmonad-exe:exe:xmonad-exe"
+
+    - path: "././lib/KeyExport.hs"
+      component: "xmonad-exe:exe:keyexport-exe"
+
+    - path: "./lib/./lib/KeyExport.hs"
+      component: "xmonad-exe:exe:keyexport-exe"
+
+    - path: "./Bar.hs"
+      component: "xmonad-exe:exe:keyexport-exe"
+
+    - path: "./Keys.hs"
+      component: "xmonad-exe:exe:keyexport-exe"
+
+    - path: "./Config.hs"
+      component: "xmonad-exe:exe:keyexport-exe"
+
+    - path: "./Layouts.hs"
+      component: "xmonad-exe:exe:keyexport-exe"
+
+    - path: "./Mouse.hs"
+      component: "xmonad-exe:exe:keyexport-exe"
+
+    - path: "./Prompt/Eval.hs"
+      component: "xmonad-exe:exe:keyexport-exe"
+
+    - path: "./lib/Bar.hs"
+      component: "xmonad-exe:exe:keyexport-exe"
+
+    - path: "./lib/Keys.hs"
+      component: "xmonad-exe:exe:keyexport-exe"
+
+    - path: "./lib/Config.hs"
+      component: "xmonad-exe:exe:keyexport-exe"
+
+    - path: "./lib/Layouts.hs"
+      component: "xmonad-exe:exe:keyexport-exe"
+
+    - path: "./lib/Mouse.hs"
+      component: "xmonad-exe:exe:keyexport-exe"
+
+    - path: "./lib/Prompt/Eval.hs"
+      component: "xmonad-exe:exe:keyexport-exe"

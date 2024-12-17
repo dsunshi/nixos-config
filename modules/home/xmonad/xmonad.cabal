@@ -18,3 +18,18 @@ executable xmonad-exe
   hs-source-dirs: ., ./lib
   other-modules: Bar, Keys, Config, Layouts, Mouse, Prompt.Eval
   default-language: Haskell2010
+
+executable keyexport-exe
+  main-is:            ./lib/KeyExport.hs
+  default-extensions: ImportQualifiedPost
+  build-depends:
+    , base
+    , xmonad
+    , xmonad-contrib >= 0.18.1
+    , xmobar
+    , xmonad-extras
+    , containers
+    , hint
+  hs-source-dirs: ., ./lib
+  other-modules: Bar, Keys, Config, Layouts, Mouse, Prompt.Eval
+  default-language: Haskell2010
