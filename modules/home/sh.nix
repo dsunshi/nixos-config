@@ -15,6 +15,7 @@ let
     tree = "exa --tree";
     vim = "nvim";
     rungame = "gamemoderun steam-run";
+    nixhash = "nix-hash --flat --base64 --type sha256";
   };
 in {
   home-manager.users.${myUser.username} = {

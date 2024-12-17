@@ -5,8 +5,6 @@
         packages = with pkgs; [ betterlockscreen ];
         file.".config/betterlockscreen/betterlockscreenrc".text = # toml
           ''
-            # ~/.config/betterlockscreenrc
-
             # default options
             display_on=0
             span_image=false
