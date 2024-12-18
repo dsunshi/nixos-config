@@ -12,8 +12,8 @@ let
       fout=$USER/${wallpaper}
       monitors=$(xrandr --listmonitors | wc -l)
 
-      if [ "$#" -eq 1 ]; then
-        Q=$1
+      if [ "$#" -eq 2 ]; then
+        Q=$2
       else
         r=$((1 + RANDOM % 10))
         if ((r >= 1 && r <= 4)); then
@@ -48,19 +48,28 @@ let
       rm -rf $mirror
 
       if [[ $monitors -gt "3" ]]; then
-        r=$((1 + RANDOM % 10))
-
-        if ((r >= 1 && r <= 3)); then
-          feh --bg-scale --no-fehbg $fout $bg $bg
-        elif ((r >= 3 && r <= 5)); then
-          feh --bg-scale --no-fehbg $bg $fout $bg
+        if [ "$#" -eq 2 ]; then
+          if [[ $1 -eq 0 ]]; then
+            feh --bg-scale --no-fehbg $fout $bg $bg
+          elif [[ $1 -eq 1 ]]; then
+            feh --bg-scale --no-fehbg $bg $fout $bg
+          else
+            feh --bg-scale --no-fehbg $bg $bg $fout
+          fi
         else
-          feh --bg-scale --no-fehbg $bg $bg $fout
+          r=$((1 + RANDOM % 10))
+
+          if ((r >= 1 && r <= 3)); then
+            feh --bg-scale --no-fehbg $fout $bg $bg
+          elif ((r >= 3 && r <= 5)); then
+            feh --bg-scale --no-fehbg $bg $fout $bg
+          else
+            feh --bg-scale --no-fehbg $bg $bg $fout
+          fi
         fi
       else
         feh --bg-scale --no-fehbg $fout
       fi
-
     '';
 in {
   config = lib.mkIf config.services.xserver.windowManager.xmonad.enable {

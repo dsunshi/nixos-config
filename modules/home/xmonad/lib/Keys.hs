@@ -4,6 +4,7 @@ import Config
 import Control.Monad
 import Prompt.Eval
 import System.IO
+import Text.Printf
 import XMonad
 import XMonad.Actions.CycleWS
 import XMonad.Actions.Promote
@@ -76,11 +77,9 @@ myKeys c =
           ]
         ^++^ subKeys
           "Bandit"
-          [ ("M-b 1", addName "Take Bandit for a walk" $ spawn "walk-bandit 1"),
-            ("M-b 2", addName "Take Bandit for a walk" $ spawn "walk-bandit 2"),
-            ("M-b 3", addName "Take Bandit for a walk" $ spawn "walk-bandit 3"),
-            ("M-b 4", addName "Take Bandit for a walk" $ spawn "walk-bandit 4")
-          ]
+          ( banditKeys
+              ++ [("M-b b", addName "Random Bandit" $ spawn "walk-bandit")]
+          )
         ^++^ subKeys
           "Switch layouts"
           [ ("M-<Tab>", addName "Switch to next layout" $ sendMessage NextLayout),
@@ -145,3 +144,21 @@ move k d stackCmd ws id = [(key, addName description $ windows $ stackCmd wsName
 
 foldWs :: WsCmd -> [String] -> [(String, NamedAction)]
 foldWs cmd ws = foldl (<>) [] $ map (cmd ws) [0 .. length ws - 1]
+
+--
+scToKey :: (Int, Int) -> String
+scToKey (s, q) = printf "M-b %d %d" s q
+
+scToName :: (Int, Int) -> String
+scToName (s, q) = printf "Take Bandit to screen %d quadrent %q" s q
+
+scToCmd :: (Int, Int) -> String
+scToCmd (s, q) = printf "walk-bandit %d %d" s q
+
+banditKey :: (Int, Int) -> (String, NamedAction)
+banditKey k = (scToKey k, addName (scToName k) $ spawn (scToCmd k))
+
+screenCorners = foldr (<>) [] [[(s, q) | s <- [0 .. 2]] | q <- [1 .. 4]]
+
+banditKeys :: [(String, NamedAction)]
+banditKeys = map banditKey screenCorners
