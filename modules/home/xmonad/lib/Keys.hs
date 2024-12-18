@@ -49,7 +49,6 @@ myKeys c =
           ("M-S-<Return>", addName "Launch a terminal" $ spawn myTerminal),
           -- ("M-w", addName "Display current workspace name" $ flashName myShowWNameTheme),
           ("M-w", addName "Display current workspace name on each screen" showScreens),
-          ("M-b", addName "Take Bandit for a walk" $ spawn "walk-bandit"),
           ("M-S-b", addName "Toggle bar show/hide" $ sendMessage ToggleStruts)
         ]
         ^++^ subKeys
@@ -74,6 +73,13 @@ myKeys c =
           "Monitors"
           [ ("M-.", addName "Switch focus to next monitor" nextScreen),
             ("M-,", addName "Switch focus to prev monitor" prevScreen)
+          ]
+        ^++^ subKeys
+          "Bandit"
+          [ ("M-b 1", addName "Take Bandit for a walk" $ spawn "walk-bandit 1"),
+            ("M-b 2", addName "Take Bandit for a walk" $ spawn "walk-bandit 2"),
+            ("M-b 3", addName "Take Bandit for a walk" $ spawn "walk-bandit 3"),
+            ("M-b 4", addName "Take Bandit for a walk" $ spawn "walk-bandit 4")
           ]
         ^++^ subKeys
           "Switch layouts"

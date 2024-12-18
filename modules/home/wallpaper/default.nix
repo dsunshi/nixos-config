@@ -49,11 +49,12 @@ let
     '';
 in {
   config = lib.mkIf config.services.xserver.windowManager.xmonad.enable {
+    environment.systemPackages = with pkgs; [ imagemagick walk-bandit feh ];
     home-manager.users.${myUser.username}.home = {
-      packages = with pkgs; [
-        feh # sets the wallpaper
-        walk-bandit
-      ];
+      packages = with pkgs;
+        [
+          feh # sets the wallpaper
+        ];
       # file.".config/wallpaper.png".source = ./wallpaper.png;
       file."${bandit}".source = ./bandit.png;
       file."${background}".source = ./background.png;
