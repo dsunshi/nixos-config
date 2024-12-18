@@ -16,6 +16,7 @@ let
     vim = "nvim";
     rungame = "gamemoderun steam-run";
     nixhash = "nix-hash --flat --base64 --type sha256";
+    fehs = ''feh info "echo %wx%h"'';
   };
 in {
   home-manager.users.${myUser.username} = {

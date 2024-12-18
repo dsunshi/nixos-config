@@ -13,6 +13,9 @@
         PartialBlur = true;
         BlurRadius = 25;
         MainColor = "#DCD7BA";
+        AccentColor = "#5E5086";
+        BackgroundColor = "#1F1F28";
+        Font = "Iosevka NF";
         # ...
       };
     };

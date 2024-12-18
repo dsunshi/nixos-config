@@ -29,7 +29,7 @@ in {
             ublock-origin
             undoclosetabbutton
             gruvbox-dark-theme
-            # tridactyl
+            tridactyl
             hoogle-search
           ];
           bookmarks = [
@@ -95,7 +95,7 @@ in {
           DisableFirefoxStudies = true;
           DontCheckDefaultBrowser = true;
           DisplayBookmarksToolbar =
-            "never"; # alternatives: "always" or "newtab"
+            "always"; # alternatives: "never" or "newtab"
           DisplayMenuBar =
             "default-off"; # alternatives: "always", "never" or "default-on"
         };

@@ -49,6 +49,7 @@ myKeys c =
           ("M-S-<Return>", addName "Launch a terminal" $ spawn myTerminal),
           -- ("M-w", addName "Display current workspace name" $ flashName myShowWNameTheme),
           ("M-w", addName "Display current workspace name on each screen" showScreens),
+          ("M-b", addName "Take Bandit for a walk" $ spawn "walk-bandit"),
           ("M-S-b", addName "Toggle bar show/hide" $ sendMessage ToggleStruts)
         ]
         ^++^ subKeys

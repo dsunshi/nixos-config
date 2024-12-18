@@ -40,7 +40,8 @@ myStartupHook = do
   spawn "xinput --map-to-output \"ELAN9008:00 04F3:2ED7\" eDP-1-1"
   -- Set any stylus input just to the touchscreen
   spawn "xinput --map-to-output \"ELAN9008:00 04F3:2ED7 Stylus Pen (0)\" eDP-1-1"
-  spawn "feh --bg-scale --no-fehbg ~/.config/wallpaper.png"
+  -- spawn "feh --bg-scale --no-fehbg ~/.config/wallpaper.png"
+  spawn "walk-bandit"
   spawn "picom --config ~/.config/picom/picom.conf"
   -- set cursor from cursor.nix, not the "X" one
   spawn "set_xcursor"

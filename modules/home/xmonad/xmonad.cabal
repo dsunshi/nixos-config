@@ -29,6 +29,7 @@ executable keyexport-exe
     , xmobar
     , xmonad-extras
     , containers
+    , split
     , hint
   hs-source-dirs: ., ./lib
   other-modules: Bar, Keys, Config, Layouts, Mouse, Prompt.Eval
