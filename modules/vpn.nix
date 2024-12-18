@@ -3,7 +3,6 @@ let
   key = config.age.secrets."expressvpn-key".path;
   vpn = pkgs.writeShellScriptBin "vpn" # bash
     ''
-      #!/usr/bin/env bash
       connect_cmd() {
         expressvpn connect
       }

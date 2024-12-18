@@ -2,24 +2,28 @@
 let
   bandit = ".config/.bandit.png";
   background = ".config/.background.png";
+  wallpaper = ".config/wallpaper.png";
   walk-bandit = pkgs.writeShellScriptBin "walk-bandit" # bash
     ''
-      #/usr/bin/env bash
       USER=/home/${myUser.username}
       bg=$USER/${background}
       # 870 x 1353
       bandit=$USER/${bandit}
-      fout=$USER/.config/wallpaper.png
+      fout=$USER/${wallpaper}
 
-      r=$((1 + RANDOM % 10))
-      if ((r >= 1 && r <= 4)); then
-        Q=4
-      elif ((r >= 5 && r <= 8)); then
-        Q=1
-      elif ((r == 9)); then 
-        Q=2
+      if [ "$#" -eq 1 ]; then
+        Q=$1
       else
-        Q=3
+        r=$((1 + RANDOM % 10))
+        if ((r >= 1 && r <= 4)); then
+          Q=4
+        elif ((r >= 5 && r <= 8)); then
+          Q=1
+        elif ((r == 9)); then 
+          Q=2
+        else
+          Q=3
+        fi
       fi
 
       mirror=mktemp
@@ -41,7 +45,7 @@ let
       fi
 
       rm -rf $mirror
-      feh --bg-scale --no-fehbg $USER/.config/wallpaper.png
+      feh --bg-scale --no-fehbg $fout
     '';
 in {
   config = lib.mkIf config.services.xserver.windowManager.xmonad.enable {

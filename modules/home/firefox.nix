@@ -76,6 +76,22 @@ in {
                 }
               ];
             }
+            {
+              name = "3D Printing Sites";
+              toolbar = true;
+              bookmarks = [
+                {
+                  name = "Printables";
+                  tags = [ "search" "downloads" ];
+                  url = "https://www.printables.com/";
+                }
+                {
+                  name = "Thingiverse";
+                  tags = [ "search" "downloads" ];
+                  url = "https://www.thingiverse.com/";
+                }
+              ];
+            }
           ];
           settings = {
             "browser.startup.homepage" = "about:blank";

@@ -2,7 +2,6 @@
 let
   post-install-updates = pkgs.writeShellScriptBin "post-install-updates" # bash
     ''
-      #!/usr/bin/env bash
       betterlockscreen -u ~/.config/wallpaper.png
       hoogle generate
       tldr --update
