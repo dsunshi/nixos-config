@@ -1,38 +1,45 @@
 { myUser, lib, config, pkgs, ... }: {
   config = lib.mkIf (!config.wsl.enable) {
     home-manager.users.${myUser.username} = {
+      dconf.settings = {
+        "org/gnome/desktop/interface" = { color-scheme = "prefer-dark"; };
+      };
       gtk = {
         enable = true;
-        iconTheme = {
-          name = "Papirus-Dark";
-          package = pkgs.papirus-icon-theme;
-        };
         theme = {
-          name = "Tokyonight-Dark-BL";
-          package = pkgs.tokyonight-gtk-theme;
+          name = "Adwaita-dark";
+          package = pkgs.gnome-themes-extra;
+        };
+        iconTheme = {
+          name = "Adwaita";
+          package = pkgs.adwaita-icon-theme;
+        };
+        gtk2.extraConfig = "gtk-application-prefer-dark-theme = 1;";
+        gtk3.extraConfig = { gtk-application-prefer-dark-theme = 1; };
+        gtk4.extraConfig = { gtk-application-prefer-dark-theme = 1; };
+      };
+      # qt = {
+      #   enable = true;
+      #   platformTheme = "gnome";
+      #   style = "adwaita-dark";
+      # };
+      home = {
+        sessionVariables = {
+          GTK_THEME =
+            config.home-manager.users.${myUser.username}.gtk.theme.name;
         };
       };
-      #   gtk3.extraConfig = {
-      #     Settings = ''
-      #       gtk-application-prefer-dark-theme=1
-      #     '';
-      #   };
-      #   gtk4.extraConfig = {
-      #     Settings = ''
-      #       gtk-application-prefer-dark-theme=1
-      #     '';
-      #   };
-      # };
-      # xdg.configFile = {
-      #   "gtk-4.0/assets".source =
-      #     "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
-      #   "gtk-4.0/gtk.css".source =
-      #     "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
-      #   "gtk-4.0/gtk-dark.css".source =
-      #     "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
-      # };
-
-      xfconf.settings = { };
+      # Symlink the `~/.config/gtk-4.0/` folder declaratively to theme GTK-4 apps as well.
+      xdg.configFile = let
+        pkg = config.home-manager.users.${myUser.username}.gtk.theme.package;
+        name = config.home-manager.users.${myUser.username}.gtk.theme.name;
+      in {
+        "gtk-4.0/assets".source = "${pkg}/share/themes/${name}/gtk-4.0/assets";
+        "gtk-4.0/gtk.css".source =
+          "${pkg}/share/themes/${name}/gtk-4.0/gtk.css";
+        "gtk-4.0/gtk-dark.css".source =
+          "${pkg}/share/themes/${name}/gtk-4.0/gtk-dark.css";
+      };
     };
   };
 }

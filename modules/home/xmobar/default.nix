@@ -29,6 +29,7 @@
                  , hideOnStart = False
                  , iconRoot = "/home/${myUser.username}/.config/xmonad/xmobar/icons/"
                  -- https://codeberg.org/xmobar/xmobar/src/branch/master/doc/plugins.org
+                 -- https://github.com/apeyroux/home.nix/blob/51b03332c35874c5a7a43805c7fe7b8355228d45/dotfiles/xmobarrc-p53#L77
                  , commands =
                    [ Run UnsafeStdinReader
                    , Run Memory ["-t","  <fc=#8EA4A2><usedratio></fc>%"] 10
