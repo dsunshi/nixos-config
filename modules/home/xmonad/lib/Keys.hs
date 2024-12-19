@@ -76,9 +76,9 @@ myKeys c =
             ("M-,", addName "Switch focus to prev monitor" prevScreen)
           ]
         ^++^ subKeys
+          -- TODO: Why is this breadking help?
           "Bandit"
-          ( banditKeys
-              ++ [("M-b b", addName "Random Bandit" $ spawn "walk-bandit")]
+          ( ("M-b b", addName "Random Bandit" $ spawn "walk-bandit") : banditKeys
           )
         ^++^ subKeys
           "Switch layouts"
