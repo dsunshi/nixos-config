@@ -145,20 +145,21 @@ move k d stackCmd ws id = [(key, addName description $ windows $ stackCmd wsName
 foldWs :: WsCmd -> [String] -> [(String, NamedAction)]
 foldWs cmd ws = foldl (<>) [] $ map (cmd ws) [0 .. length ws - 1]
 
---
-scToKey :: (Int, Int) -> String
-scToKey (s, q) = printf "M-b %d %d" s q
+------------------------------------------------------------------------
+-- Generate keys to move Bandit arround
+keyStroke' :: Int -> Int -> String
+keyStroke' = printf "M-b %d %d"
 
-scToName :: (Int, Int) -> String
-scToName (s, q) = printf "Take Bandit to screen %d quadrent %q" s q
+name' :: Int -> Int -> String
+name' = printf "Take Bandit to screen %d quadrent %q"
 
-scToCmd :: (Int, Int) -> String
-scToCmd (s, q) = printf "walk-bandit %d %d" s q
+command' :: Int -> Int -> String
+command' = printf "walk-bandit %d %d"
 
 banditKey :: (Int, Int) -> (String, NamedAction)
-banditKey k = (scToKey k, addName (scToName k) $ spawn (scToCmd k))
-
-screenCorners = foldr (<>) [] [[(s, q) | s <- [0 .. 2]] | q <- [1 .. 4]]
+banditKey k = (uncurry keyStroke' k, addName (uncurry name' k) $ spawn (uncurry command' k))
 
 banditKeys :: [(String, NamedAction)]
 banditKeys = map banditKey screenCorners
+  where
+    screenCorners = foldr (<>) [] [[(s, q) | s <- [0 .. 2]] | q <- [1 .. 4]]
