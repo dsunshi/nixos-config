@@ -48,7 +48,6 @@ myKeys c =
           ("M-p", addName "Run application launcher" $ spawn "rofi -show drun"),
           ("M-S-p", addName "Run Haskell prompt" $ evalPrompt myXPConfig),
           ("M-S-<Return>", addName "Launch a terminal" $ spawn myTerminal),
-          -- ("M-w", addName "Display current workspace name" $ flashName myShowWNameTheme),
           ("M-w", addName "Display current workspace name on each screen" showScreens),
           ("M-S-b", addName "Toggle bar show/hide" $ sendMessage ToggleStruts)
         ]
@@ -76,7 +75,6 @@ myKeys c =
             ("M-,", addName "Switch focus to prev monitor" prevScreen)
           ]
         ^++^ subKeys
-          -- TODO: Why is this breaking help?
           "Bandit"
           ( ("M-b b", addName "Random Bandit" $ spawn "walk-bandit") : banditKeys
           )
