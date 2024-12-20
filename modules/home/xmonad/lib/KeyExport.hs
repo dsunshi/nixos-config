@@ -24,10 +24,12 @@ letter (km, ks) = last parts
 -- table :: [((KeyMask, KeySym), String)]
 -- writeFile "keybindings" (unlines $ showKm x)
 showKeybindings' :: [((KeyMask, KeySym), NamedAction)] -> IO ()
-showKeybindings' x = do
-  writeFile "keybindings" (unlines file)
-  where
-    file = map keyP x
+showKeybindings' x = writeFile "keybindings" (unlines $ showKmSimple x)
+
+-- showKeybindings' x = do
+--   writeFile "keybindings" (unlines file)
+--   where
+--     file = map keyP x
 
 keyP :: ((KeyMask, KeySym), NamedAction) -> String
 keyP ((km, ks), action) = if ks == 0 then "" else printf "(%s, %s): %s" (show km) (show ks) (keyToString (km, ks))

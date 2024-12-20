@@ -76,7 +76,7 @@ myKeys c =
             ("M-,", addName "Switch focus to prev monitor" prevScreen)
           ]
         ^++^ subKeys
-          -- TODO: Why is this breadking help?
+          -- TODO: Why is this breaking help?
           "Bandit"
           ( ("M-b b", addName "Random Bandit" $ spawn "walk-bandit") : banditKeys
           )
@@ -151,7 +151,7 @@ keyStroke' :: Int -> Int -> String
 keyStroke' = printf "M-b %d %d"
 
 name' :: Int -> Int -> String
-name' = printf "Take Bandit to screen %d quadrent %q"
+name' = printf "Take Bandit to screen %d quadrent %d"
 
 command' :: Int -> Int -> String
 command' = printf "walk-bandit %d %d"
