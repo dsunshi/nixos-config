@@ -14,6 +14,7 @@ let
     ":q" = "exit";
     tree = "exa --tree";
     vim = "nvim";
+    vimdiff = "nvim -d";
     rungame = "gamemoderun steam-run";
     nixhash = "nix-hash --flat --base64 --type sha256";
     fehs = ''feh info "echo %wx%h"'';
@@ -40,6 +41,10 @@ in {
         haskellEnv = # fish
           ''
             nix-shell -p "haskellPackages.ghcWithPackages (pkgs: with pkgs; [ $argv ])"
+          '';
+        rmempty = # fish
+          ''
+            find $argv -type d -empty -delete
           '';
         # This y shell wrapper that provides the ability to change the current working directory when exiting Yazi.
         # Then use y instead of yazi to start, and press q to quit, you'll see the CWD changed.

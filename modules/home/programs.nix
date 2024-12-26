@@ -1,6 +1,14 @@
 { myUser, lib, config, pkgs, ... }: {
   config = lib.mkIf (!config.wsl.enable) {
     home-manager.users.${myUser.username} = {
+      programs.freetube = {
+        enable = true;
+        settings = {
+          allowDashAv1Formats = true;
+          checkForUpdates = false;
+          baseTheme = "catppuccinMocha";
+        };
+      };
       home = {
         packages = with pkgs; [
           calibre
@@ -13,10 +21,11 @@
           prusa-slicer
           fstl
           qbittorrent
+          wezterm
+          goxel
           tor-browser
           gimp
           anki
-          freetube
           blender
           gpick
           vlc

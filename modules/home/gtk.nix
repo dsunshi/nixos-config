@@ -7,12 +7,12 @@
       gtk = {
         enable = true;
         theme = {
-          name = "Adwaita-dark";
-          package = pkgs.gnome-themes-extra;
+          name = "Colloid-Dark";
+          package = pkgs.colloid-gtk-theme;
         };
         iconTheme = {
-          name = "Adwaita";
-          package = pkgs.adwaita-icon-theme;
+          name = "Numix-Circle";
+          package = pkgs.numix-icon-theme-circle;
         };
         gtk2.extraConfig = "gtk-application-prefer-dark-theme = 1;";
         gtk3.extraConfig = { gtk-application-prefer-dark-theme = 1; };

@@ -1,4 +1,4 @@
-{ myUser, pkgs, ... }: {
+{ myUser, pkgs, config, ... }: {
   imports = [
     ./cli.nix
     ./games.nix
@@ -16,6 +16,7 @@
     ./qutebrowser
     ./rofi
     ./sh.nix
+    ./restic.nix
     ./wallpaper
     ./xmobar
     ./xmonad
@@ -50,6 +51,7 @@
           };
           # Custom prompt for GHCI
           file.".ghci".text = '':set prompt "λ> "'';
+          # file.".switch/prod.keys".source = config.age.secrets."prod.keys".path;
           # You do not need to change this if you're reading this in the future.
           # Don't ever change this after the first build.  Don't ask questions.
           stateVersion = "24.05";
