@@ -6,7 +6,7 @@
     ./../../modules/nvidia.nix
     ./../../modules/sh.nix
     ./../../modules/wm.nix
-    ./../../modules/vm.nix
+    # ./../../modules/vm.nix
     ./../../modules/autorandr.nix
     ./../../modules/display-manager.nix
     ./../../modules/vpn.nix

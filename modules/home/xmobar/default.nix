@@ -1,5 +1,9 @@
 { myUser, lib, config, pkgs, ... }: {
+
+  imports = [ ./icons.nix ];
+
   config = lib.mkIf config.services.xserver.windowManager.xmonad.enable {
+
     home-manager.users.${myUser.username}.home = {
       packages = with pkgs; [
         xmobar
@@ -7,11 +11,7 @@
         pamixer # volume control and display
         brightnessctl # screen brightness and keyboard LED
       ];
-      file.".config/xmonad/xmobar/wifi.sh".source = ./wifi.sh;
-      file.".config/xmonad/xmobar/bluetooth.sh".source = ./bluetooth.sh;
-      file.".config/xmonad/xmobar/volume.sh".source = ./volume.sh;
-      file.".config/xmonad/xmobar/cpu_temp.sh".source = ./cpu_temp.sh;
-      file.".config/xmonad/xmobar/gpu_temp.sh".source = ./gpu_temp.sh;
+
       file.".config/xmonad/xmobar/xmobarrc".text = # Haskell
         ''
           Config { font = "Iosevka 10"
@@ -37,9 +37,11 @@
                    , Run BatteryP ["BAT0"] ["-t", "<acstatus><watts> (<left>%)"] 360
                    , Run Com "/home/${myUser.username}/.config/xmonad/xmobar/cpu_temp.sh" [] "cpu" 10
                    , Run Com "/home/${myUser.username}/.config/xmonad/xmobar/gpu_temp.sh" [] "gpu" 10
-                   , Run Com "/home/${myUser.username}/.config/xmonad/xmobar/bluetooth.sh" [] "bluetooth" 10
+                   -- , Run Com "/home/${myUser.username}/.config/xmonad/xmobar/bluetooth.sh" [] "bluetooth" 10
+                   , Run Com "xmobar-bluetooth" [] "bluetooth" 10
                    , Run Com "/home/${myUser.username}/.config/xmonad/xmobar/wifi.sh" [] "network" 10
-                   , Run Com "/home/${myUser.username}/.config/xmonad/xmobar/volume.sh" [] "volume" 10
+                   -- , Run Com "/home/${myUser.username}/.config/xmonad/xmobar/volume.sh" [] "volume" 10
+                   , Run Com "xmobar-volume" [] "volume" 10
                    , Run Kbd [("us(colemak_dh_ortho)", "ck"), ("us", "us")]
                    , Run Brightness ["-t", "<fn=0>󰃞 </fn><percent>%", "--", "-D", "intel_backlight"] 60
                    , Run DiskU [("/", "/: <usedp>% (<used>/<size>)")] [] 20

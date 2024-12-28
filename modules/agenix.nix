@@ -11,10 +11,10 @@
     };
     environment.systemPackages = with pkgs; [
       inputs.agenix.packages.${pkgs.system}.default
-      # (inputs.agenix.packages.${pkgs.system}.default.override {
-      #   ageBin = "${pkgs.rage}/bin/rage";
-      # })
-      # rage
+      (inputs.agenix.packages.${pkgs.system}.default.override {
+        ageBin = "${pkgs.rage}/bin/rage";
+      })
+      rage
       xdotool
       age-plugin-yubikey
     ];

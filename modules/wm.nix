@@ -16,7 +16,7 @@
   programs.hyprland = {
     enable = true;
     xwayland = { enable = true; };
-    # Is dbus needed?
+    # TODO: is dbus needed?
     # Example home-manager: https://github.com/librephoenix/nixos-config/blob/main/user/wm/hyprland/hyprland.nix
     # Further home-manager: https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/
     # repo example: https://github.com/fufexan/dotfiles

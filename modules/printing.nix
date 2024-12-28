@@ -1,4 +1,5 @@
 { pkgs, ... }: {
+  # TODO: printer config
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ epson-escpr ];
   environment.systemPackages = with pkgs; [ system-config-printer ];

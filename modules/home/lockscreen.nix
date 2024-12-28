@@ -2,6 +2,7 @@
   config = lib.mkIf (!config.wsl.enable) {
     home-manager.users.${myUser.username} = {
       home = {
+        # TODO: How to connect to rofi-power-menu
         packages = with pkgs; [ betterlockscreen ];
         file.".config/betterlockscreen/betterlockscreenrc".text = # toml
           ''

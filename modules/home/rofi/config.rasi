@@ -10,15 +10,5 @@ configuration {
     show-icons:     true;
 }
 
+/* TODO: how to pull straight from repo */
 @theme "~/.config/rofi/colorscheme.rasi"
-
-/*
-listview {
-	lines: 6;
-	columns: 2;
-}
-
-window {
-	width: 800px;
-}
-*/

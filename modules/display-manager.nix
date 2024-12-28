@@ -3,7 +3,7 @@
     enable = true; # Enable SDDM.
     wayland.enable = true;
     sugarCandyNix = {
-      enable = true; # This set SDDM's theme to "sddm-sugar-candy-nix".
+      enable = true;
       settings = {
         Background = lib.cleanSource ./home/wallpaper/wallpaper.png;
         ScreenWidth = 1920;
@@ -16,7 +16,6 @@
         AccentColor = "#5E5086";
         BackgroundColor = "#1F1F28";
         Font = "Iosevka NF";
-        # ...
       };
     };
   };
