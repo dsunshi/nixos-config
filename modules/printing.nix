@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ epson-escpr ];
+  environment.systemPackages = with pkgs; [ system-config-printer ];
   # Enable autodiscovery of network printers
   services.avahi = {
     enable = true;
