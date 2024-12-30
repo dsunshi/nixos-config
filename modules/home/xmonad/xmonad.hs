@@ -26,7 +26,6 @@ import XMonad.Util.SpawnOnce
 --
 myEventHook = mempty
 
--- TODO: https://github.com/i3/i3lock?tab=readme-ov-file
 ------------------------------------------------------------------------
 -- Startup hook
 
