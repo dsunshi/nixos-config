@@ -12,7 +12,12 @@
       hpkgs.xmonad-contrib_0_18_1
     ];
   };
-
+  programs.xss-lock = {
+    enable = true;
+    lockerCommand = "${pkgs.betterlockscreen}/bin/betterlockscreen --lock blur";
+    # lock before suspending/hibernating, see https://github.com/i3/i3lock/issues/207
+    extraOptions = [ "--transfer-sleep-lock" ];
+  };
   programs.hyprland = {
     enable = true;
     xwayland = { enable = true; };

@@ -12,6 +12,7 @@
         nh
         nix-output-monitor
         fd
+        sd
         nvd
         yazi
         rdfind
