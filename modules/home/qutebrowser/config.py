@@ -5,7 +5,7 @@ c.aliases = {'q': 'quit', 'w': 'session-save', 'wq': 'quit --save'}
 c.url.default_page = 'https://google.com/'
 c.url.start_pages = 'https://google.com/'
 
-c.url.searchengines = {'DEFAULT': 'https://google.com.com/search?q={}', 'am': 'https://www.amazon.com/s?k={}', 'hoog': 'https://hoogle.haskell.org/?hoogle={}', 'wiki': 'https://en.wikipedia.org/wiki/{}', 'yt': 'https://www.youtube.com/results?search_query={}'}
+c.url.searchengines = {'DEFAULT': 'https://google.com/search?q={}', 'am': 'https://www.amazon.com/s?k={}', 'hoog': 'https://hoogle.haskell.org/?hoogle={}', 'wiki': 'https://en.wikipedia.org/wiki/{}', 'yt': 'https://www.youtube.com/results?search_query={}'}
 
 # xb to toggle the status bar
 config.bind('xb', 'config-cycle statusbar.show always never')
@@ -106,9 +106,14 @@ c.colors.statusbar.passthrough.bg = '#759CD8'
 # Type: QssColor
 c.colors.statusbar.command.bg = '#223249'
 
+c.colors.statusbar.url.fg = '#C4746E'
+c.colors.statusbar.url.hover.fg = '#C4746E'
+c.colors.statusbar.url.success.http.fg = '#C4746E'
+c.colors.statusbar.url.success.https.fg = '#C4746E'
 # Foreground color of the URL in the statusbar when there's a warning.
 # Type: QssColor
 c.colors.statusbar.url.warn.fg = '#DCA561'
+c.colors.statusbar.url.error.fg = '#DCA561'
 
 # Background color of the tab bar.
 # Type: QssColor
