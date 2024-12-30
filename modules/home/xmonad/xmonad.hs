@@ -6,13 +6,11 @@ import Mouse
 import XMonad
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.ShowWName
 import XMonad.Layout.IndependentScreens
 import XMonad.Layout.ShowWName
 import XMonad.Util.Hacks (fixSteamFlicker)
 import XMonad.Util.NamedActions
 import XMonad.Util.Run
-import XMonad.Util.SpawnOnce
 
 ------------------------------------------------------------------------
 -- Event handling
