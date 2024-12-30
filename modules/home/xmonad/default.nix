@@ -2,15 +2,12 @@
   config = lib.mkIf config.services.xserver.windowManager.xmonad.enable {
     home-manager.users.${myUser.username} = {
       home = {
-        packages = with pkgs;
-          [
-            yad
-          ];
+        packages = with pkgs; [ yad ];
         file.".xmonad/xmonad.hs" = {
           source = ./xmonad.hs;
-          onChange = #bash
+          onChange = # bash
             ''
-              xmonad --recompile; xmonad --restart
+              ${pkgs.haskellPackages.xmonad_0_18_0}/bin/xmonad --recompile; ${pkgs.haskellPackages.xmonad_0_18_0}/bin/xmonad --restart
             '';
         };
         file.".xmonad/lib" = {
