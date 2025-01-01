@@ -23,6 +23,8 @@
           qbittorrent
           wezterm
           goxel
+          leocad
+          sweethome3d.application
           tor-browser
           gimp
           anki

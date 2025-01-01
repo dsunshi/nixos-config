@@ -21,6 +21,7 @@ in {
     ./oil.nix
     ./noice.nix
     ./otter.nix
+    ./rustaceanvim.nix
     ./smartcolumn.nix
     ./startup.nix
     ./telescope.nix

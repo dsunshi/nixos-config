@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixvim.url = "github:nix-community/nixvim/";
@@ -22,8 +23,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, nixvim, home-manager, firefox-addons, agenix
-    , secrets, sddm-sugar-candy-nix, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixvim, home-manager
+    , firefox-addons, agenix, secrets, sddm-sugar-candy-nix, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -65,6 +66,7 @@
       nixosConfigurations = {
         bandit = nixpkgs.lib.nixosSystem {
           specialArgs = {
+            pkgs-unstable = import nixpkgs-unstable { inherit system; };
             inherit self;
             inherit (inputs.firefox-addons.lib.${system}) buildFirefoxXpiAddon;
             inherit inputs outputs;
@@ -85,6 +87,7 @@
         };
         ghost = nixpkgs.lib.nixosSystem {
           specialArgs = {
+            pkgs-unstable = import nixpkgs-unstable { inherit system; };
             inherit (inputs.rycee-nurpkgs.lib) buildFirefoxXpiAddon;
             inherit inputs outputs;
             inherit mySystem;

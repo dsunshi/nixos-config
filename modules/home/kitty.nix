@@ -1,8 +1,9 @@
-{ myUser, lib, config, ... }: {
+{ myUser, lib, config, pkgs-unstable, ... }: {
   config = lib.mkIf (!config.wsl.enable) {
     home-manager.users.${myUser.username} = {
       programs.kitty = {
         enable = true;
+        package = pkgs-unstable.kitty;
         font = {
           name = "Iosevka NF";
           size = 14;

@@ -1,4 +1,4 @@
-{ myUser, pkgs, ... }: {
+{ myUser, pkgs, pkgs-unstable, ... }: {
   home-manager.users.${myUser.username} = {
     home = {
       packages = with pkgs; [
@@ -14,7 +14,7 @@
         fd
         sd
         nvd
-        yazi
+        pkgs-unstable.yazi
         rdfind
         aria2
         bottom
