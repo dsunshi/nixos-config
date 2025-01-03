@@ -5,7 +5,9 @@ c.aliases = {'q': 'quit', 'w': 'session-save', 'wq': 'quit --save'}
 c.url.default_page = 'https://google.com/'
 c.url.start_pages = 'https://google.com/'
 
-c.url.searchengines = {'DEFAULT': 'https://google.com/search?q={}', 'am': 'https://www.amazon.com/s?k={}', 'hoog': 'https://hoogle.haskell.org/?hoogle={}', 'wiki': 'https://en.wikipedia.org/wiki/{}', 'yt': 'https://www.youtube.com/results?search_query={}'}
+c.url.searchengines = {'DEFAULT': 'https://google.com/search?q={}',
+                       'hoogle': 'https://hoogle.haskell.org/?hoogle={}',
+                       'yt': 'https://www.youtube.com/results?search_query={}'}
 
 # xb to toggle the status bar
 config.bind('xb', 'config-cycle statusbar.show always never')

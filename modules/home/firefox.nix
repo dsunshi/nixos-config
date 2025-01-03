@@ -90,6 +90,11 @@ in {
                   tags = [ "search" "downloads" ];
                   url = "https://www.thingiverse.com/";
                 }
+                {
+                  name = "OpenSCAD Cheatsheet";
+                  tags = [ "search" ];
+                  url = "https://openscad.org/cheatsheet/";
+                }
               ];
             }
           ];
