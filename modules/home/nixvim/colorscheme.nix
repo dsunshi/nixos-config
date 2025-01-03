@@ -3,17 +3,42 @@
     colorscheme = "kanagawa-paper";
     plugins.transparent = {
       enable = true;
-      settings = {
-        exclude_groups = [ ];
-        extra_groups = [
-          "BufferLineTabClose"
-          "BufferLineBufferSelected"
-          "BufferLineFill"
-          "BufferLineBackground"
-          "BufferLineSeparator"
-          "BufferLineIndicatorSelected"
-        ];
-      };
+      # settings = {
+      #   exclude_groups = [ ];
+      #   extra_groups = [
+      #     "BufferLineBackground"
+      #     "BufferLineBufferSelected"
+      #     "BufferLineFill"
+      #     "BufferLineIndicatorSelected"
+      #     "BufferLineSeparator"
+      #     "BufferLineTabClose"
+      #     "Comment"
+      #     "Conditional"
+      #     "Constant"
+      #     "CursorLine"
+      #     "CursorLineNr"
+      #     "EndOfBuffer"
+      #     "Function"
+      #     "Identifier"
+      #     "LineNr"
+      #     "NonText"
+      #     "Normal"
+      #     "NormalNC"
+      #     "Operator"
+      #     "PreProc"
+      #     "Repeat"
+      #     "SignColumn"
+      #     "Special"
+      #     "Statement"
+      #     "StatusLine"
+      #     "StatusLineNC"
+      #     "String"
+      #     "Structure"
+      #     "Todo"
+      #     "Type"
+      #     "Underlined"
+      #   ];
+      # };
     };
     extraPlugins = with pkgs;
       [
