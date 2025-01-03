@@ -1,4 +1,4 @@
-{ myUser, lib, config, buildFirefoxXpiAddon, inputs, ... }:
+{ myUser, lib, config, buildFirefoxXpiAddon, inputs, ...}:
 let
   hoogle-search = buildFirefoxXpiAddon {
     pname = "return-old-github-feed";
