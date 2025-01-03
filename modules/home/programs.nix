@@ -1,4 +1,4 @@
-{ myUser, lib, config, pkgs, ... }: {
+{ myUser, pkgs-vintage, lib, config, pkgs, ... }: {
   config = lib.mkIf (!config.wsl.enable) {
     home-manager.users.${myUser.username} = {
       programs.freetube = {
@@ -15,8 +15,8 @@
           gnumake
           okular
           spotify
-          # mypaint # https://github.com/NixOS/nixpkgs/issues/348748
-          # mypaint-brushes
+          pkgs-vintage.mypaint # https://github.com/NixOS/nixpkgs/issues/348748
+          pkgs-vintage.mypaint-brushes
           krita
           prusa-slicer
           fstl
