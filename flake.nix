@@ -9,6 +9,7 @@
     nixvim.url = "github:nix-community/nixvim/";
     distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
     secrets.url = "git+ssh://git@github.com/dsunshi/secrets";
+    display-link.url = "git+ssh://git@github.com/dsunshi/displaylink-flake";
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions/?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,16 +25,11 @@
     };
   };
   outputs = { self, nixpkgs, nixpkgs-unstable, nixvim, home-manager
-    , firefox-addons, agenix, secrets, sddm-sugar-candy-nix, ... }@inputs:
+    , firefox-addons, agenix, secrets, display-link, sddm-sugar-candy-nix, ...
+    }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      displaylink_src = pkgs.fetchurl {
-        url =
-          "https://www.synaptics.com/sites/default/files/exe_files/2024-05/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu6.0-EXE.zip";
-        name = "displaylink-600.zip";
-        hash = "sha256-/HqlGvq+ahnuBCO3ScldJCZp8AX02HM8K4IfMzmducc=";
-      };
       inherit (self) outputs;
       # System Settings
       mySystem = {
@@ -59,10 +55,6 @@
         ./modules/home
       ];
     in {
-      displaylink_overlay = (final: prev: {
-        displaylink =
-          prev.displaylink.overrideAttrs (new: old: { src = displaylink_src; });
-      });
       nixosConfigurations = {
         bandit = nixpkgs.lib.nixosSystem {
           specialArgs = {
@@ -76,7 +68,7 @@
           modules = [
             ({ self, ... }: {
               nixpkgs.overlays = [
-                self.displaylink_overlay
+                display-link.overlays.default
                 sddm-sugar-candy-nix.overlays.default
               ];
             })
