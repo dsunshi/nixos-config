@@ -12,6 +12,7 @@
         nh
         nix-output-monitor
         fd
+        helix
         sd
         nvd
         pkgs-unstable.yazi

@@ -82,7 +82,7 @@ c.colors.hints.fg = '#1F1F28'
 
 # Font color for the matched part of hints.
 # Type: QtColor
-c.colors.hints.match.fg = '#76946A'
+c.colors.hints.match.fg = '#5E5086'
 
 # Background color of an info message.
 # Type: QssColor

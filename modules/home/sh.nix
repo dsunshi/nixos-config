@@ -1,6 +1,7 @@
 { myUser, pkgs, ... }:
 let
   myAliases = {
+    "cd.." = "cd ..";
     ".." = "cd ..";
     "..." = "cd ../..";
     cat = "bat";

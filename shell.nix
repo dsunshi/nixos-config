@@ -36,7 +36,7 @@ in pkgs.stdenv.mkDerivation {
   shellHook = # bash
     ''
       eval $(egrep ^export ${ghc}/bin/ghc)
-      cabal v2-update
+      # cabal v2-update
       cd modules/home/xmonad/
       gen-hie > hie.yaml
     '';
