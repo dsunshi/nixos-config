@@ -18,7 +18,7 @@ let
     vimdiff = "nvim -d";
     rungame = "gamemoderun steam-run";
     nixhash = "nix-hash --flat --base64 --type sha256";
-    fehs = ''feh info "echo %wx%h"'';
+    fehs = ''feh --info "echo %wx%h"'';
     sync = "rsync -aP";
   };
 in {

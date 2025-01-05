@@ -18,7 +18,6 @@ config.bind('xt', 'config-cycle tabs.show always never')
 # xx = xb + xt
 config.bind('xx', 'config-cycle statusbar.show always never;; config-cycle tabs.show always never')
 
-# TODO: Some colors may need to be adjusted for readalility
 # Text color of the completion widget. May be a single color to use for
 # all columns or a list of three colors, one for each column.
 # Type: List of QtColor, or QtColor
@@ -50,7 +49,7 @@ c.colors.completion.category.border.bottom = '#49443C'
 
 # Foreground color of the selected completion item.
 # Type: QtColor
-c.colors.completion.item.selected.fg = '#223249'
+c.colors.completion.item.selected.fg = '#C4746E'
 
 # Background color of the selected completion item.
 # Type: QssColor
@@ -82,7 +81,7 @@ c.colors.hints.fg = '#1F1F28'
 
 # Font color for the matched part of hints.
 # Type: QtColor
-c.colors.hints.match.fg = '#5E5086'
+c.colors.hints.match.fg = '#C4746E'
 
 # Background color of an info message.
 # Type: QssColor
