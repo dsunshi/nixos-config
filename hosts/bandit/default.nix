@@ -98,8 +98,11 @@
     users.users.${myUser.username} = {
       isNormalUser = true;
       description = myUser.name;
-      extraGroups = [ "networkmanager" "wheel" ];
+      extraGroups = [ "networkmanager" "wheel" "users" ];
+      uid = 1000;
     };
+
+    users.groups.users.gid = 100;
 
     # https://discourse.nixos.org/t/enabling-fixing-touch-gestures-in-nix-24-05/48784/2
 
