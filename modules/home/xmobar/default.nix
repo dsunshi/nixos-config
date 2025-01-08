@@ -44,7 +44,7 @@
                    , Run Com "xmobar-volume" [] "volume" 10
                    , Run Kbd [("us(colemak_dh_ortho)", "ck"), ("us", "us")]
                    , Run Brightness ["-t", "<fn=0>󰃞 </fn><percent>%", "--", "-D", "intel_backlight"] 60
-                   , Run DiskU [("/", "/: <usedp>% (<used>/<size>)")] [] 20
+                   , Run DiskU [("/run/media/david/6636-6561", "SD: <usedp>%"), ("/", "/: <usedp>%")] [] 20
                    ]
                  , sepChar = "%"
                  , alignSep = "}{"
