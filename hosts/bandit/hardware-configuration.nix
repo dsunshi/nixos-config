@@ -30,6 +30,7 @@
     options = [ "fmask=0077" "dmask=0077" ];
   };
 
+  # TODO: paramaterize
   fileSystems."/run/media/david/6636-6561" = {
     device = "/dev/disk/by-uuid/6636-6561";
     fsType = "auto";
