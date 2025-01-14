@@ -45,6 +45,7 @@ in {
           "/home/${myUser.username}/Games/"
           "/home/${myUser.username}/Downloads/"
           "/home/${myUser.username}/.local/share/applications/"
+          "/home/${myUser.username}/.local/bin/"
         ];
         pruneOpts = [ "--keep-last 6" ];
         timerConfig = {
