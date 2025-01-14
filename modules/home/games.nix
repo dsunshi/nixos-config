@@ -6,6 +6,7 @@
           freeciv
           nsz
           kdePackages.kigo
+          gnugo
           cataclysm-dda
           legendary-gl
           rare # GUI for ledendary
