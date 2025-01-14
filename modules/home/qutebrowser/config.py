@@ -7,8 +7,8 @@ c.url.start_pages = 'https://google.com/'
 
 c.url.searchengines = {'DEFAULT': 'https://google.com/search?q={}',
                        'hoogle': 'https://hoogle.haskell.org/?hoogle={}',
+                       'nix': 'https://search.nixos.org/packages?type=packages&query={}',
                        'yt': 'https://www.youtube.com/results?search_query={}'}
-
 # xb to toggle the status bar
 config.bind('xb', 'config-cycle statusbar.show always never')
 
