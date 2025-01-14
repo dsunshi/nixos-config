@@ -104,10 +104,18 @@
 
     users.groups.users.gid = 100;
 
-    # https://discourse.nixos.org/t/enabling-fixing-touch-gestures-in-nix-24-05/48784/2
-
     # List packages installed in system profile.
-    environment.systemPackages = with pkgs; [ appimage-run ];
+    environment.systemPackages = with pkgs; [
+      libfaketime
+      appimage-run
+      ptouch-print
+    ];
+
+    services.udev.extraRules = ''
+      # Enable non-root access for P-touch PT-P710BT
+      SUBSYSTEM == "usb", ATTRS{idVendor} == "04f9", ATTRS{idProduct} == "20af", MODE = "0666"
+    '';
+
     programs.nix-ld.enable = true;
     programs.nix-ld.libraries = with pkgs; [
       openssl_1_1
@@ -116,6 +124,8 @@
       xorg.libXext
       stdenv.cc.cc
       libva
+      stdenv.cc.cc.lib
+      libGL
     ];
     nixpkgs.config.permittedInsecurePackages = [ "openssl-1.1.1w" ];
     # You do not need to change this if you're reading this in the future.
