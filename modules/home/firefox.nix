@@ -1,4 +1,4 @@
-{ myUser, lib, config, buildFirefoxXpiAddon, inputs, ...}:
+{ myUser, lib, config, buildFirefoxXpiAddon, inputs, ... }:
 let
   hoogle-search = buildFirefoxXpiAddon {
     pname = "return-old-github-feed";
@@ -90,9 +90,20 @@ in {
                   tags = [ "search" "downloads" ];
                   url = "https://www.thingiverse.com/";
                 }
+              ];
+            }
+            {
+              name = "Cheatsheet";
+              toolbar = true;
+              bookmarks = [
+                {
+                  name = "Raylib Cheatsheet";
+                  tags = [ "cheatsheet" ];
+                  url = "https://www.raylib.com/cheatsheet/cheatsheet.html";
+                }
                 {
                   name = "OpenSCAD Cheatsheet";
-                  tags = [ "search" ];
+                  tags = [ "cheatsheet" ];
                   url = "https://openscad.org/cheatsheet/";
                 }
               ];
