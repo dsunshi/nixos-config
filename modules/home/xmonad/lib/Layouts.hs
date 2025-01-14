@@ -42,6 +42,7 @@ myManageHook =
       className =? "Yad" --> doCenterFloat
     ]
 
+-- ".blueman-applet-wrapped" -> close
 ------------------------------------------------------------------------
 -- Layouts:
 
