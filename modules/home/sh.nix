@@ -1,25 +1,27 @@
 { myUser, pkgs, ... }:
 let
   myAliases = {
-    "cd.." = "cd ..";
     ".." = "cd ..";
     "..." = "cd ../..";
+    ":q" = "exit";
+    "cd.." = "cd ..";
+    c = "cabal";
     cat = "bat";
     e = "nvim";
+    fehs = ''feh --info "echo %wx%h"'';
     g = "lazygit";
     htop = "btm";
     ll = "exa --icons -l -T -L=1";
     ls = "exa";
+    nixhash = "nix-hash --flat --base64 --type sha256";
     og = "git";
     q = "exit";
-    ":q" = "exit";
+    rmempty = "find . -type d -empty -delete";
+    rungame = "gamemoderun steam-run";
+    sync = "rsync -aP";
     tree = "exa --tree";
     vim = "nvim";
     vimdiff = "nvim -d";
-    rungame = "gamemoderun steam-run";
-    nixhash = "nix-hash --flat --base64 --type sha256";
-    fehs = ''feh --info "echo %wx%h"'';
-    sync = "rsync -aP";
   };
 in {
   home-manager.users.${myUser.username} = {
