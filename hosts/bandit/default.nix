@@ -13,6 +13,7 @@
     ./../../modules/printing.nix
     ./../../modules/agenix.nix
     ./../../modules/thunar.nix
+    ./../../modules/laptop.nix
     ./../../modules/ios.nix
     ./../../modules/common.nix
   ];
