@@ -26,7 +26,7 @@
     # Further home-manager: https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/
     # repo example: https://github.com/fufexan/dotfiles
   };
-  environment.systemPackages = with pkgs; [ wayland waydroid ];
+  environment.systemPackages = with pkgs; [ wayland waydroid swww ];
 
   # Configure keymap in X11
   services.xserver.xkb = {

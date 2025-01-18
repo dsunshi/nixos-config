@@ -46,39 +46,80 @@ let
       fi
 
       rm -rf $mirror
+      wayland=$XDG_SESSION_TYPE
 
       if [[ $monitors -gt "3" ]]; then
         if [ "$#" -eq 2 ]; then
           if [[ $1 -eq 0 ]]; then
-            feh --bg-scale --no-fehbg $fout $bg $bg
+            if [ "$wayland" = "wayland" ]; then
+              swww img $fout -o DVI-I-2
+              swww img $bg -o DVI-I-1
+              swww img $bg -o eDP-1
+            else
+              feh --bg-scale --no-fehbg $fout $bg $bg
+            fi
           elif [[ $1 -eq 1 ]]; then
-            feh --bg-scale --no-fehbg $bg $fout $bg
+            if [ "$wayland" = "wayland" ]; then
+              swww img $bg -o DVI-I-2 
+              swww img $fout -o DVI-I-1
+              swww img $bg -o eDP-1
+            else
+              feh --bg-scale --no-fehbg $bg $fout $bg
+            fi
           else
-            feh --bg-scale --no-fehbg $bg $bg $fout
+            if [ "$wayland" = "wayland" ]; then
+              swww img $bg -o DVI-I-2
+              swww img $bg -o DVI-I-1
+              swww img $fout -o eDP-1
+            else
+              feh --bg-scale --no-fehbg $bg $bg $fout
+            fi
           fi
         else
           r=$((1 + RANDOM % 10))
 
           if ((r >= 1 && r <= 3)); then
-            feh --bg-scale --no-fehbg $fout $bg $bg
+            if [ "$wayland" = "wayland" ]; then
+              swww img $fout -o DVI-I-2
+              swww img $bg -o DVI-I-1
+              swww img $bg -o eDP-1
+            else
+              feh --bg-scale --no-fehbg $fout $bg $bg
+            fi
           elif ((r >= 3 && r <= 5)); then
-            feh --bg-scale --no-fehbg $bg $fout $bg
+            if [ "$wayland" = "wayland" ]; then
+              swww img $bg -o DVI-I-2
+              swww img $fout -o DVI-I-1
+              swww img $bg -o eDP-1
+            else
+              feh --bg-scale --no-fehbg $bg $fout $bg
+            fi
           else
-            feh --bg-scale --no-fehbg $bg $bg $fout
+            if [ "$wayland" = "wayland" ]; then
+              swww img $bg -o DVI-I-2
+              swww img $bg -o DVI-I-1
+              swww img $fout -o eDP-1
+            else
+              feh --bg-scale --no-fehbg $bg $bg $fout
+            fi
           fi
         fi
       else
-        feh --bg-scale --no-fehbg $fout
+        if [ "$wayland" = "wayland" ]; then
+          swww img $fout
+        else
+          feh --bg-scale --no-fehbg $fout
+        fi
       fi
     '';
 in {
   config = lib.mkIf config.services.xserver.windowManager.xmonad.enable {
     environment.systemPackages = with pkgs; [ imagemagick walk-bandit feh ];
     home-manager.users.${myUser.username}.home = {
-      packages = with pkgs;
-        [
-          feh # sets the wallpaper
-        ];
+      packages = with pkgs; [
+        feh # sets the wallpaper
+        swww
+      ];
       # file.".config/wallpaper.png".source = ./wallpaper.png;
       file."${bandit}".source = ./bandit.png;
       file."${background}".source = ./background.png;
