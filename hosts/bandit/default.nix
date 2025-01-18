@@ -112,9 +112,13 @@
       ptouch-print
     ];
 
+    hardware.keyboard.qmk.enable = true;
+
     services.udev.extraRules = ''
       # Enable non-root access for P-touch PT-P710BT
       SUBSYSTEM == "usb", ATTRS{idVendor} == "04f9", ATTRS{idProduct} == "20af", MODE = "0666"
+      # QMK
+      SUBSYSTEMS=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", TAG+="uaccess"
     '';
 
     programs.nix-ld.enable = true;
