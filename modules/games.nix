@@ -7,6 +7,7 @@
     winetricks
     # native wayland support (unstable)
     wineWowPackages.waylandFull
+    prismlauncher
   ];
   programs.gamemode.enable = true;
   programs.steam = {

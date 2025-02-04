@@ -17,6 +17,7 @@
         nvd
         pkgs-unstable.yazi
         rdfind
+        fclones
         aria2
         bottom
         haskellPackages.hoogle

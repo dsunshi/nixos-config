@@ -1,8 +1,18 @@
-{ myUser, pkgs, lib, config, ... }: {
+{ myUser, pkgs, lib, config, ... }:
+let
+  reverse = pkgs.writeShellScriptBin "switch-monitors" # bash
+    ''
+      hyprctl keyword monitor DVI-I-2, 1920x1080, 1920x0, 1
+      hyprctl keyword monitor DVI-I-1, 1920x1080, 0x0, 1
+      hyprctl keyword monitor eDP-1, 1920x1200, 3840x1080, 1
+    '';
+in {
   config = lib.mkIf config.programs.hyprland.enable {
     home-manager.users.${myUser.username} = {
       # https://github.com/librephoenix/nixos-config/blob/main/user/wm/hyprland/hyprland.nix
-      home = { packages = with pkgs; [ libva-utils libinput-gestures ]; };
+      home = {
+        packages = with pkgs; [ libva-utils libinput-gestures reverse ];
+      };
       wayland.windowManager.hyprland = {
         enable = true;
         settings = {
@@ -35,9 +45,13 @@
             "$mod, down, movefocus, d"
             "$mod, up, movefocus, u"
             "$mod, right, movefocus, r"
+            "$mod, n, togglespecialworkspace"
+            "$mod SHIFT, n, movetoworkspace, special"
           ];
         };
         extraConfig = ''
+          exec-once = swww-daemon &
+          exec-once = walk-bandit
           # exec-once = waybar & hyprpaper
 
           monitor = DVI-I-1, 1920x1080, 1920x0, 1
