@@ -1,4 +1,4 @@
-{ myUser, lib, config, pkgs, ... }: {
+{ myUser, lib, config, ... }: {
   config = lib.mkIf (!config.wsl.enable) {
     home-manager.users.${myUser.username} = {
       home = {

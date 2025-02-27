@@ -1,4 +1,4 @@
-{ inputs, pkgs, config, myUser, ... }: {
+{ pkgs, config, myUser, ... }: {
   imports = [ ./nixvim ];
   home-manager = {
     users = {

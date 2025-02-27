@@ -37,7 +37,7 @@ let
 in {
   config = lib.mkIf config.services.xserver.windowManager.xmonad.enable {
     home-manager.users.${myUser.username}.home = {
-      packages = with pkgs; [ volume bluetooth ];
+      packages = [ volume bluetooth ];
       file.".config/xmonad/xmobar/wifi.sh".source = ./wifi.sh;
       # file.".config/xmonad/xmobar/bluetooth.sh".source = ./bluetooth.sh;
       # file.".config/xmonad/xmobar/volume.sh".source = ./volume.sh;

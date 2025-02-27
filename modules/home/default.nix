@@ -1,4 +1,4 @@
-{ myUser, pkgs, config, ... }: {
+{ myUser, pkgs, ... }: {
   imports = [
     ./cli.nix
     ./games.nix

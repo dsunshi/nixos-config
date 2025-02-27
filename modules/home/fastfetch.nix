@@ -1,4 +1,4 @@
-{ myUser, lib, config, pkgs, ... }: {
+{ myUser, ... }: {
   home-manager.users.${myUser.username} = {
     programs.fastfetch.enable = true;
 
