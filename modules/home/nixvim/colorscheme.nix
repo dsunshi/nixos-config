@@ -45,10 +45,11 @@
         (vimUtils.buildVimPlugin {
           name = "kanagawa-paper.nvim";
           src = fetchFromGitHub {
-            owner = "sho-87";
+            owner = "thesimonho";
             repo = "kanagawa-paper.nvim";
-            rev = "40da69c1a6a92264cfc2aa9cc62ac9faa69e19dd"; # 1.6.0 release
-            hash = "sha256-mq1Mn7ZrERmf4I2AR7GF3rWG6br5LrS8t1VnBqmjGco=";
+            rev = "9531cc6d16f99a5cf3522208c07937c7d5771ffc"; # 1.8.0 release
+            hash = "sha256-QkSULcnLOiF1w/iAuPK0CCvHsKrY24jBGNFHnd0aaj0=";
+            # hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
           };
         })
       ];
