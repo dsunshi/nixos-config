@@ -1,4 +1,4 @@
-{ myUser, pkgs-vintage, lib, config, pkgs, ... }: {
+{ myUser, lib, config, pkgs, ... }: {
   config = lib.mkIf (!config.wsl.enable) {
     home-manager.users.${myUser.username} = {
       programs.freetube = {
@@ -15,8 +15,12 @@
           gnumake
           okular
           spotify
-          pkgs-vintage.mypaint # https://github.com/NixOS/nixpkgs/issues/348748
-          pkgs-vintage.mypaint-brushes
+          # https://github.com/NixOS/nixpkgs/issues/348748
+          (mypaint.overrideAttrs (oldAttrs: {
+            doInstallCheck = false; # Turn off install check
+            checkPhase = null; # Disable check phase
+          }))
+          mypaint-brushes
           krita
           prusa-slicer
           fstl

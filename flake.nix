@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-    vintage.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
@@ -26,11 +25,10 @@
     };
   };
   outputs = { self, nixpkgs, nixpkgs-unstable, nixvim, home-manager
-    , firefox-addons, agenix, secrets, vintage, display-link
+    , firefox-addons, agenix, secrets, display-link
     , sddm-sugar-candy-nix, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
       inherit (self) outputs;
       # System Settings
       mySystem = {
@@ -60,8 +58,6 @@
         bandit = nixpkgs.lib.nixosSystem {
           specialArgs = {
             pkgs-unstable = import nixpkgs-unstable { inherit system; };
-            pkgs-vintage =
-              import vintage { inherit system; }; # temp work-around
             inherit self;
             inherit (inputs.firefox-addons.lib.${system}) buildFirefoxXpiAddon;
             inherit inputs outputs;
