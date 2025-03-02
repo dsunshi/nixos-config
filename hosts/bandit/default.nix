@@ -15,6 +15,7 @@
     ./../../modules/thunar.nix
     ./../../modules/laptop.nix
     ./../../modules/ios.nix
+    ./../../modules/ollama.nix
     ./../../modules/common.nix
   ];
 
