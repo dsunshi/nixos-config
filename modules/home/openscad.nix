@@ -17,13 +17,19 @@ let
     repo = "BOSL2";
     rev = "fb8be5baa68201d2179dd30f6d16b636c232aaaf"; # Feb 27, 2025
     hash = "sha256-wwtWVr00Pl//QY5yoNGnJMF+j7tvbRjcZ+s5WRH9DmU=";
-    # hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
   };
   catchnhole = pkgs.fetchFromGitHub {
     owner = "mmalecki";
     repo = "catchnhole";
     rev = "99428972ca2588f5ce33c0df54d097a14acf7f10"; # Version 3.0.2
     hash = "sha256-4G9zmlBZy4XfeYrHkHG4LK1aWsmVu4ZOTVzTafkCoNM=";
+  };
+  gridfinity = pkgs.fetchFromGitHub {
+    owner = "kennetek";
+    repo = "gridfinity-rebuilt-openscad";
+    rev = "993814227204b942fc1c13e64a604427f835742a"; # Jan 26, 2025
+    hash = "sha256-QluKnfcMsFb1X67E0L2N+uK4DB+yjLwnksYiLMYp22Q=";
+    # hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
   };
   libPath = ".local/share/OpenSCAD/libraries";
 in {
@@ -35,6 +41,7 @@ in {
         file."${libPath}/BOSL".source = bosl;
         file."${libPath}/BOSL2".source = bosl2;
         file."${libPath}/catchnhole".source = catchnhole;
+        file."${libPath}/gridfinity".source = gridfinity;
       };
     };
   };
