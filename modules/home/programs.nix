@@ -24,6 +24,7 @@
           krita
           prusa-slicer
           fstl
+          thunderbird
           qbittorrent
           wezterm
           goxel
