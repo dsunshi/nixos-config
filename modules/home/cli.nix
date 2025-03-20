@@ -8,7 +8,10 @@
         yt-dlp
         flameshot
         tmux
+        taskwarrior3
+        bc
         nb
+        lsd
         nh
         nix-output-monitor
         fd

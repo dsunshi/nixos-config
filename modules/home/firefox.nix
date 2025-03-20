@@ -106,6 +106,12 @@ in {
                   tags = [ "cheatsheet" ];
                   url = "https://openscad.org/cheatsheet/";
                 }
+                {
+                  name =
+                    "The DMOJ is a modern contest platform and archive of programming problems. ";
+                  tags = [ "cheatsheet" ];
+                  url = "https://dmoj.ca/";
+                }
               ];
             }
           ];

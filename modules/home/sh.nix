@@ -6,6 +6,7 @@ let
     ":q" = "exit";
     "cd.." = "cd ..";
     c = "cabal";
+    bc = "bc -l";
     cat = "bat";
     e = "nvim";
     fehs = ''feh --info "echo %wx%h"'';
