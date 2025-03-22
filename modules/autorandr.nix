@@ -25,8 +25,6 @@ in { pkgs, ... }: {
             primary = true;
             position = "0x0";
             mode = "1920x1200";
-            #gamma = "1.0:0.909:0.833";
-            #rate = "60.00";
           };
         };
       };
@@ -43,8 +41,6 @@ in { pkgs, ... }: {
             primary = false;
             position = "3840x1080";
             mode = "1920x1200";
-            #gamma = "1.0:0.909:0.833";
-            #rate = "60.00";
           };
 
           ${upliftLeftName} = {
@@ -52,8 +48,6 @@ in { pkgs, ... }: {
             primary = false;
             position = "0x0";
             mode = "1920x1080";
-            #gamma = "1.0:0.909:0.833";
-            #rate = "60.00";
           };
 
           ${upliftRightName} = {
@@ -61,8 +55,36 @@ in { pkgs, ... }: {
             primary = true;
             position = "1920x0";
             mode = "1920x1080";
-            #gamma = "1.0:0.909:0.833";
-            #rate = "60.00";
+          };
+        };
+      };
+
+      "reverse" = {
+        fingerprint = {
+          ${laptopName} = laptopFP;
+          ${upliftLeftName} = upliftLeftFP;
+          ${upliftRightName} = upliftRightFP;
+        };
+        config = {
+          ${laptopName} = {
+            enable = true;
+            primary = false;
+            position = "3840x1080";
+            mode = "1920x1200";
+          };
+
+          ${upliftLeftName} = {
+            enable = true;
+            primary = true;
+            position = "1920x0";
+            mode = "1920x1080";
+          };
+
+          ${upliftRightName} = {
+            enable = true;
+            primary = false;
+            position = "0x0";
+            mode = "1920x1080";
           };
         };
       };
