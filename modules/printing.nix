@@ -1,8 +1,12 @@
 { pkgs, ... }: {
   # TODO: printer config
   services.printing.enable = true;
-  services.printing.drivers = with pkgs; [ epson-escpr ];
-  environment.systemPackages = with pkgs; [ system-config-printer ];
+  # ptouch-driver and ptouch-print are for PT-P710BT
+  services.printing.drivers = with pkgs; [ epson-escpr ptouch-driver ];
+  environment.systemPackages = with pkgs; [
+    system-config-printer
+    ptouch-print
+  ];
   # Enable autodiscovery of network printers
   services.avahi = {
     enable = true;

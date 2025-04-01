@@ -10,6 +10,7 @@
         tmux
         taskwarrior3
         bc
+        autojump
         nb
         lsd
         nh
