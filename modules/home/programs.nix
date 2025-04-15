@@ -1,4 +1,4 @@
-{ myUser, lib, config, pkgs, ... }: {
+{ myUser, inputs, lib, config, pkgs, ... }: {
   config = lib.mkIf (!config.wsl.enable) {
     home-manager.users.${myUser.username} = {
       programs.freetube = {
@@ -15,6 +15,11 @@
           gnumake
           okular
           spotify
+          spot
+          darktable
+          inputs.zen-browser.packages."${system}".default
+          ansel
+          digikam
           # https://github.com/NixOS/nixpkgs/issues/348748
           (mypaint.overrideAttrs (oldAttrs: {
             doInstallCheck = false; # Turn off install check
@@ -33,7 +38,7 @@
           tor-browser
           gimp
           anki
-          blender
+          # blender
           gpick
           vlc
         ];

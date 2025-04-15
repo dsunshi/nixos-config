@@ -10,6 +10,9 @@
         tmux
         taskwarrior3
         bc
+        pandoc
+        frogmouth
+        wkhtmltopdf
         autojump
         nb
         lsd

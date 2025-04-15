@@ -10,6 +10,7 @@
     distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
     secrets.url = "git+ssh://git@github.com/dsunshi/secrets";
     display-link.url = "git+ssh://git@github.com/dsunshi/displaylink-flake";
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions/?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -25,7 +26,7 @@
     };
   };
   outputs = { self, nixpkgs, nixpkgs-unstable, nixvim, home-manager
-    , firefox-addons, agenix, secrets, display-link
+    , firefox-addons, agenix, secrets, display-link, zen-browser
     , sddm-sugar-candy-nix, ... }@inputs:
     let
       system = "x86_64-linux";
