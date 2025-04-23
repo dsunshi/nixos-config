@@ -10,6 +10,7 @@ in {
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   environment.systemPackages = [ post-install-updates ];
+  nix.settings.download-buffer-size = 100663296;
 
   environment.variables.EDITOR = "nvim";
 }
