@@ -1,5 +1,11 @@
 { pkgs, ... }: {
   programs.nixvim = {
+    autoCmd = [{
+      # Cabal comment
+      command = "setlocal commentstring=--\\%s";
+      event = [ "BufEnter" "BufWinEnter" ];
+      pattern = [ "*.cabal" ];
+    }];
     keymaps = [
       {
         options.desc = "Toggle GHCi repl for the current buffer";
