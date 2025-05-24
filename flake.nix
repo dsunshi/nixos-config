@@ -2,14 +2,14 @@
   description = "🌞 NixOS Configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixvim.url = "github:nix-community/nixvim/";
     distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
     secrets.url = "git+ssh://git@github.com/dsunshi/secrets";
-    display-link.url = "git+ssh://git@github.com/dsunshi/displaylink-flake";
+    # display-link.url = "git+ssh://git@github.com/dsunshi/displaylink-flake";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions/?dir=pkgs/firefox-addons";
@@ -26,7 +26,7 @@
     };
   };
   outputs = { self, nixpkgs, nixpkgs-unstable, nixvim, home-manager
-    , firefox-addons, agenix, secrets, display-link, zen-browser
+    , firefox-addons, agenix, secrets, zen-browser
     , sddm-sugar-candy-nix, ... }@inputs:
     let
       system = "x86_64-linux";
@@ -68,7 +68,7 @@
           modules = [
             ({ self, ... }: {
               nixpkgs.overlays = [
-                display-link.overlays.default
+                # display-link.overlays.default
                 sddm-sugar-candy-nix.overlays.default
               ];
             })

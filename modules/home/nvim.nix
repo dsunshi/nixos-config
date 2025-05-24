@@ -6,7 +6,10 @@
         home = {
           packages = with pkgs;
             [ fzf lazygit nixfmt-classic ripgrep ]
-            ++ (if (!config.wsl.enable) then [ pkgs.nerdfonts ] else [ ]);
+            ++ (if (!config.wsl.enable) then
+              [ pkgs.nerd-fonts.iosevka ]
+            else
+              [ ]);
         };
       };
     };

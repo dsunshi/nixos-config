@@ -6,6 +6,9 @@
   environment.systemPackages = with pkgs; [
     system-config-printer
     ptouch-print
+    # epkowa
+    # epsonscan2
+    # utsushi
   ];
   # Enable autodiscovery of network printers
   services.avahi = {
@@ -14,5 +17,6 @@
     openFirewall = true;
   };
   # For scanning
-  hardware.sane.extraBackends = [ pkgs.epsonscan2 ];
+  hardware.sane.extraBackends = with pkgs; [ epsonscan2 epkowa utsushi ];
+  # environment.systemPackages = with pkgs; [ epsonscan2 epkowa ];
 }

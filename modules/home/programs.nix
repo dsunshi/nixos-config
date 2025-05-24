@@ -13,7 +13,7 @@
         packages = with pkgs; [
           calibre
           gnumake
-          okular
+          kdePackages.okular
           spotify
           spot
           darktable

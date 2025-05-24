@@ -10,10 +10,10 @@ let
       [ ]
     else [
       # libraries
-      xmonad_0_18_0
+      xmonad
       xmonad-utils
       xmonad-extras
-      xmonad-contrib_0_18_1
+      xmonad-contrib
       xmobar
       hint
       # "tools"

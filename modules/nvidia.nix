@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, pkgs, ... }: {
+  # environment.systemPackages = with pkgs; [  ];
   config = {
     services.xserver.videoDrivers = [ "displaylink" "nvidia" ];
     hardware = {
@@ -11,7 +12,8 @@
         open = true;
         # package = config.boot.kernelPackages.nvidiaPackages.beta;
         # package = config.boot.kernelPackages.nvidiaPackages.latest;
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        # package = config.boot.kernelPackages.nvidiaPackages.stable;
+        package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
         # package = config.boot.kernelPackages.nvidiaPackages.legacy_535;
         prime = {
           # sync.enable = true;

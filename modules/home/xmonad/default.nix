@@ -7,7 +7,7 @@
           source = ./xmonad.hs;
           onChange = # bash
             ''
-              ${pkgs.haskellPackages.xmonad_0_18_0}/bin/xmonad --recompile; ${pkgs.haskellPackages.xmonad_0_18_0}/bin/xmonad --restart
+              ${pkgs.haskellPackages.xmonad}/bin/xmonad --recompile; ${pkgs.haskellPackages.xmonad}/bin/xmonad --restart
             '';
         };
         file.".xmonad/lib" = {
