@@ -3,7 +3,7 @@ all: install
 
 .PHONY: test
 test:
-	nh os test
+	nh os test .
 
 .PHONY: install
 install:

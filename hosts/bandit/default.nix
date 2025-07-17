@@ -37,6 +37,7 @@
     boot.loader.grub.devices = [ "nodev" ];
     boot.loader.grub.efiSupport = true;
     boot.loader.grub.useOSProber = true;
+    boot.supportedFilesystems = [ "ntfs" ];
     distro-grub-themes = {
       enable = true;
       theme = "nixos"; # or 'asus-rog'
@@ -76,7 +77,7 @@
     # services.printing.enable = true;
 
     # Enable sound with pipewire.
-    hardware.pulseaudio.enable = false;
+    services.pulseaudio.enable = false;
     security.rtkit.enable = true;
     services.pipewire = {
       enable = true;

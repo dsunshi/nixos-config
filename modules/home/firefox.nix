@@ -22,99 +22,103 @@ in {
       programs.firefox = {
         enable = true;
         profiles.${myUser.username} = {
-          extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
-            bitwarden
-            darkreader
-            sponsorblock
-            ublock-origin
-            undoclosetabbutton
-            gruvbox-dark-theme
-            tridactyl
-            hoogle-search
-          ];
-          bookmarks = [
-            {
-              name = "Haskell Sites";
-              toolbar = true;
-              bookmarks = [
-                {
-                  name = "Hackage";
-                  tags = [ "search" "nix" "packages" ];
-                  url = "https://hackage.haskell.org/";
-                }
-                {
-                  name = "hoogle";
-                  tags = [ "search" "haskell" ];
-                  url = "https://hoogle.haskell.org/";
-                }
-              ];
-            }
-            {
-              name = "Nix Sites";
-              toolbar = true;
-              bookmarks = [
-                {
-                  name = "NixVim Options";
-                  tags = [ "neovim" "nix" ];
-                  url = "https://nix-community.github.io/nixvim/";
-                }
-                {
-                  name = "Nix Packages";
-                  tags = [ "search" "nix" "packages" ];
-                  url = "https://search.nixos.org/packages";
-                }
-                {
-                  name = "NixOS Wiki";
-                  tags = [ "wiki" "nix" ];
-                  url = "https://wiki.nixos.org/";
-                }
-                {
-                  name = "Home Manager Options";
-                  tags = [ "wiki" "nix" ];
-                  url =
-                    "https://nix-community.github.io/home-manager/options.xhtml";
-                }
-              ];
-            }
-            {
-              name = "3D Printing Sites";
-              toolbar = true;
-              bookmarks = [
-                {
-                  name = "Printables";
-                  tags = [ "search" "downloads" ];
-                  url = "https://www.printables.com/";
-                }
-                {
-                  name = "Thingiverse";
-                  tags = [ "search" "downloads" ];
-                  url = "https://www.thingiverse.com/";
-                }
-              ];
-            }
-            {
-              name = "Cheatsheet";
-              toolbar = true;
-              bookmarks = [
-                {
-                  name = "Raylib Cheatsheet";
-                  tags = [ "cheatsheet" ];
-                  url = "https://www.raylib.com/cheatsheet/cheatsheet.html";
-                }
-                {
-                  name = "OpenSCAD Cheatsheet";
-                  tags = [ "cheatsheet" ];
-                  url = "https://openscad.org/cheatsheet/";
-                }
-                {
-                  name =
-                    "The DMOJ is a modern contest platform and archive of programming problems. ";
-                  tags = [ "cheatsheet" ];
-                  url = "https://dmoj.ca/";
-                }
-              ];
-            }
-          ];
+          extensions.packages =
+            with inputs.firefox-addons.packages."x86_64-linux"; [
+              bitwarden
+              darkreader
+              sponsorblock
+              ublock-origin
+              undoclosetabbutton
+              gruvbox-dark-theme
+              # tridactyl
+              hoogle-search
+            ];
+          bookmarks = {
+            force = true;
+            settings = [
+              {
+                name = "Haskell Sites";
+                toolbar = true;
+                bookmarks = [
+                  {
+                    name = "Hackage";
+                    tags = [ "search" "nix" "packages" ];
+                    url = "https://hackage.haskell.org/";
+                  }
+                  {
+                    name = "hoogle";
+                    tags = [ "search" "haskell" ];
+                    url = "https://hoogle.haskell.org/";
+                  }
+                ];
+              }
+              {
+                name = "Nix Sites";
+                toolbar = true;
+                bookmarks = [
+                  {
+                    name = "NixVim Options";
+                    tags = [ "neovim" "nix" ];
+                    url = "https://nix-community.github.io/nixvim/";
+                  }
+                  {
+                    name = "Nix Packages";
+                    tags = [ "search" "nix" "packages" ];
+                    url = "https://search.nixos.org/packages";
+                  }
+                  {
+                    name = "NixOS Wiki";
+                    tags = [ "wiki" "nix" ];
+                    url = "https://wiki.nixos.org/";
+                  }
+                  {
+                    name = "Home Manager Options";
+                    tags = [ "wiki" "nix" ];
+                    url =
+                      "https://nix-community.github.io/home-manager/options.xhtml";
+                  }
+                ];
+              }
+              {
+                name = "3D Printing Sites";
+                toolbar = true;
+                bookmarks = [
+                  {
+                    name = "Printables";
+                    tags = [ "search" "downloads" ];
+                    url = "https://www.printables.com/";
+                  }
+                  {
+                    name = "Thingiverse";
+                    tags = [ "search" "downloads" ];
+                    url = "https://www.thingiverse.com/";
+                  }
+                ];
+              }
+              {
+                name = "Cheatsheet";
+                toolbar = true;
+                bookmarks = [
+                  {
+                    name = "Raylib Cheatsheet";
+                    tags = [ "cheatsheet" ];
+                    url = "https://www.raylib.com/cheatsheet/cheatsheet.html";
+                  }
+                  {
+                    name = "OpenSCAD Cheatsheet";
+                    tags = [ "cheatsheet" ];
+                    url = "https://openscad.org/cheatsheet/";
+                  }
+                  {
+                    name =
+                      "The DMOJ is a modern contest platform and archive of programming problems. ";
+                    tags = [ "cheatsheet" ];
+                    url = "https://dmoj.ca/";
+                  }
+                ];
+              }
+            ];
+          };
           settings = {
             "browser.startup.homepage" = "about:blank";
             "browser.display.background_color" = "#1F1F28";
