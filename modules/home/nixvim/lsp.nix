@@ -11,7 +11,7 @@
             enable = true;
             # Do not install ghc via Nixvim. We will prefer to use flakes or 
             # shell.nix which will give us ghc (with a matching hls of the same version).
-            installGhc = false;
+            installGhc = true;
           };
           clangd.enable = true;
           openscad_lsp.enable = true;

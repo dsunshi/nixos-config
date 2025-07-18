@@ -5,7 +5,7 @@
   services.xserver.windowManager.xmonad = {
     enable = true;
     enableContribAndExtras = true;
-    haskellPackages = pkgs.haskell.packages.ghc98;
+    haskellPackages = pkgs.haskell.packages.ghc984;
     extraPackages = hpkgs: [
       hpkgs.xmonad
       hpkgs.xmonad-extras

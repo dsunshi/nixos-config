@@ -34,13 +34,20 @@
           wezterm
           goxel
           leocad
-          sweethome3d.application
+          # sweethome3d.application
           tor-browser
           gimp
           anki
           # blender
           gpick
           vlc
+          # haskell
+          ghc
+          ghcid
+          cabal-install
+          haskellPackages.implicit-hie
+          haskell-language-server
+          zlib
         ];
       };
     };

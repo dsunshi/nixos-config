@@ -1,4 +1,4 @@
-{ nixpkgs ? import <nixpkgs> { }, ghcVersion ? "98" }:
+{ nixpkgs ? import <nixpkgs> { }, ghcVersion ? "984" }:
 let
   isWSL = if builtins.pathExists /etc/wsl.conf then true else false;
   inherit (nixpkgs) pkgs;
