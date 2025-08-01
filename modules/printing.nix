@@ -2,7 +2,12 @@
   # TODO: printer config
   services.printing.enable = true;
   # ptouch-driver and ptouch-print are for PT-P710BT
-  services.printing.drivers = with pkgs; [ epson-escpr ptouch-driver ];
+  services.printing.drivers = with pkgs; [
+    epson-escpr2
+    epson-escpr
+    gutenprint
+    ptouch-driver
+  ];
   environment.systemPackages = with pkgs; [
     system-config-printer
     ptouch-print
@@ -17,6 +22,6 @@
     openFirewall = true;
   };
   # For scanning
-  hardware.sane.extraBackends = with pkgs; [ epsonscan2 epkowa utsushi ];
+  # hardware.sane.extraBackends = with pkgs; [ epsonscan2 epkowa utsushi ];
   # environment.systemPackages = with pkgs; [ epsonscan2 epkowa ];
 }

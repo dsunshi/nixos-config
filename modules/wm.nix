@@ -14,7 +14,7 @@
   };
   environment.systemPackages = with pkgs; [ arandr ];
   programs.xss-lock = {
-    enable = true;
+    enable = false;
     lockerCommand = "${pkgs.betterlockscreen}/bin/betterlockscreen --lock blur";
     # lock before suspending/hibernating, see https://github.com/i3/i3lock/issues/207
     extraOptions = [ "--transfer-sleep-lock" ];
@@ -32,7 +32,7 @@
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
-    # variant = "colemak_dh_ortho";
+    variant = "colemak_dh_ortho";
   };
 
 }

@@ -27,6 +27,7 @@
           }))
           mypaint-brushes
           krita
+          planify
           prusa-slicer
           fstl
           thunderbird
